@@ -1,0 +1,43 @@
+microcontroller
+STM32H7A3ZIT6
+https://www.digikey.com/en/products/detail/stmicroelectronics/STM32H7A3ZIT6/11502699
+$15.22
+This is the microcontroller in our dev board. A -Q version with internal SMPS is also available. ST says this is not necessarily unless hyper-optimizing power efficiency, see here: https://community.st.com/t5/stm32-mcus-boards-and-hardware/smps-necessary-or-not/td-p/119420
+
+ADC
+AKM AK5720VT
+https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK5720VT/5180452
+$2.71
+Cheapest option on Digikey for filters "audio ADC," "2 channels," "I2S." Nothing in the datasheet to indicate it wouldn't be able to meet spec based on my limited understanding. More expensive options are mostly from TI, main differentiating factor seems to be higher sampling rate and/or more bit depth, but 96k/24b is already excessive for our purposes.
+
+DAC
+Cirrus WM8524CGEDT
+https://www.digikey.com/en/products/detail/cirrus-logic-inc/WM8524CGEDT-R/5036730
+$2.62
+Used same initial selection parameters as for ADC, a lot more options than in that category. To narrow down further seemed intuitive to elect a DAC around the same price and in the same package format as the ADC already elected (although DACs seem cheaper than ADCs for the same specifications). Saw nothing concerning in datasheet. Other ADCs in the same price bracket are mostly made by TI, hard to differentiate between so many similar models
+
+Stereo RCA jack
+Cliff FW6190
+https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FW6190/21264762
+2 x $2.62 (input & output) = $5.24
+Two options (in stock & shipping) on Digikey for color-coded stereo left & right in one package, one is right-angle, one is straight-thru. Straight-thru seems cooler if the board is exposed anyway and the price is similar
+
+Toslink RX
+Toshiba TORX1950A(F)
+https://www.mouser.com/ProductDetail/Toshiba/TORX1950AF?qs=gev7jUp%252BQ%252BhPDbv%252Bwuk0PA%3D%3D
+$13.83
+For this and Toslink tx — the market is hard. Toshiba also makes rx/tx that allow you to attach your own LED drive instead of having it built into the receptacle module, but they appear to have been obsoleted or to be on unsustainably long lead times. I'd like vertical-facing for parity with the RCA jacks but that similarly appears to be unobtainium. "A" in the product name means LED drive integrated, I don't know what "F" means, and there would be "V" if it was vertical-facing. The 1950A tx/rx will work for the moment and I will look further into trying to source some without integrated LED drive later on if I have time.
+Also: Digikey doesn't sell the 1950 tx/rx, only Mouser does.
+
+Toslink TX
+Toshiba TOTX1950A(F)
+https://www.mouser.com/ProductDetail/Toshiba/TOTX1950AF?qs=gev7jUp%252BQ%252BhDjDGaeAaJXw%3D%3D
+$14.76
+Reasoning see above
+
+Supplemental flash
+Micron MT29F4G01ABAFDWB-IT:F
+https://www.digikey.com/en/products/detail/micron-technology-inc/MT29F4G01ABAFDWB-IT-F/8509729
+$3.94
+Out of our depth here. Totally unsure how to assess practical data rate at either flash chip or µcontroller end.
+https://www.smxrtos.com/articles/whiteppr/flashperformance.htm
