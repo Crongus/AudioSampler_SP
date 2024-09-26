@@ -35,9 +35,13 @@ https://www.mouser.com/ProductDetail/Toshiba/TOTX1950AF?qs=gev7jUp%252BQ%252BhDj
 $14.76
 Reasoning see above
 
-Supplemental flash
-Micron MT29F4G01ABAFDWB-IT:F
-https://www.digikey.com/en/products/detail/micron-technology-inc/MT29F4G01ABAFDWB-IT-F/8509729
-$3.94
-Out of our depth here. Totally unsure how to assess practical data rate at either flash chip or µcontroller end.
-https://www.smxrtos.com/articles/whiteppr/flashperformance.htm
+New design assumption -> No supplemental flash, do everything in RAM. Easier way to meet minimal spec.
+Problem: Largest SDRAM chip available is only 512 Mbit, at least based upon filtered Digikey search and a Stackexchange post we found from 2018 (post here: https://electronics.stackexchange.com/questions/397458/stm32h7-with-512mb-sdram). In our feasibility study we thought that we would need around 900 Mbit JUST for storage of audio clips if assuming CD standard (stereo, 44.1 ksps, 16 bit depth).
+Some observations:
+Smallest available package for 512 Mbit (or 256 Mbit) is 54 pins. This necessitates MINIMALLY 108 pins hooked up for CD standard audio (and leaving only around 100 Mbit margin of error / overhead is probably not smart).
+512 Mbit packages are really expensive per actual bit. 256 Mbit packages are cheaper but this only amplifies the "that's a Lot of pins to hook up" problem.
+At least 44.1 ksps is necessary to meet spec for frequency response (Shannon-Nyquist theorem) but nothing was formally specified about bit depth. 16 bits depth is almost certainly overkill considering that everything analog in the circuit is going to be (relatively) noisy, and also, SNR was not formally specified. I think we could get away with possibly as little as 10 bits depth although I need to get an actual formula for bit depth<->dynamic range to assess this more confidently. Finally, stereo audio was not formally specified, mono would minimally meet spec.
+We are going to have to hook up AT LEAST one 54-pin RAM pad any way, any how. The question then becomes, is the tradeoff acceptable to avoid doing two. Would two even be feasible at all? Is there any universe where we have the PCB design chops to make that happen? Wouldn't that be a huge pain in the neck given the actual scope of our project and our current priors?
+I'm going to make a wild guess that the (comparatively) nominal per-bit cost savings from buying 256 Mbit pads DOES NOT outweigh the enormous pain in the neck it would be to actually hook that up
+
+Power supply selection observations: It would be most convenient if we could fire everything off one voltage and did not need to elect a multiple-output unit (for the prebuilt PSU case). µcontroller and RAM chip(s) have non-negligible consumption, I think everything else has negligible consumption. With a single RAM chip and the H7A3ZIT6 could we get away with a 1 W supply? 1.5 W?
