@@ -1,0 +1,49 @@
+Old parts document was getting cluttered.
+
+What we learned:
+The amount of RAM needed to actually do everything in RAM would be too expensive. Reverting to assumption of flash storage. Feasibility articulated minimally 1 Gbit storage, so for some margin of error we'll use 2 Gbit.
+We will still use supplemental RAM, a sufficient amount to not have to flush the clip to flash until it is finished recording, which should make programming a lot easier and leave more room for error in that department. Only possible problem might be pipelining if recording of a second clip is then immediately started. Elect RAM with enough space for two clips, then?
+Sheaff says anything in a BGA package isn't wise to elect because it can't be hand-soldered. I think this is a surmountable problem because there is a reflow oven available in Ferland, but probably if a comparable option is available in a non-BGA package it does make sense to save ourselves the headache.
+STM32H7 has no built-in S/PDIF tx, only rx. Finding a (standalone) S/PDIF codec seemed non-trivial. However, there are DACs available that have a side-pocket S/PDIF output, so that is probably the way to go.
+↓→ This is wrong, see below
+Toshiba 1950 Toslink tx and rx connectors (ie the only ones currently in stock from a reputable major supplier) are probably the way to go for the time being. Screwing around with rare/end-of-life options is a bridge to cross if I have time to do so.
+Toslink connectors are pretty expensive, but validating Toslink functionality is nontrivial (high signaling frequency on a single wire), so we may still have to burn a few of these. The comparatively smaller number of legs might make them recoverable off the board? Maybe?
+
+Some speculation:
+I have zero idea what we may or may not need in the way of R-L-C, diodes, transistors, et cetera. Probably some bandpass filtering on analog audio paths is appropriate, probably some capacitors in or near power delivery, other than that I'm out of my depth. Will manufacturers (of flash and RAM e.g.) have recommended circuit configurations in their datasheets? The datasheet for a Toslink tx connector I looked at had that....
+One 45 sec clip will require minimally 64 Mbit (VERY minimally, with only about 500 Kbit margin for error). Therefore a 128 Mbit RAM chip theoretically could store two full CD quality clips. On the other hand, a 256 Mbit chip is only like three bucks - so is there any good reason not to do that, and give ourselves the room to work with?
+	Liam's thoughts: Too clever by half, just don't allow recording of a second clip while the first one is still flushing. That works 	for me and doesn't contravene the contract. 128 Mbit it is, then
+My assumption about the combo DAC I found was wrong (it doesn't do I2S input and SPDIF output at the same time, it's principally a USB device). Need to hit the bricks again on this. Keywords that seem promising: "codec," "transmitter," "transceiver," "encoder"
+
+So at this juncture we need:
+µcontroller
+RAM
+Flash
+ADC
+DAC with S/PDIF side pocket
+RCA stereo connector board (2x)
+Toslink rx connector
+Toslink tx connector
+Prebuilt AC->DC power supply
+BELOW HERE: Parts we think will be available for free in Barrows (but behooves us to go actually grab them for a more definite PCB design)
+Buttons (12x)
+LEDs (12x)
+Potentiometer or rotary encoder
+Unknown quantity of RLC, diode, and/or transistor components for line filtering, buffering, or God knows what else
+
+RAM:
+Filter by 128 Mbit, active and typically stocked / not marketplace, SDRAM, and not using a BGA package. Cheapest options are "LVTTL" interface, I'm not sure if the FMC does this, so filtered further by "parallel" to be safe. Plenty of 54-pin options are available so we can filter out 86-pin because that would be a pain in the neck if even supported. Four cheapest options from "Alliance Memory" (and the next price step up looks similar in all important respects). Discard one that is clocked slower, remaining three are "commercial," "industrial," and "automotive" versions of the same chip. Picked "commercial" version
+https://www.digikey.com/en/products/detail/alliance-memory-inc/AS4C8M16SA-6TCN/5214142
+$3.36
+Alliance Memory AS4C8M16SA-6TCN
+Power supply nominal: 3.3 V
+
+Flash:
+Filter by 2 Gbit, active and normally stocked / not marketplace, parallel (ie not using an intermediate interface, able to be hooked up directly to the FMC), NAND, 3.3 V supply (to be able to use the same rail as the µcontroller), and NOT using a BGA package. Elected to filter further by SLC for hopefully a little more peace of mind on achievable speed (based upon my experience with consumer flash, i.e. SSDs). Most options are by Kioxia, looked like four different versions of essentially the same chip. Two are severe duty temperature tolerance (don't need), of the remaining two, one has built-in ECC whereas the other makes you implement it yourself. Not having to do ECC ourselves for the same price is a no brainer
+https://www.digikey.com/en/products/detail/kioxia-america-inc/TC58BVG1S3HTA00/5226306
+$3.81
+Kioxia TC58BVG1S3HTA00
+Power supply nominal: 3.3 V
+
+DAC + S/PDIF tx:
+This is hard
