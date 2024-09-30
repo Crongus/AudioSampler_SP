@@ -5,9 +5,9 @@ The amount of RAM needed to actually do everything in RAM would be too expensive
 We will still use supplemental RAM, a sufficient amount to not have to flush the clip to flash until it is finished recording, which should make programming a lot easier and leave more room for error in that department. Only possible problem might be pipelining if recording of a second clip is then immediately started. Elect RAM with enough space for two clips, then?
 Sheaff says anything in a BGA package isn't wise to elect because it can't be hand-soldered. I think this is a surmountable problem because there is a reflow oven available in Ferland, but probably if a comparable option is available in a non-BGA package it does make sense to save ourselves the headache.
 STM32H7 has no built-in S/PDIF tx, only rx. Finding a (standalone) S/PDIF codec seemed non-trivial. However, there are DACs available that have a side-pocket S/PDIF output, so that is probably the way to go.
-↓→ This is wrong, see below
+	This is wrong, see "New insight 9/27 and 9/30"
 Toshiba 1950 Toslink tx and rx connectors (ie the only ones currently in stock from a reputable major supplier) are probably the way to go for the time being. Screwing around with rare/end-of-life options is a bridge to cross if I have time to do so.
-Toslink connectors are pretty expensive, but validating Toslink functionality is nontrivial (high signaling frequency on a single wire), so we may still have to burn a few of these. The comparatively smaller number of legs might make them recoverable off the board? Maybe?
+Toslink connectors are pretty expensive, but validating Toslink functionality is nontrivial (high signaling frequency on a single wire), so we may still have to burn a few of these. The comparatively smaller number of legs might make them recoverable off the board? Maybe? 
 
 Some speculation:
 I have zero idea what we may or may not need in the way of R-L-C, diodes, transistors, et cetera. Probably some bandpass filtering on analog audio paths is appropriate, probably some capacitors in or near power delivery, other than that I'm out of my depth. Will manufacturers (of flash and RAM e.g.) have recommended circuit configurations in their datasheets? The datasheet for a Toslink tx connector I looked at had that....
@@ -15,12 +15,17 @@ One 45 sec clip will require minimally 64 Mbit (VERY minimally, with only about 
 	Liam's thoughts: Too clever by half, just don't allow recording of a second clip while the first one is still flushing. That works 	for me and doesn't contravene the contract. 128 Mbit it is, then
 My assumption about the combo DAC I found was wrong (it doesn't do I2S input and SPDIF output at the same time, it's principally a USB device). Need to hit the bricks again on this. Keywords that seem promising: "codec," "transmitter," "transceiver," "encoder"
 
+New insight 9/27 and 9/30:
+Did some googling, found a suitable S/PDIF transceiver from TI that was linked in a discussion on the TI forums. Upon pulling up the product page on Digikey I think the reason why I wasn't finding anything when I tried to do it the normal way is because Digikey's listing is bad (S/PDIF transcoding is one of the main functions of this IC but S/PDIF is not a listed format in that section or anywhere else on the DK product page). I would like to be able to do a comparo and get a firmer sense of whether this is the best value for purpose, but because I was doing so badly in my previous effort I think this would take more time than it's worth, and I feel that comfortably meeting spec for $2.50 out the door is already good enough so as to make it not worth the bother.
+If for some reason we would like to fear the wrath of a cruel God here's an interesting post on doing S/PDIF completely in software: https://scanlime.org/2011/04/spdif-digital-audio-on-a-microcontroller/
+
 So at this juncture we need:
 µcontroller
 RAM
 Flash
 ADC
-DAC with S/PDIF side pocket
+DAC
+S/PDIF tx encoder
 RCA stereo connector board (2x)
 Toslink rx connector
 Toslink tx connector
@@ -31,19 +36,73 @@ LEDs (12x)
 Potentiometer or rotary encoder
 Unknown quantity of RLC, diode, and/or transistor components for line filtering, buffering, or God knows what else
 
+µcontroller:
+We wanted an STM32 unit, filtered by F7/H7 series mainly for promisingly high clock. Decided to go H7 after we found no F7 options with 4x I2S. Looking at units available on a dev board, one "only" had 3x I2S. Between the remaining two, one was clocked lower with more flash and RAM, and the other vice versa. We elected the former because we think 280 MHz should still be plenty and we would like the room to work.
+$15.22
+STMicroelectronics STM32H7A3ZIT6
+https://www.digikey.com/en/products/detail/stmicroelectronics/STM32H7A3ZIT6/11502699
+Power supply nominal: 1.8 V or 3.3 V
+
 RAM:
 Filter by 128 Mbit, active and typically stocked / not marketplace, SDRAM, and not using a BGA package. Cheapest options are "LVTTL" interface, I'm not sure if the FMC does this, so filtered further by "parallel" to be safe. Plenty of 54-pin options are available so we can filter out 86-pin because that would be a pain in the neck if even supported. Four cheapest options from "Alliance Memory" (and the next price step up looks similar in all important respects). Discard one that is clocked slower, remaining three are "commercial," "industrial," and "automotive" versions of the same chip. Picked "commercial" version
-https://www.digikey.com/en/products/detail/alliance-memory-inc/AS4C8M16SA-6TCN/5214142
 $3.36
 Alliance Memory AS4C8M16SA-6TCN
+https://www.digikey.com/en/products/detail/alliance-memory-inc/AS4C8M16SA-6TCN/5214142
 Power supply nominal: 3.3 V
 
 Flash:
 Filter by 2 Gbit, active and normally stocked / not marketplace, parallel (ie not using an intermediate interface, able to be hooked up directly to the FMC), NAND, 3.3 V supply (to be able to use the same rail as the µcontroller), and NOT using a BGA package. Elected to filter further by SLC for hopefully a little more peace of mind on achievable speed (based upon my experience with consumer flash, i.e. SSDs). Most options are by Kioxia, looked like four different versions of essentially the same chip. Two are severe duty temperature tolerance (don't need), of the remaining two, one has built-in ECC whereas the other makes you implement it yourself. Not having to do ECC ourselves for the same price is a no brainer
-https://www.digikey.com/en/products/detail/kioxia-america-inc/TC58BVG1S3HTA00/5226306
 $3.81
 Kioxia TC58BVG1S3HTA00
+https://www.digikey.com/en/products/detail/kioxia-america-inc/TC58BVG1S3HTA00/5226306
+Power supply nominal: 3.3 V or 5 V
+
+ADC:
+Filter by active, normally stocked / not marketplace, 2 channels, "audio" purpose, I2S interface. Cheapest option under those parameters and easily clears desired sampling rate/bit depth specifications. Also pleasingly small package
+https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK5720VT/5180452
+$2.71
+AKM AK5720VT
+https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK5720VT/5180452
 Power supply nominal: 3.3 V
 
-DAC + S/PDIF tx:
-This is hard
+DAC:
+Filter by active, normally stocked / not marketplace, 2 channels, "audio," I2S interface. Cheapest option for parameters, good paper sampling rate / bit depth (incidentally same as ADC). Before we actually order anything I do want to check with someone knowledgeable to make sure we're not cheaping out too hard here at least to be able to handle the minimal frequency response spec. (Vince Weaver said that DACs being noticeably cheaper than a comparable ADC is normal because the latter are more complicated to design.)
+$1.01
+Nuvoton NAU8402WG
+https://www.digikey.com/en/products/detail/nuvoton-technology-corporation/NAU8402WG/4271432
+Power supply nominal: 3.3 V
+
+S/PDIF tx:
+Found this suggested on the TI forums from a Google search since trying to find an S/PDIF encoder the normal way on Digikey/Mouser using keywords and product filtering was going awfully (see digressions at top of page for more information). This does what we want and even has the ability to act asynchronously as an S/PDIF rx at the same time if we can't get the µcontroller's built-in rx going, for what seems to me like a really good price. "PCM9211" costs more for a built-in ADC, redundant for our purposes.
+See here: https://e2e.ti.com/support/audio-group/audio/f/audio-forum/895277/dix9211-can-dix9211-support-i2s-to-spdif
+And here: https://e2e.ti.com/support/audio-group/audio/f/audio-forum/1233939/encode-audio-in-s-pdif-format
+$2.46
+TI DIX9211
+https://www.digikey.com/en/products/detail/texas-instruments/DIX9211PTR/2421057
+Power supply nominal: 3.3 V
+
+RCA connectors:
+Two options (in stock & shipping) on Digikey for color-coded stereo left & right in one package, one is right-angle, one is straight-thru. Straight-thru seems cooler if the board is exposed anyway and the price is similar
+2 x $2.62 = $5.24
+Cliff FW6190
+https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FW6190/21264762
+Power supply: n/a
+
+Toslink rx:
+For this and Toslink tx — the market is hard. Toshiba also makes rx/tx that allow you to attach your own LED drive instead of having it built into the receptacle module, but they appear to have been obsoleted or to be on unsustainably long lead times. I'd like vertical-facing for parity with the RCA jacks but that similarly appears to be unobtainium. "A" in the product name means LED drive integrated, I don't know what "F" means, and there would be "V" if it was vertical-facing. The 1950A tx/rx will work for the moment and I will look further into trying to source some without integrated LED drive later on if I have time.
+Also: Digikey doesn't sell the 1950 tx/rx, only Mouser does.
+$13.83
+Toshiba TORX1950A(F)
+https://www.mouser.com/ProductDetail/Toshiba/TORX1950AF?qs=gev7jUp%252BQ%252BhPDbv%252Bwuk0PA%3D%3D
+Power supply nominal: 5 V (!)
+
+Toslink tx:
+Reasoning see above
+$14.76
+Toshiba TOTX1950A(F)
+https://www.mouser.com/ProductDetail/Toshiba/TOTX1950AF?qs=gev7jUp%252BQ%252BhDjDGaeAaJXw%3D%3D
+Power supply nominal: 5 V (!)
+
+PSU:
+Toslink rx and tx modules demand 5 V and no alternatives to those, what a pain in the neck, otherwise we could run it fine off 3.3 V only.
+Capacity wise: I need to do some harder math on what this design is going to consume all together. My knowledge from off-the-shelf computer PSUs is that you want to be running at greater than 50% of PSU capacity but not more than 80%, at least for the best efficiency. Would it be possible to run the whole thing off a Digilent 3.3 V Powerbrick and hook the stupid Toslink tx/rx up to the nominal 5 V input pin? — Powerbricks are 30 bucks (!) and can "only" supply 1.1 W max, I haven't looked at cost of actual PSUs on Digikey, but I would be shocked if $30 is the best we can do especially for only a watt out the door 
