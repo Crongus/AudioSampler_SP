@@ -19,6 +19,10 @@ New insight 9/27 and 9/30:
 Did some googling, found a suitable S/PDIF transceiver from TI that was linked in a discussion on the TI forums. Upon pulling up the product page on Digikey I think the reason why I wasn't finding anything when I tried to do it the normal way is because Digikey's listing is bad (S/PDIF transcoding is one of the main functions of this IC but S/PDIF is not a listed format in that section or anywhere else on the DK product page). I would like to be able to do a comparo and get a firmer sense of whether this is the best value for purpose, but because I was doing so badly in my previous effort I think this would take more time than it's worth, and I feel that comfortably meeting spec for $2.50 out the door is already good enough so as to make it not worth the bother.
 If for some reason we would like to fear the wrath of a cruel God here's an interesting post on doing S/PDIF completely in software: https://scanlime.org/2011/04/spdif-digital-audio-on-a-microcontroller/
 
+New insight 10/1:
+I don't know why I defaulted to Toslink as the physical S/PDIF layer we're going to use (probably just because I think it's cool), S/PDIF over coax (ie normal RCA) will be much easier and cheaper to meet minimal specifications, and I can screw around with "upgrading" it to Toslink later if time & resources allow.
+This saves nearly 30 bucks in BOM costs per build (!) and allows to run the whole thing off one 3.3 V rail rather than needing to also have 5 V available for the Toslink rx/tx.
+
 So at this juncture we need:
 µcontroller
 RAM
@@ -27,7 +31,8 @@ ADC
 DAC
 S/PDIF tx encoder
 RCA stereo connector board (2x)
-Toslink rx connector
+Single RCA for S/PDIF (2x)
+Toslink rx connector (this and Toslink tx connector superseded but kept for reference, see "New insight 10/1")
 Toslink tx connector
 Prebuilt AC->DC power supply
 BELOW HERE: Parts we think will be available for free in Barrows (but behooves us to go actually grab them for a more definite PCB design)
@@ -42,6 +47,8 @@ $15.22
 STMicroelectronics STM32H7A3ZIT6
 https://www.digikey.com/en/products/detail/stmicroelectronics/STM32H7A3ZIT6/11502699
 Power supply nominal: 1.8 V or 3.3 V
+Current consumption: No more than 200 mA as long as we do not allow the junction temperature to exceed 100 C (datasheet pg 94)
+Power consumption: Max 660 mW
 
 RAM:
 Filter by 128 Mbit, active and typically stocked / not marketplace, SDRAM, and not using a BGA package. Cheapest options are "LVTTL" interface, I'm not sure if the FMC does this, so filtered further by "parallel" to be safe. Plenty of 54-pin options are available so we can filter out 86-pin because that would be a pain in the neck if even supported. Four cheapest options from "Alliance Memory" (and the next price step up looks similar in all important respects). Discard one that is clocked slower, remaining three are "commercial," "industrial," and "automotive" versions of the same chip. Picked "commercial" version
@@ -49,13 +56,17 @@ $3.36
 Alliance Memory AS4C8M16SA-6TCN
 https://www.digikey.com/en/products/detail/alliance-memory-inc/AS4C8M16SA-6TCN/5214142
 Power supply nominal: 3.3 V
+Current consumption: I don't know exactly how a RAM current supply is supposed to work, are the datasheet max amounts under various conditions "worst of these" or "these might be happening simultaneously"? If "worst of these," then 70 mA, datasheet pg 18
+Power consumption: Max 231 mW if my assumption is correct
 
 Flash:
 Filter by 2 Gbit, active and normally stocked / not marketplace, parallel (ie not using an intermediate interface, able to be hooked up directly to the FMC), NAND, 3.3 V supply (to be able to use the same rail as the µcontroller), and NOT using a BGA package. Elected to filter further by SLC for hopefully a little more peace of mind on achievable speed (based upon my experience with consumer flash, i.e. SSDs). Most options are by Kioxia, looked like four different versions of essentially the same chip. Two are severe duty temperature tolerance (don't need), of the remaining two, one has built-in ECC whereas the other makes you implement it yourself. Not having to do ECC ourselves for the same price is a no brainer
 $3.81
 Kioxia TC58BVG1S3HTA00
 https://www.digikey.com/en/products/detail/kioxia-america-inc/TC58BVG1S3HTA00/5226306
-Power supply nominal: 3.3 V or 5 V
+Power supply nominal: 3.3 V
+Current consumption: 30 mA (summary on datasheet pg 1, presumably a more complicated table is somewhere further in). Again are the amounts for different conditions additive? I was under the impression that this kind of flash can't be written & read at the same time
+Power consumption: Max 99 mW
 
 ADC:
 Filter by active, normally stocked / not marketplace, 2 channels, "audio" purpose, I2S interface. Cheapest option under those parameters and easily clears desired sampling rate/bit depth specifications. Also pleasingly small package
@@ -63,7 +74,9 @@ https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK5720VT
 $2.71
 AKM AK5720VT
 https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK5720VT/5180452
-Power supply nominal: 3.3 V
+Power supply nominal: 3.3 V or 5 V
+Current consumption: At 3.3 V nominal, max 10.7 mA for worst case of 96 ksps, datasheet pg 7
+Power consumption: 35.3 mW
 
 DAC:
 Filter by active, normally stocked / not marketplace, 2 channels, "audio," I2S interface. Cheapest option for parameters, good paper sampling rate / bit depth (incidentally same as ADC). Before we actually order anything I do want to check with someone knowledgeable to make sure we're not cheaping out too hard here at least to be able to handle the minimal frequency response spec. (Vince Weaver said that DACs being noticeably cheaper than a comparable ADC is normal because the latter are more complicated to design.)
@@ -71,6 +84,8 @@ $1.01
 Nuvoton NAU8402WG
 https://www.digikey.com/en/products/detail/nuvoton-technology-corporation/NAU8402WG/4271432
 Power supply nominal: 3.3 V
+Current consumption: 7.57 mA (datasheet pg 8)
+Power consumption: 25.0 mW
 
 S/PDIF tx:
 Found this suggested on the TI forums from a Google search since trying to find an S/PDIF encoder the normal way on Digikey/Mouser using keywords and product filtering was going awfully (see digressions at top of page for more information). This does what we want and even has the ability to act asynchronously as an S/PDIF rx at the same time if we can't get the µcontroller's built-in rx going, for what seems to me like a really good price. "PCM9211" costs more for a built-in ADC, redundant for our purposes.
@@ -80,23 +95,35 @@ $2.46
 TI DIX9211
 https://www.digikey.com/en/products/detail/texas-instruments/DIX9211PTR/2421057
 Power supply nominal: 3.3 V
+Current consumption: 55.8 mA worst-case, datasheet pg 5
+Power consumption: 184.1 mW
 
-RCA connectors:
+RCA connectors for analog stereo:
 Two options (in stock & shipping) on Digikey for color-coded stereo left & right in one package, one is right-angle, one is straight-thru. Straight-thru seems cooler if the board is exposed anyway and the price is similar
 2 x $2.62 = $5.24
 Cliff FW6190
 https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FW6190/21264762
 Power supply: n/a
+Current and power consumption: n/a
 
-Toslink rx:
-For this and Toslink tx — the market is hard. Toshiba also makes rx/tx that allow you to attach your own LED drive instead of having it built into the receptacle module, but they appear to have been obsoleted or to be on unsustainably long lead times. I'd like vertical-facing for parity with the RCA jacks but that similarly appears to be unobtainium. "A" in the product name means LED drive integrated, I don't know what "F" means, and there would be "V" if it was vertical-facing. The 1950A tx/rx will work for the moment and I will look further into trying to source some without integrated LED drive later on if I have time.
+RCA connectors, single for S/PDIF:
+Filter by single RCA jack, normally stocked / not marketplace, and orange insulator. (This is not pertinent to functionality but in consumer audio hardware an RCA jack that carries S/PDIF is customarily orange to distinguish from other purposes a single RCA may be used for, eg line-out for a powered subwoofer, which is customarily black.) Five options, three are right angle, one is panel mount, one is straight-thru. Picked the latter.
+2 x $1.09 = $2.18
+Same Sky RCJ-027
+https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/RCJ-027/724808
+Power supply: n/a
+Current and power consumption: n/a
+
+Toslink rx: (SUPERSEDED, DO NOT ORDER, kept for reference)
+For this and Toslink tx — 
+the market is hard. Toshiba also makes rx/tx that allow you to attach your own LED drive instead of having it built into the receptacle module, but they appear to have been obsoleted or to be on unsustainably long lead times. I'd like vertical-facing for parity with the RCA jacks but that similarly appears to be unobtainium. "A" in the product name means LED drive integrated, I don't know what "F" means, and there would be "V" if it was vertical-facing. The 1950A tx/rx will work for the moment and I will look further into trying to source some without integrated LED drive later on if I have time.
 Also: Digikey doesn't sell the 1950 tx/rx, only Mouser does.
 $13.83
 Toshiba TORX1950A(F)
 https://www.mouser.com/ProductDetail/Toshiba/TORX1950AF?qs=gev7jUp%252BQ%252BhPDbv%252Bwuk0PA%3D%3D
 Power supply nominal: 5 V (!)
 
-Toslink tx:
+Toslink tx: (SUPERSEDED, DO NOT ORDER, kept for reference)
 Reasoning see above
 $14.76
 Toshiba TOTX1950A(F)
@@ -105,4 +132,13 @@ Power supply nominal: 5 V (!)
 
 PSU:
 Toslink rx and tx modules demand 5 V and no alternatives to those, what a pain in the neck, otherwise we could run it fine off 3.3 V only.
-Capacity wise: I need to do some harder math on what this design is going to consume all together. My knowledge from off-the-shelf computer PSUs is that you want to be running at greater than 50% of PSU capacity but not more than 80%, at least for the best efficiency. Would it be possible to run the whole thing off a Digilent 3.3 V Powerbrick and hook the stupid Toslink tx/rx up to the nominal 5 V input pin? — Powerbricks are 30 bucks (!) and can "only" supply 1.1 W max, I haven't looked at cost of actual PSUs on Digikey, but I would be shocked if $30 is the best we can do especially for only a watt out the door 
+Capacity wise: I need to do some harder math on what this design is going to consume all together. My knowledge from off-the-shelf computer PSUs is that you want to be running at greater than 50% of PSU capacity but not more than 80%, at least for the best efficiency. Would it be possible to run the whole thing off a Digilent 3.3 V Powerbrick and hook the stupid Toslink tx/rx up to the nominal 5 V input pin? — Powerbricks are 30 bucks (!) and can "only" supply 1.1 W max, I haven't looked at cost of actual PSUs on Digikey, but I would be shocked if $30 is the best we can do especially for only a watt out the door
+Update 10/01: Obviated need to power Toslink rx/tx, we are all set to go off 3.3 V only. Headline consumption based on datasheet worst-cases will be 1230 mW so we are probably fine out the door with 1.5 W or if we want to be EXTREMELY conservative 2 W.
+After research: No 3.3 V 1.5 W supply on the market, 2 W it is.
+Options — I like this one: https://www.digikey.com/en/products/detail/zettler-magnetics/HP02S0300WI/18880487
+But Liam would prefer this one because it's a bit cheaper: https://www.digikey.com/en/products/detail/mean-well-usa-inc/IRM-02-3-3/7704627
+We'll see. I think cheaping out hard on the PSU may be inadvisable for noise reasons. The orange one is part of its manufacturer's "High Performance" series for whatever that may be worth.
+Search filters used: 3.3 V output, AC input, board mounted, normally stocked / not marketplace, 2 W.
+We also need an AC receptacle to be able to actually hook the PSU up. This one should suit fine: https://www.digikey.com/en/products/detail/schurter-inc/3-137-731/16903656
+I checked into their other models, the cheaper ones in the same series don't have a ground, and the slightly more expensive one is just a different receptacle color.
+We're going to need a kludge of some kind to be able to mount this securely to the board.
