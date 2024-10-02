@@ -4719,6 +4719,36 @@
 	)
 	(wire
 		(pts
+			(xy 43.18 154.94) (xy 53.34 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "06b2df03-b1d5-49a6-89c1-169fe4cb1e26")
+	)
+	(wire
+		(pts
+			(xy 140.97 86.36) (xy 151.13 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1110086a-0b31-4470-b01e-8eedba4ee562")
+	)
+	(wire
+		(pts
+			(xy 140.97 101.6) (xy 151.13 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "132edcd4-167d-4839-9e01-49c4849b0ff8")
+	)
+	(wire
+		(pts
 			(xy 140.97 96.52) (xy 151.13 96.52)
 		)
 		(stroke
@@ -4729,6 +4759,46 @@
 	)
 	(wire
 		(pts
+			(xy 140.97 88.9) (xy 151.13 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1affe0ee-f052-4a9f-959d-72112898b904")
+	)
+	(wire
+		(pts
+			(xy 140.97 78.74) (xy 151.13 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cc6d78f-7f7e-40a2-be8e-2c2956a46903")
+	)
+	(wire
+		(pts
+			(xy 43.18 149.86) (xy 53.34 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5184816d-73c7-4f72-83b4-c39df6efcc5d")
+	)
+	(wire
+		(pts
+			(xy 43.18 157.48) (xy 53.34 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f487b09-2b42-4fd2-8f80-12a23874f05f")
+	)
+	(wire
+		(pts
 			(xy 140.97 99.06) (xy 151.13 99.06)
 		)
 		(stroke
@@ -4736,6 +4806,90 @@
 			(type default)
 		)
 		(uuid "7bd85d04-748d-49bf-9996-8d89bf6291fc")
+	)
+	(wire
+		(pts
+			(xy 43.18 152.4) (xy 53.34 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a062a73d-6fd8-4fa1-84be-51c8c944091e")
+	)
+	(wire
+		(pts
+			(xy 140.97 76.2) (xy 151.13 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbcf0156-55fc-46a4-86ea-a74a2f6849fa")
+	)
+	(wire
+		(pts
+			(xy 140.97 104.14) (xy 151.13 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e204501c-1a62-4c41-86d3-90a73881719a")
+	)
+	(wire
+		(pts
+			(xy 140.97 73.66) (xy 151.13 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed65cb97-8aef-44af-9f1f-c0e99e9d566d")
+	)
+	(label "Flash_WE"
+		(at 116.84 162.56 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "13c18e8a-ef5a-4d6e-9dcb-ee237a839a25")
+	)
+	(label "Flash_IO8"
+		(at 184.15 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "140d92d6-da49-43ba-97cd-fd547bcccc15")
+	)
+	(label "Flash_RY{slash}BY"
+		(at 140.97 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "141c7962-e739-412a-a942-6ba05600c9f3")
+	)
+	(label "Flash_RE"
+		(at 140.97 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2020bba8-ba06-4b1a-b86a-4d552bcdeef1")
 	)
 	(label "Flash_CLE"
 		(at 116.84 180.34 0)
@@ -4748,6 +4902,50 @@
 		)
 		(uuid "27d41ad2-4b0a-4ebc-91c6-6a345d97b2f0")
 	)
+	(label "Flash_IO7"
+		(at 184.15 71.12 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "39aed9c1-d68b-496e-bad1-453fade30e2a")
+	)
+	(label "Flash_RE"
+		(at 116.84 160.02 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "40369687-24ff-47ce-843f-6aaeedfcd575")
+	)
+	(label "Flash_IO1"
+		(at 116.84 185.42 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4285f39f-b768-48f8-886d-418aac5f2e33")
+	)
+	(label "Flash_VCC2"
+		(at 184.15 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "49e0d916-82ac-42f5-8de8-a73b9f3f8345")
+	)
 	(label "Flash_CLE"
 		(at 140.97 96.52 0)
 		(fields_autoplaced yes)
@@ -4758,6 +4956,94 @@
 			(justify left bottom)
 		)
 		(uuid "4ac652a7-6f5c-4eb3-9b9f-9dd721d94b39")
+	)
+	(label "Flash_WE"
+		(at 140.97 101.6 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5670ecf1-77f0-4ea2-87f7-6c3bacbae64a")
+	)
+	(label "Flash_IO3"
+		(at 184.15 101.6 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "56f436d7-3890-48dc-affa-e3fdcc29be82")
+	)
+	(label "Flash_IO2"
+		(at 116.84 187.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "57444b1e-0421-4bb2-9da0-d86bd5d28eb9")
+	)
+	(label "Flash_IO5"
+		(at 43.18 149.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8a63b426-0173-41b2-b31f-6bf4b7dd880c")
+	)
+	(label "Flash_IO2"
+		(at 184.15 104.14 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "930d4f1a-26ba-4250-b270-6770dce24eea")
+	)
+	(label "Flash_IO7"
+		(at 43.18 154.94 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "95db238b-9837-47e7-8749-714850b93f4c")
+	)
+	(label "Flash_IO1"
+		(at 184.15 106.68 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9a5eb70b-863a-4d9a-ac5f-fab071771227")
+	)
+	(label "Flash_VCC1"
+		(at 140.97 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a5cff857-033e-4353-a79a-d1e19bb7eb7a")
 	)
 	(label "FLash_ALE"
 		(at 116.84 177.8 0)
@@ -4770,7 +5056,62 @@
 		)
 		(uuid "a6368f24-d404-429d-a92c-b60fecfdd3c6")
 	)
-	(label "FLash_ALE"
+	(label "Flash_IO5"
+		(at 184.15 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cb089711-639b-4ad3-a968-e3e0fe3cf81a")
+	)
+	(label "Flash_IO8"
+		(at 43.18 157.48 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ce9fd0ee-3b29-4680-a765-c1f57829657b")
+	)
+	(label "Flash_WP"
+		(at 140.97 104.14 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d64d28d9-b095-4191-abe0-976aee8454df")
+	)
+	(label "Flash_CE"
+		(at 140.97 78.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d71ebe90-f739-455d-b614-614d1ee9d832")
+	)
+	(label "Flash_IO4"
+		(at 116.84 152.4 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d7cb95d2-44bb-426a-9ed5-53189c39f5d9")
+	)
+	(label "Flash_ALE"
 		(at 140.97 99.06 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4780,6 +5121,83 @@
 			(justify left bottom)
 		)
 		(uuid "d80196d9-a9d1-4ae4-99b1-bae9d1df8258")
+	)
+	(label "Flash_IO4"
+		(at 184.15 99.06 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d848984a-4559-48bc-b8b9-21838279ef23")
+	)
+	(label "Flash_IO6"
+		(at 184.15 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "da320c51-a3e5-4c0a-a5ad-f5595181edc3")
+	)
+	(label "Flash_IO3"
+		(at 116.84 149.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "db61ff45-901c-4ceb-a4b9-d4966918ea04")
+	)
+	(label "Flash_VSS1"
+		(at 140.97 88.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e0c4f0f3-f1b0-4dc2-9586-2bea7256e56c")
+	)
+	(label "Flash_IO6"
+		(at 43.18 152.4 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "eaa0bd59-6097-46f5-8491-656444e144da")
+	)
+	(label "Flash_CE"
+		(at 116.84 127 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ededd1c5-ab48-4579-a8aa-e11fc9245cc0")
+	)
+	(label "Flash_VSS2"
+		(at 184.15 88.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f112972b-4742-4352-ba97-14f1bfe3c4ec")
 	)
 	(symbol
 		(lib_id "TC58BVG1S3HTA00:TC58BVG1S3HTA00")
