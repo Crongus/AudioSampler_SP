@@ -1,0 +1,9 @@
+Manufacturer=Alliance Memory
+PartNumber=AS4C8M16SA-6TCN
+PartCategory=Integrated Circuit
+PackageCategory=Small Outline Packages
+PinCount=54
+Version=1.1
+Released=2021-05-22 10:32:11
+Downloaded=2024-10-04 20:33:27
+3D=Y

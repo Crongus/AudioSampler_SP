@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'AS4C8M16SA_6TCN'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Alliance Memory", "AS4C8M16SA-6TCN" (!) = "", "SOP80P1176X120-54N", "Small Outline Packages", "913-4C8M16SA-6TCN", "https://www.mouser.co.uk/ProductDetail/Alliance-Memory/AS4C8M16SA-6TCN?qs=os3kWr9Y3%252BAH%252BnoNsfnp3A%3D%3D", "DRAM", "https://www.alliancememory.com/wp-content/uploads/pdf/dram/128M-AS4C8M16SA.pdf", "1.2 mm"
+END_PART
+
+END.

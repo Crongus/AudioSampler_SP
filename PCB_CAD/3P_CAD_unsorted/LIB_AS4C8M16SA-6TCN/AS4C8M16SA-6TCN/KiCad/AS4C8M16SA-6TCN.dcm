@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP AS4C8M16SA-6TCN
+D DRAM
+K
+F https://www.alliancememory.com/wp-content/uploads/pdf/dram/128M-AS4C8M16SA.pdf
+$ENDCMP
+#
+#End Doc Library

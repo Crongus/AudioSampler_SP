@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "AS4C8M16SA-6TCN"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2018-06-06-11:10:45)
+    (mountForm default
+        (footprintRef "SOP80P1176X120-54N")
+        (spec "System")
+    )
+)

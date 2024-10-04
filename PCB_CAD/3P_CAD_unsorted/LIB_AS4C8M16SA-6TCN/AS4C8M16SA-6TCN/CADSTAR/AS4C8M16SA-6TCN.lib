@@ -1,0 +1,17 @@
+.AS4C8M16SA-6TCN :1 ;DRAM
+SOP80P1176X120-54N
+*STM IC
+*NGS
+*PLB 1="VDD_1" 2="DQ0" 3="VDDQ_1" 4="DQ1" 5="DQ2" 6="VSSQ_1" 7="DQ3" 8="DQ4" 9="VDDQ_2" 10="DQ5" 11="DQ6" 12="VSSQ_2" 13="DQ7" 14="VDD_2" 15="LDQM" 16="WE#" 17="CAS#" 18="RAS#" 19="CS#" 20="BA0" 21="BA1" 22="A10/AP" 23="A0" 24="A1" 25="A2" 26="A3" 27="VDD_3" 28="VSS_1" 29="A4" 30="A5" 31="A6" 32="A7" 33="A8" 34="A9" 35="A11" 36="NC" 37="CKE" 38="CLK" 39="UDQM" 40="NC/RFU" 41="VSS_2" 42="DQ8" 43="VDDQ_3" 44="DQ9" 45="DQ10" 46="VSSQ_3" 47="DQ11" 48="DQ12" &
+49="VDDQ_4" 50="DQ13" 51="DQ14" 52="VSSQ_4" 53="DQ15" 54="VSS_3"
+*MXP 54
+*DFN AS4C8M16SA-6TCN
+~!Mouser Part Number (913-4C8M16SA-6TCN)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Alliance-Memory/AS4C8M16SA-6TCN?qs=os3kWr9Y3%252BAH%252BnoNsfnp3A%3D%3D)
+~!Manufacturer_Name (Alliance Memory)
+~!Manufacturer_Part_Number (AS4C8M16SA-6TCN)
+~!Link Datasheet (https://www.alliancememory.com/wp-content/uploads/pdf/dram/128M-AS4C8M16SA.pdf)
+~!Height (1.2mm)
+~!3D_Model (AS4C8M16SA-6TCN)
+AS4C8M16SA-6TCN
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 10.1!U 11.1!U 12.1!U 13.1!U 14.1!U 15.1!U 16.1!U 17.1!U 18.1!U 19.1!U 20.1!U 21.1!U 22.1!U 23.1!U 24.1!U 25.1!U 26.1!U 27.1!U 54.1!U 53.1!U 52.1!U 51.1!U 50.1!U 49.1!U 48.1!U 47.1!U 46.1!U 45.1!U 44.1!U 43.1!U 42.1!U 41.1!U 40.1!U 39.1!U 38.1!U 37.1!U 36.1!U 35.1!U 34.1!U 33.1!U 32.1!U 31.1!U 30.1!U 29.1!U 28.1!U 
