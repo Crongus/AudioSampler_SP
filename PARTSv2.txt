@@ -131,14 +131,15 @@ https://www.mouser.com/ProductDetail/Toshiba/TOTX1950AF?qs=gev7jUp%252BQ%252BhDj
 Power supply nominal: 5 V (!)
 
 PSU:
-Toslink rx and tx modules demand 5 V and no alternatives to those, what a pain in the neck, otherwise we could run it fine off 3.3 V only.
-Capacity wise: I need to do some harder math on what this design is going to consume all together. My knowledge from off-the-shelf computer PSUs is that you want to be running at greater than 50% of PSU capacity but not more than 80%, at least for the best efficiency. Would it be possible to run the whole thing off a Digilent 3.3 V Powerbrick and hook the stupid Toslink tx/rx up to the nominal 5 V input pin? — Powerbricks are 30 bucks (!) and can "only" supply 1.1 W max, I haven't looked at cost of actual PSUs on Digikey, but I would be shocked if $30 is the best we can do especially for only a watt out the door
-Update 10/01: Obviated need to power Toslink rx/tx, we are all set to go off 3.3 V only. Headline consumption based on datasheet worst-cases will be 1230 mW so we are probably fine out the door with 1.5 W or if we want to be EXTREMELY conservative 2 W.
-After research: No 3.3 V 1.5 W supply on the market, 2 W it is.
-Options — I like this one: https://www.digikey.com/en/products/detail/zettler-magnetics/HP02S0300WI/18880487
-But Liam would prefer this one because it's a bit cheaper: https://www.digikey.com/en/products/detail/mean-well-usa-inc/IRM-02-3-3/7704627
-We'll see. I think cheaping out hard on the PSU may be inadvisable for noise reasons. The orange one is part of its manufacturer's "High Performance" series for whatever that may be worth.
-Search filters used: 3.3 V output, AC input, board mounted, normally stocked / not marketplace, 2 W.
-We also need an AC receptacle to be able to actually hook the PSU up. This one should suit fine: https://www.digikey.com/en/products/detail/schurter-inc/3-137-731/16903656
-I checked into their other models, the cheaper ones in the same series don't have a ground, and the slightly more expensive one is just a different receptacle color.
-We're going to need a kludge of some kind to be able to mount this securely to the board.
+$7.80
+Zettler Magnetics HP02S0300WI
+https://www.digikey.com/en/products/detail/zettler-magnetics/HP02S0300WI/18880487
+All components can be powered off 3.3 V only, maximal worst-case power consumption is about 1.2 W -> elect 2 W supply. Filter by board-mountable, active/stocked/not marketplace, 120 V 60 Hz AC input. Three options under $10, specs look broadly similar, picked second-from-cheapest option.
+Mfg specs a 300V 1 A fuse and the 14D561K MOV.
+** TODO: Identify specific p/n's for power handling fuse and MOV and/or go look whether these parts are free in Barrows.
+
+AC receptacle:
+$4.91
+Schurter 6250.5530
+https://www.digikey.com/en/products/detail/schurter-inc/6250-5530/641011
+Need: 3-prong "male blades" (ie C14), 180 degree thru-hole solderable. Filtered also by active/stocked/not marketplace. Power handling capacity is pretty much immaterial, at our level of draw anything would do it. Schurter sells a few of these with small variations, picked the one with a 1-pole fuse receptacle and hopefully we can put the fuse that the PSU specs in there.
