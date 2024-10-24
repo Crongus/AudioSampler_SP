@@ -1,0 +1,9 @@
+Manufacturer=Zettler Group
+PartNumber=HP02S0300WI
+PartCategory=Power Supply
+PackageCategory=Other
+PinCount=4
+Version=1.2
+Released=2024-10-14 07:57:07
+Downloaded=2024-10-24 21:07:36
+3D=Y

@@ -1,0 +1,18 @@
+.HP02S0300WI :1 ;Enclosed AC DC Converters 1 Output 3.3V 600mA 85 ~ 305 VAC, 100 ~ 430 VDC Input
+HP02S0300WI
+*STM PS
+*NGS
+*PLB 1="AC1" 2="AC2" 3="DC-" 4="DC+"
+*MXP 4
+*DFN HP02S0300WI
+~!Manufacturer_Name (Zettler Group)
+~!Manufacturer_Part_Number (HP02S0300WI)
+~!Mouser Part Number (-)
+~!Mouser Price/Stock (-)
+~!Arrow Part Number (-)
+~!Arrow Price/Stock (-)
+~!Link Datasheet (https://www.zettlermagnetics.com/pdfs/HP02SXX00WI.pdf)
+~!Height (15.5mm)
+~!3D_Model (HP02S0300WI)
+HP02S0300WI
+1.1!U 2.1!U 3.1!U 4.1!U 

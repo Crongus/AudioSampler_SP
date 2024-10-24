@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'HP02S0300WI'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Zettler Group", "HP02S0300WI" (!) = "", "HP02S0300WI", "Other", "", "", "", "", "Enclosed AC DC Converters 1 Output 3.3V 600mA 85 ~ 305 VAC, 100 ~ 430 VDC Input", "https://www.zettlermagnetics.com/pdfs/HP02SXX00WI.pdf", "15.5 mm"
+END_PART
+
+END.
