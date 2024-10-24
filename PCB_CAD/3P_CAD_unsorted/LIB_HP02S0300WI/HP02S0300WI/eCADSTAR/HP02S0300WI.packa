@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "HP02S0300WI"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2024-10-14-07:57:07)
+    (mountForm default
+        (footprintRef "HP02S0300WI")
+        (spec "System")
+    )
+)

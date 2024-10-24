@@ -1,0 +1,128 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "HP02S0300WI"
+   (description "Enclosed AC DC Converters 1 Output 3.3V 600mA 85 ~ 305 VAC, 100 ~ 430 VDC Input")
+   (family "ANA")
+   (package "HP02S0300WI")
+   (attribute "Datasheet Link" "https://www.zettlermagnetics.com/pdfs/HP02SXX00WI.pdf")
+   (attribute "Geometry.Height" "15.5mm")
+   (attribute "Manufacturer_Name" "Zettler Group")
+   (attribute "Manufacturer_Part_Number" "HP02S0300WI")
+   (attribute "Mouser Part Number" "")
+   (attribute "Mouser Price/Stock" "")
+   (attribute "Arrow Part Number" "")
+   (attribute "Arrow Price/Stock" "")
+   (gate
+    (symbol "HP02S0300WI")
+    (pin "AC1" 1 PS)
+    (pin "AC2" 2 PS)
+    (pin "DC-" 3 PS)
+    (pin "DC+" 4 PS)
+   )
+  )
+  (symbol "HP02S0300WI"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 800 100) (pt 800 -200) (pt 200 -200) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1000 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1000 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "HP02S0300WI"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2.85 18.7)
+      (pt 30.85 18.7)
+      (pt 30.85 -3.5)
+      (pt -2.85 -3.5)
+      (pt -2.85 18.7))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -2.85 18.7)
+      (pt 30.85 18.7)
+      (pt 30.85 -3.5)
+      (pt -2.85 -3.5)
+      (pt -2.85 18.7))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.85 19.7)
+      (pt 31.85 19.7)
+      (pt 31.85 -4.5)
+      (pt -3.85 -4.5)
+      (pt -3.85 19.7))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.4 0)
+      (arc (pt -3.400 0.000) (pt -3.400 -0.050) (pt -3.300 0.050) (start 180.0) (sweep -180.0))
+      (pt -3.3 0)
+      (arc (pt -3.300 0.000) (pt -3.400 -0.050) (pt -3.300 0.050) (start 180.0) (sweep .0))
+      (pt -3.4 0))))
+   (leg 1 (pt 0.000 0.000) (padstack 1))
+   (leg 2 (pt 0.000 15.200) (padstack 0))
+   (leg 3 (pt 28.000 15.200) (padstack 0))
+   (leg 4 (pt 28.000 7.600) (padstack 0))
+   (padstack 0
+    (hole 1.2)
+    (plated true)
+    (pad (layer TCOP) (round 1.800))
+    (pad (layer INNER) (round 1.800))
+    (pad (layer BCOP) (round 1.800))
+   )
+   (padstack 1
+    (hole 1.2)
+    (plated true)
+    (pad (layer TCOP) (square 1.800))
+    (pad (layer INNER) (round 1.800))
+    (pad (layer BCOP) (square 1.800))
+   )
+   (model "HP02S0300WI.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

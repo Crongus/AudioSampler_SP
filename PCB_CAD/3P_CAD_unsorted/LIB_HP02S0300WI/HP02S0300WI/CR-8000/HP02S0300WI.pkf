@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "HP02S0300WI"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "HP02S0300WI")
+        (spec "default")
+    )
+)
