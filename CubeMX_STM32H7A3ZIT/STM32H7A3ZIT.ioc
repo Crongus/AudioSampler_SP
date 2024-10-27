@@ -1,12 +1,13 @@
 #MicroXplorer Configuration settings - do not modify
-CAD.formats=[]
+CAD.formats=[{"id"\:42,"cad_product"\:"KiCAD v6+","cad_family"\:"KiCAD"}]
 CAD.pinconfig=Dual
 CAD.provider=
 CORTEX_M7.IPParameters=default_mode_Activation
 CORTEX_M7.default_mode_Activation=1
-FMC.IPParameters=NandPageSize1,NandSpareAreaSize1,NandBlockSize1,NandBlockNbr1
+FMC.IPParameters=NandPageSize1,NandSpareAreaSize1,NandBlockSize1,NandBlockNbr1,NandExtraCommandEnable1
 FMC.NandBlockNbr1=2048
 FMC.NandBlockSize1=64
+FMC.NandExtraCommandEnable1=ENABLE
 FMC.NandPageSize1=2112
 FMC.NandSpareAreaSize1=64
 File.Version=6
