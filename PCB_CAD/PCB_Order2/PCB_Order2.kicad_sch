@@ -9316,6 +9316,12 @@
 		)
 	)
 	(junction
+		(at 452.12 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "12a46f9b-7f4b-4261-bed1-43723417e790")
+	)
+	(junction
 		(at 642.62 224.79)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9628,6 +9634,16 @@
 			(type default)
 		)
 		(uuid "2591156b-1114-47f6-b799-44a5b3964b62")
+	)
+	(wire
+		(pts
+			(xy 462.28 125.73) (xy 469.9 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29908ede-dff6-4728-9400-8e17d780f80c")
 	)
 	(wire
 		(pts
@@ -10251,6 +10267,16 @@
 	)
 	(wire
 		(pts
+			(xy 435.61 123.19) (xy 435.61 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ff17f1b-8f41-4093-a266-fd753bc80a50")
+	)
+	(wire
+		(pts
 			(xy 387.35 236.22) (xy 398.78 236.22)
 		)
 		(stroke
@@ -10531,6 +10557,16 @@
 	)
 	(wire
 		(pts
+			(xy 435.61 125.73) (xy 441.96 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2ffe04d-96f7-4552-8e6c-9891d7c76ce9")
+	)
+	(wire
+		(pts
 			(xy 510.54 349.25) (xy 523.24 349.25)
 		)
 		(stroke
@@ -10558,6 +10594,16 @@
 			(type default)
 		)
 		(uuid "aa4d9108-61a0-4c74-b2c2-8872c8f5f10a")
+	)
+	(wire
+		(pts
+			(xy 452.12 125.73) (xy 457.2 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae0f528f-0096-4a7c-a376-047419a5ce23")
 	)
 	(wire
 		(pts
@@ -10618,6 +10664,16 @@
 			(type default)
 		)
 		(uuid "bb3c6ec1-3e44-46da-bff4-8a6147a21255")
+	)
+	(wire
+		(pts
+			(xy 447.04 125.73) (xy 452.12 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbeb1966-1e41-46de-b78c-fe60df698385")
 	)
 	(wire
 		(pts
@@ -13407,6 +13463,72 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
+		(at 435.61 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "28a2b1ce-9195-406f-9335-7bcf58c95781")
+		(property "Reference" "#PWR057"
+			(at 435.61 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD"
+			(at 435.61 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 435.61 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 435.61 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 435.61 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "06b68aa0-d665-478f-80a4-30dddf200847")
+		)
+		(instances
+			(project ""
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "#PWR057")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
 		(at 652.78 332.74 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -14194,6 +14316,72 @@
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "#PWR047")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDD")
+		(at 469.9 125.73 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4b89a825-19df-47af-a80b-583f91e53270")
+		(property "Reference" "#PWR058"
+			(at 469.9 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GNDD"
+			(at 469.9 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 469.9 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 469.9 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
+			(at 469.9 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "86e1de3a-5f82-4ab6-997f-03fd768058d4")
+		)
+		(instances
+			(project ""
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "#PWR058")
 					(unit 1)
 				)
 			)
@@ -16732,6 +16920,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 459.74 125.73 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9b34793a-1ecb-4324-bc9f-b52d903fa6b9")
+		(property "Reference" "R3"
+			(at 459.74 132.08 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1.6k"
+			(at 459.74 129.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 459.74 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 459.74 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 459.74 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a7107723-a852-45d1-a4bc-c3926492683d")
+		)
+		(pin "2"
+			(uuid "1d44fc32-6610-468f-9638-ecc271414588")
+		)
+		(instances
+			(project "PCB_Order2"
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:VDD")
 		(at 316.23 171.45 0)
 		(unit 1)
@@ -16928,6 +17184,72 @@
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 452.12 125.73 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a181982b-3b7a-419a-94ed-1600e2a70c2b")
+		(property "Reference" "#PWR059"
+			(at 452.12 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD_DIV"
+			(at 452.12 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 452.12 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 452.12 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 452.12 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bfa89acf-2530-4e6e-bf57-a86edcd4b653")
+		)
+		(instances
+			(project ""
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -18281,6 +18603,74 @@
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "#PWR046")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 444.5 125.73 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cf70d870-1836-4dbc-8baf-c473517784ee")
+		(property "Reference" "R2"
+			(at 444.5 132.08 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "6.2k"
+			(at 444.5 129.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 444.5 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 444.5 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 444.5 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "093e4bc1-68bb-4d65-ac1b-fdb89ce5b5b1")
+		)
+		(pin "2"
+			(uuid "268bf9da-e84b-4a60-87e0-e16051c735c9")
+		)
+		(instances
+			(project ""
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "R2")
 					(unit 1)
 				)
 			)
