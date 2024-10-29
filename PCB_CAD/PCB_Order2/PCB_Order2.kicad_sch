@@ -11800,7 +11800,7 @@
 		)
 		(uuid "1fab40af-9060-480f-8632-e0c5bfb653ed")
 	)
-	(text "Analog In\n\n"
+	(text "Analog In\n(HT CLFRNA)\n"
 		(exclude_from_sim no)
 		(at 206.248 155.194 0)
 		(effects
