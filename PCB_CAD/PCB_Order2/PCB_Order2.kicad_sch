@@ -13628,7 +13628,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "02c4cc34-c02e-4755-846c-a379193c44bb")
-		(property "Reference" "llsOut_refHi_noise"
+		(property "Reference" "llsOut_refHi_noise2"
 			(at 664.2163 182.88 90)
 			(effects
 				(font
@@ -13645,7 +13645,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 664.21 189.23 0)
 			(effects
 				(font
@@ -13681,7 +13681,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "llsOut_refHi_noise")
+					(reference "llsOut_refHi_noise2")
 					(unit 1)
 				)
 			)
@@ -13826,7 +13826,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0912adb7-0d67-44bb-b51f-7cd347ba9183")
-		(property "Reference" "DacOut_R_decouple"
+		(property "Reference" "DacOut_R_decouple1"
 			(at 651.51 256.5462 0)
 			(effects
 				(font
@@ -13845,7 +13845,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 648.97 257.81 0)
 			(effects
 				(font
@@ -13881,7 +13881,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacOut_R_decouple")
+					(reference "DacOut_R_decouple1")
 					(unit 1)
 				)
 			)
@@ -13981,7 +13981,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:CP_Elec_3x5.3"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 297.18 176.53 0)
 			(effects
 				(font
@@ -14033,7 +14033,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0c11fdfd-5620-496b-86f9-e8a3fc4d682d")
-		(property "Reference" "AnalogOut"
+		(property "Reference" "AnalogOut1"
 			(at 680.72 250.1899 0)
 			(effects
 				(font
@@ -14051,7 +14051,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "FW6190"
+		(property "Footprint" "CustomModels:FW6190"
 			(at 680.72 343.84 0)
 			(effects
 				(font
@@ -14162,7 +14162,7 @@
 		(instances
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "AnalogOut")
+					(reference "AnalogOut1")
 					(unit 1)
 				)
 			)
@@ -14195,7 +14195,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 257.81 254 0)
 			(effects
 				(font
@@ -14509,7 +14509,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1a443ca8-7df0-49b7-85ab-b6183cab6e95")
-		(property "Reference" "DacOut_L_decouple"
+		(property "Reference" "DacOut_L_decouple1"
 			(at 645.16 255.2762 0)
 			(effects
 				(font
@@ -14528,7 +14528,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 642.62 256.54 0)
 			(effects
 				(font
@@ -14564,7 +14564,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacOut_L_decouple")
+					(reference "DacOut_L_decouple1")
 					(unit 1)
 				)
 			)
@@ -14599,7 +14599,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 623.57 270.51 0)
 			(effects
 				(font
@@ -14782,7 +14782,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "20693b07-8480-4000-bf69-fa456712c9b5")
-		(property "Reference" "DacOut_R_res"
+		(property "Reference" "DacOut_R_res1"
 			(at 621.03 245.11 90)
 			(effects
 				(font
@@ -14799,7 +14799,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 621.03 251.46 0)
 			(effects
 				(font
@@ -14835,7 +14835,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacOut_R_res")
+					(reference "DacOut_R_res1")
 					(unit 1)
 				)
 			)
@@ -14851,7 +14851,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "24ae9b15-0f04-480d-a364-897bf12e35d2")
-		(property "Reference" "DigitalIn"
+		(property "Reference" "DigitalIn1"
 			(at 215.5307 256.54 0)
 			(effects
 				(font
@@ -14867,7 +14867,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RCJ-027:CUI_RCJ-027"
+		(property "Footprint" "CustomModels:CUI_RCJ-027"
 			(at 214.63 264.16 0)
 			(effects
 				(font
@@ -14934,7 +14934,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DigitalIn")
+					(reference "DigitalIn1")
 					(unit 1)
 				)
 			)
@@ -15098,7 +15098,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 279.4 193.04 0)
 			(effects
 				(font
@@ -15298,7 +15298,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 303.53 254 0)
 			(effects
 				(font
@@ -15944,7 +15944,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4a23b938-5626-446f-a3a0-362364828a6b")
-		(property "Reference" "LLSin_ACcouple"
+		(property "Reference" "LLSin_ACcouple1"
 			(at 259.0863 271.78 90)
 			(effects
 				(font
@@ -15961,7 +15961,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 259.08 278.13 0)
 			(effects
 				(font
@@ -15997,7 +15997,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLSin_ACcouple")
+					(reference "LLSin_ACcouple1")
 					(unit 1)
 				)
 			)
@@ -16144,7 +16144,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "50b196d8-2261-497d-8771-43833d8d63ff")
-		(property "Reference" "DacAnalogSupply_bulk"
+		(property "Reference" "DacAnalogSupply_bulk1"
 			(at 512.2418 243.84 90)
 			(effects
 				(font
@@ -16161,7 +16161,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 511.81 250.19 0)
 			(effects
 				(font
@@ -16197,7 +16197,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacAnalogSupply_bulk")
+					(reference "DacAnalogSupply_bulk1")
 					(unit 1)
 				)
 			)
@@ -16344,7 +16344,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5871072b-501e-471e-832b-a96423a49f5f")
-		(property "Reference" "SpdifOut_ImpedanceMatch"
+		(property "Reference" "SpdifOut_ImpedanceMatch1"
 			(at 720.09 194.31 90)
 			(effects
 				(font
@@ -16361,7 +16361,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 720.09 200.66 0)
 			(effects
 				(font
@@ -16397,7 +16397,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "SpdifOut_ImpedanceMatch")
+					(reference "SpdifOut_ImpedanceMatch1")
 					(unit 1)
 				)
 			)
@@ -16561,7 +16561,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 281.94 217.17 0)
 			(effects
 				(font
@@ -16613,7 +16613,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5d8d5f7e-03d7-4932-8090-909eea97f4f0")
-		(property "Reference" "DAC"
+		(property "Reference" "DAC1"
 			(at 571.5 242.57 0)
 			(effects
 				(font
@@ -16629,7 +16629,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TSSOP16_NAU8402_NUV"
+		(property "Footprint" "CustomModels:TSSOP16_NAU8402_NUV"
 			(at 546.1 252.73 0)
 			(effects
 				(font
@@ -16709,7 +16709,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DAC")
+					(reference "DAC1")
 					(unit 1)
 				)
 			)
@@ -16741,7 +16741,7 @@
 				)
 			)
 		)
-		(property "Footprint" "DCK6_TEX"
+		(property "Footprint" "CustomModels:DCK6_TEX"
 			(at 666.75 195.58 0)
 			(effects
 				(font
@@ -16806,7 +16806,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5f1fd402-6eba-4318-be25-b64e9728540e")
-		(property "Reference" "dixSupply_bulk"
+		(property "Reference" "dixSupply_bulk1"
 			(at 512.6482 205.74 90)
 			(effects
 				(font
@@ -16823,7 +16823,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 513.08 212.09 0)
 			(effects
 				(font
@@ -16859,7 +16859,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "dixSupply_bulk")
+					(reference "dixSupply_bulk1")
 					(unit 1)
 				)
 			)
@@ -16940,7 +16940,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "629da481-b64c-45d8-96ea-7815cd3bdf0d")
-		(property "Reference" "ImpMatching_LLSin"
+		(property "Reference" "ImpMatching_LLSin1"
 			(at 233.68 267.9699 0)
 			(effects
 				(font
@@ -16959,7 +16959,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 231.14 269.24 0)
 			(effects
 				(font
@@ -16995,7 +16995,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "ImpMatching_LLSin")
+					(reference "ImpMatching_LLSin1")
 					(unit 1)
 				)
 			)
@@ -17077,7 +17077,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6a8a59b5-e65e-487f-a4a0-68a0e96cb13f")
-		(property "Reference" "DacAnalogSupply_bead"
+		(property "Reference" "DacAnalogSupply_bead1"
 			(at 516.89 246.3418 0)
 			(effects
 				(font
@@ -17096,7 +17096,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 512.572 247.65 90)
 			(effects
 				(font
@@ -17132,7 +17132,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacAnalogSupply_bead")
+					(reference "DacAnalogSupply_bead1")
 					(unit 1)
 				)
 			)
@@ -17147,7 +17147,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6bc3f6ef-a05b-4934-9741-62afc7cf0282")
-		(property "Reference" "DacMute_CurrentLimit"
+		(property "Reference" "DacMute_CurrentLimit1"
 			(at 525.78 254 90)
 			(effects
 				(font
@@ -17164,7 +17164,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 525.78 260.35 0)
 			(effects
 				(font
@@ -17200,7 +17200,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacMute_CurrentLimit")
+					(reference "DacMute_CurrentLimit1")
 					(unit 1)
 				)
 			)
@@ -17413,7 +17413,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "787b7d95-55be-4927-acda-fe68ad4475e5")
-		(property "Reference" "Dac_ChargePump_Decouple"
+		(property "Reference" "Dac_ChargePump_Decouple1"
 			(at 612.1463 251.46 90)
 			(effects
 				(font
@@ -17430,7 +17430,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 612.14 257.81 0)
 			(effects
 				(font
@@ -17466,7 +17466,7 @@
 		(instances
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "Dac_ChargePump_Decouple")
+					(reference "Dac_ChargePump_Decouple1")
 					(unit 1)
 				)
 			)
@@ -17678,7 +17678,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7fb3aa1b-a225-4ad6-b271-0e926318cef3")
-		(property "Reference" "DigitalOut"
+		(property "Reference" "DigitalOut1"
 			(at 734.4293 190.5 0)
 			(effects
 				(font
@@ -17694,7 +17694,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RCJ-027:CUI_RCJ-027"
+		(property "Footprint" "CustomModels:CUI_RCJ-027"
 			(at 735.33 198.12 0)
 			(effects
 				(font
@@ -17761,7 +17761,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DigitalOut")
+					(reference "DigitalOut1")
 					(unit 1)
 				)
 			)
@@ -17776,7 +17776,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "826e7f0d-3c38-4f8a-89e5-846d18a21a50")
-		(property "Reference" "SpdifOut_AcCoupling"
+		(property "Reference" "SpdifOut_AcCoupling1"
 			(at 712.4763 194.31 90)
 			(effects
 				(font
@@ -17793,7 +17793,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 712.47 200.66 0)
 			(effects
 				(font
@@ -17829,7 +17829,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "SpdifOut_AcCoupling")
+					(reference "SpdifOut_AcCoupling1")
 					(unit 1)
 				)
 			)
@@ -17909,7 +17909,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b397356-0172-487c-8309-1f55e8d71163")
-		(property "Reference" "DacOut_L_res"
+		(property "Reference" "DacOut_L_res1"
 			(at 621.03 242.57 90)
 			(effects
 				(font
@@ -17926,7 +17926,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 621.03 248.92 0)
 			(effects
 				(font
@@ -17962,7 +17962,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacOut_L_res")
+					(reference "DacOut_L_res1")
 					(unit 1)
 				)
 			)
@@ -17978,7 +17978,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8ba12850-fef0-4928-a0ff-cc42fd1c7e31")
-		(property "Reference" "uController"
+		(property "Reference" "uController1"
 			(at 433.9941 347.98 0)
 			(effects
 				(font
@@ -18459,7 +18459,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "uController")
+					(reference "uController1")
 					(unit 1)
 				)
 			)
@@ -18541,7 +18541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "901deb0d-9fd5-4602-be8a-b2af1d9816e3")
-		(property "Reference" "AnalogIn"
+		(property "Reference" "AnalogIn1"
 			(at 238.76 191.7699 0)
 			(effects
 				(font
@@ -18559,7 +18559,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "FW6190"
+		(property "Footprint" "CustomModels:FW6190"
 			(at 238.76 285.42 0)
 			(effects
 				(font
@@ -18670,7 +18670,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "AnalogIn")
+					(reference "AnalogIn1")
 					(unit 1)
 				)
 			)
@@ -18752,7 +18752,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "94aaef0d-2d90-448d-87ea-b63f944b106c")
-		(property "Reference" "ADC"
+		(property "Reference" "ADC1"
 			(at 301.9141 220.98 0)
 			(effects
 				(font
@@ -18849,7 +18849,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "ADC")
+					(reference "ADC1")
 					(unit 1)
 				)
 			)
@@ -18930,7 +18930,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9527a4b4-5d9c-44bd-bbbb-eca2e2967881")
-		(property "Reference" "Dac_DigitalSup_noise"
+		(property "Reference" "Dac_DigitalSup_noise2"
 			(at 600.71 271.7862 0)
 			(effects
 				(font
@@ -18949,7 +18949,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 598.17 273.05 0)
 			(effects
 				(font
@@ -18985,7 +18985,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "Dac_DigitalSup_noise")
+					(reference "Dac_DigitalSup_noise2")
 					(unit 1)
 				)
 			)
@@ -19067,7 +19067,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9922b137-423a-4c6a-a480-9f4e871894a6")
-		(property "Reference" "FLASH"
+		(property "Reference" "FLASH1"
 			(at 627.38 297.18 0)
 			(effects
 				(font
@@ -19083,7 +19083,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOP50P2000X120-48N"
+		(property "Footprint" "KiCad:SOP50P2000X120-48N"
 			(at 640.08 302.26 0)
 			(effects
 				(font
@@ -19339,7 +19339,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "FLASH")
+					(reference "FLASH1")
 					(unit 1)
 				)
 			)
@@ -19419,7 +19419,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9a0f82f2-4af1-4f3d-bd89-a6c7fd88cfee")
-		(property "Reference" "llsOut_refLo_noise"
+		(property "Reference" "llsOut_refLo_noise2"
 			(at 709.9363 179.07 90)
 			(effects
 				(font
@@ -19436,7 +19436,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 709.93 185.42 0)
 			(effects
 				(font
@@ -19472,7 +19472,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "llsOut_refLo_noise")
+					(reference "llsOut_refLo_noise2")
 					(unit 1)
 				)
 			)
@@ -19504,7 +19504,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 459.74 125.73 0)
 			(effects
 				(font
@@ -19640,7 +19640,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:CP_Elec_3x5.3"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 308.61 181.61 0)
 			(effects
 				(font
@@ -19824,7 +19824,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a2b29317-06f8-4665-bf26-78b9696f6acc")
-		(property "Reference" "RAM"
+		(property "Reference" "RAM1"
 			(at 539.75 288.29 0)
 			(effects
 				(font
@@ -19840,7 +19840,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOP80P1176X120-54N"
+		(property "Footprint" "CustomModels:SOP80P1176X120-54N"
 			(at 552.45 293.37 0)
 			(effects
 				(font
@@ -20094,7 +20094,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "RAM")
+					(reference "RAM1")
 					(unit 1)
 				)
 			)
@@ -20109,7 +20109,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a3804fbe-ddc4-471e-b155-a17229232f59")
-		(property "Reference" "DacAnalogSupply_noise"
+		(property "Reference" "DacAnalogSupply_noise1"
 			(at 511.8163 247.65 90)
 			(effects
 				(font
@@ -20126,7 +20126,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 511.81 254 0)
 			(effects
 				(font
@@ -20162,7 +20162,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacAnalogSupply_noise")
+					(reference "DacAnalogSupply_noise1")
 					(unit 1)
 				)
 			)
@@ -20243,7 +20243,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a54d50db-3c23-41dc-823e-d0c49916ba48")
-		(property "Reference" "dacVref_bypass"
+		(property "Reference" "dacVref_bypass1"
 			(at 530.8663 251.46 90)
 			(effects
 				(font
@@ -20260,7 +20260,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 530.86 257.81 0)
 			(effects
 				(font
@@ -20296,7 +20296,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "dacVref_bypass")
+					(reference "dacVref_bypass1")
 					(unit 1)
 				)
 			)
@@ -20394,7 +20394,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 283.21 198.12 0)
 			(effects
 				(font
@@ -20641,7 +20641,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b6f8581e-9507-4737-a397-ce5c756b9b91")
-		(property "Reference" "Dac_DigitalSup_bulk"
+		(property "Reference" "Dac_DigitalSup_bulk2"
 			(at 605.79 271.3481 0)
 			(effects
 				(font
@@ -20660,7 +20660,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 603.25 273.05 0)
 			(effects
 				(font
@@ -20696,7 +20696,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "Dac_DigitalSup_bulk")
+					(reference "Dac_DigitalSup_bulk2")
 					(unit 1)
 				)
 			)
@@ -20843,7 +20843,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c2e922d9-17ac-4412-9207-5e60c92c6878")
-		(property "Reference" "Dac_ChargePump_bead"
+		(property "Reference" "Dac_ChargePump_bead1"
 			(at 628.65 264.1218 0)
 			(effects
 				(font
@@ -20862,7 +20862,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 624.332 265.43 90)
 			(effects
 				(font
@@ -20898,7 +20898,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "Dac_ChargePump_bead")
+					(reference "Dac_ChargePump_bead1")
 					(unit 1)
 				)
 			)
@@ -20913,7 +20913,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c3de883e-9f1b-42a3-b645-aa504332f914")
-		(property "Reference" "Dac_ChargePump_cap"
+		(property "Reference" "Dac_ChargePump_cap1"
 			(at 608.33 261.6262 0)
 			(effects
 				(font
@@ -20932,7 +20932,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 605.79 262.89 0)
 			(effects
 				(font
@@ -20968,7 +20968,7 @@
 		(instances
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "Dac_ChargePump_cap")
+					(reference "Dac_ChargePump_cap1")
 					(unit 1)
 				)
 			)
@@ -21133,7 +21133,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 302.26 181.61 0)
 			(effects
 				(font
@@ -21448,7 +21448,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ca969e26-4583-4679-a0e9-9162bb55cd20")
-		(property "Reference" "dixSupply_noise"
+		(property "Reference" "dixSupply_noise1"
 			(at 513.0863 209.55 90)
 			(effects
 				(font
@@ -21465,7 +21465,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 513.08 215.9 0)
 			(effects
 				(font
@@ -21501,7 +21501,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "dixSupply_noise")
+					(reference "dixSupply_noise1")
 					(unit 1)
 				)
 			)
@@ -21533,7 +21533,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 444.5 125.73 0)
 			(effects
 				(font
@@ -21603,7 +21603,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 290.83 176.53 0)
 			(effects
 				(font
@@ -21738,7 +21738,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 618.49 270.51 0)
 			(effects
 				(font
@@ -21872,7 +21872,7 @@
 				)
 			)
 		)
-		(property "Footprint" "DCK6_TEX"
+		(property "Footprint" "CustomModels:DCK6_TEX"
 			(at 260.35 260.35 0)
 			(effects
 				(font
@@ -22086,7 +22086,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 281.94 208.28 0)
 			(effects
 				(font
@@ -22534,7 +22534,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9a5d1df-cac5-4e7d-86cf-cace0a147c92")
-		(property "Reference" "SPDIFTX"
+		(property "Reference" "SPDIFTX1"
 			(at 581.66 158.75 0)
 			(effects
 				(font
@@ -22550,7 +22550,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PT48"
+		(property "Footprint" "CustomModels:DIX9211PTR"
 			(at 535.94 168.91 0)
 			(effects
 				(font
@@ -22726,7 +22726,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "SPDIFTX")
+					(reference "SPDIFTX1")
 					(unit 1)
 				)
 			)
