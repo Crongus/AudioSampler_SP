@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'MOV_14D561KTR'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Bourns", "MOV-14D561KTR" (!) = "", "MOV14D561KTR", "Other", "652-MOV-14D561KTR", "https://www.mouser.co.uk/ProductDetail/Bourns/MOV-14D561KTR?qs=CQ3B1E%252BbPs2c86JUrhXAFQ%3D%3D", "MOV-14D561KTR", "https://www.arrow.com/en/products/mov-14d561ktr/bourns?region=nac", "560 V 4.5 kA Varistor 1 Circuit Through Hole Disc 14mm", "https://www.bourns.com/docs/Product-Datasheets/MOV14D.pdf", "22 mm"
+END_PART
+
+END.

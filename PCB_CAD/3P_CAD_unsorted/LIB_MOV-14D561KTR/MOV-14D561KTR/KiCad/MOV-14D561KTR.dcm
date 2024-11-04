@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MOV-14D561KTR
+D 560 V 4.5 kA Varistor 1 Circuit Through Hole Disc 14mm
+K
+F https://www.bourns.com/docs/Product-Datasheets/MOV14D.pdf
+$ENDCMP
+#
+#End Doc Library
