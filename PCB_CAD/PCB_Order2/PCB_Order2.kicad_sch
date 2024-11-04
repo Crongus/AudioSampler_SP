@@ -16725,7 +16725,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e168bf1-8dd6-4bed-8b7e-e4ec6440986d")
-		(property "Reference" "LLS Out"
+		(property "Reference" "LLS Out1"
 			(at 687.07 185.42 0)
 			(effects
 				(font
@@ -16791,7 +16791,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLS Out")
+					(reference "LLS Out1")
 					(unit 1)
 				)
 			)
@@ -21856,7 +21856,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "de23ff6a-c69a-4f00-b50b-0c46547378f4")
-		(property "Reference" "LLS In"
+		(property "Reference" "LLS In1"
 			(at 280.67 250.19 0)
 			(effects
 				(font
@@ -21922,7 +21922,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLS In")
+					(reference "LLS In1")
 					(unit 1)
 				)
 			)
