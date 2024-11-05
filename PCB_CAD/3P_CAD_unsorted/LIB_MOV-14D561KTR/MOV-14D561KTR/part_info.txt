@@ -1,0 +1,9 @@
+Manufacturer=Bourns
+PartNumber=MOV-14D561KTR
+PartCategory=Varistor
+PackageCategory=Other
+PinCount=2
+Version=1.3
+Released=2022-05-19 11:19:04
+Downloaded=2024-11-04 21:14:56
+3D=Y

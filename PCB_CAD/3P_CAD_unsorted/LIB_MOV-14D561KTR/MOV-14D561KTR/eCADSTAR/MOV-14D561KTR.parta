@@ -1,0 +1,68 @@
+(Japanese_coding: sjis)
+(function "ECS_634733"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-05-19-11:19:04)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "MOV-14D561KTR")
+)
+
+
+(pinAssign "ECS_634733"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-05-19-11:19:04)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_634733")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "MOV-14D561KTR")
+)
+
+
+(part "MOV-14D561KTR"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-05-19-11:19:04)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "MOV-14D561KTR")
+    (pinAssignRef "ECS_634733")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "RV")
+    (property "description" "560 V 4.5 kA Varistor 1 Circuit Through Hole Disc 14mm")
+    (property "Manufacturer_Name" "Bourns")
+    (property "Manufacturer_Part_Number" "MOV-14D561KTR")
+    (property "Mouser_Part_Number" "652-MOV-14D561KTR")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/MOV-14D561KTR?qs=CQ3B1E%252BbPs2c86JUrhXAFQ%3D%3D")
+    (property "Arrow_Part_Number" "MOV-14D561KTR")
+    (property "Arrow_Price/Stock" "https://www.arrow.com/en/products/mov-14d561ktr/bourns?region=nac")
+    (property "Datasheet_Link" "https://www.bourns.com/docs/Product-Datasheets/MOV14D.pdf")
+    (property "compAreaTopHeight" 22)
+)
+
+

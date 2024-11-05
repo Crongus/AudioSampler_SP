@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "MOV-14D561KTR"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2022-05-19-11:19:04)
+    (mountForm default
+        (footprintRef "MOV14D561KTR")
+        (spec "System")
+    )
+)

@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "MOV14D561KTR"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "MOV14D561KTR")
+        (spec "default")
+    )
+)
