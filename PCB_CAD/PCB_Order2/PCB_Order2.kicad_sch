@@ -12837,7 +12837,7 @@
 		)
 		(uuid "74eb1c13-f40c-4364-8269-77af1fc62a32")
 	)
-	(label "12S2_MCK"
+	(label "I2S2_MCK"
 		(at 462.28 274.32 0)
 		(fields_autoplaced yes)
 		(effects
