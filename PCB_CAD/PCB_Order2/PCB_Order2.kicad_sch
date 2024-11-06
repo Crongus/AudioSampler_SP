@@ -12683,6 +12683,17 @@
 		)
 		(uuid "4fe79bc4-ea0e-4626-8d15-bf93ae4b8ca5")
 	)
+	(label "I2S2_WS"
+		(at 462.28 246.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "501bb09d-7408-4537-97c6-146068af13f5")
+	)
 	(label "I2S1_CK"
 		(at 462.28 185.42 0)
 		(fields_autoplaced yes)
@@ -12826,6 +12837,17 @@
 		)
 		(uuid "74eb1c13-f40c-4364-8269-77af1fc62a32")
 	)
+	(label "12S2_MCK"
+		(at 462.28 274.32 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "792603ef-b52b-4941-a065-e6bceb3295c6")
+	)
 	(label "FMC_D12"
 		(at 556.26 311.15 0)
 		(fields_autoplaced yes)
@@ -12891,6 +12913,17 @@
 			(justify left bottom)
 		)
 		(uuid "84fa6d8f-85e7-47ab-9860-faec0e3b4590")
+	)
+	(label "I2S2_CK"
+		(at 462.28 241.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8587cfe9-cd75-4a80-a79e-28da8a4b62c9")
 	)
 	(label "FMC_D0"
 		(at 510.54 298.45 0)
