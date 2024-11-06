@@ -9623,12 +9623,6 @@
 		)
 	)
 	(junction
-		(at 523.24 219.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "038dec8f-5f71-4710-9e2a-7c786a15c670")
-	)
-	(junction
 		(at 514.35 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9689,6 +9683,12 @@
 		(uuid "615e9264-48ff-4e43-a4a6-8d356fc3d527")
 	)
 	(junction
+		(at 520.7 219.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "669f237b-6d39-401b-bd31-35f323c70694")
+	)
+	(junction
 		(at 308.61 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9723,12 +9723,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "71ddb904-29fe-4916-a6fc-6aec8b5c5f65")
-	)
-	(junction
-		(at 518.16 219.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "74de7092-2581-44f2-aec0-ab1bfdc77bf9")
 	)
 	(junction
 		(at 300.99 254)
@@ -10264,16 +10258,6 @@
 	)
 	(wire
 		(pts
-			(xy 523.24 219.71) (xy 535.94 219.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "396ad44e-3e81-4e78-b179-438285730ae3")
-	)
-	(wire
-		(pts
 			(xy 237.49 278.13) (xy 256.54 278.13)
 		)
 		(stroke
@@ -10434,7 +10418,7 @@
 	)
 	(wire
 		(pts
-			(xy 518.16 219.71) (xy 523.24 219.71)
+			(xy 518.16 219.71) (xy 520.7 219.71)
 		)
 		(stroke
 			(width 0)
@@ -11604,6 +11588,16 @@
 	)
 	(wire
 		(pts
+			(xy 520.7 219.71) (xy 523.24 219.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ccb58580-fc64-4615-9e44-169ee751b390")
+	)
+	(wire
+		(pts
 			(xy 642.62 173.99) (xy 642.62 176.53)
 		)
 		(stroke
@@ -11651,16 +11645,6 @@
 			(type default)
 		)
 		(uuid "cfcaa6b0-3c41-4730-8793-9b75ee2aeb21")
-	)
-	(wire
-		(pts
-			(xy 514.35 219.71) (xy 518.16 219.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d06030ca-1c48-459b-bedc-d0448c76db52")
 	)
 	(wire
 		(pts
@@ -17638,7 +17622,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDD")
-		(at 514.35 219.71 0)
+		(at 520.7 219.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17646,7 +17630,7 @@
 		(dnp no)
 		(uuid "7f4ccf50-a93d-4f72-a520-2bd1480206a3")
 		(property "Reference" "#PWR043"
-			(at 514.35 226.06 0)
+			(at 520.7 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17655,7 +17639,7 @@
 			)
 		)
 		(property "Value" "GNDD"
-			(at 519.43 221.234 0)
+			(at 516.636 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17663,7 +17647,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 514.35 219.71 0)
+			(at 520.7 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17672,7 +17656,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 514.35 219.71 0)
+			(at 520.7 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17681,7 +17665,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 514.35 219.71 0)
+			(at 520.7 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20595,6 +20579,72 @@
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDD")
+		(at 535.94 219.71 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b017bad5-0f62-4ab1-ac96-8acada7ad778")
+		(property "Reference" "#PWR070"
+			(at 535.94 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GNDD"
+			(at 530.86 221.234 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 535.94 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 535.94 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
+			(at 535.94 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "43f8ac40-aed2-4b32-96e1-f0474cf3fea4")
+		)
+		(instances
+			(project "PCB_Order2"
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "#PWR070")
 					(unit 1)
 				)
 			)
