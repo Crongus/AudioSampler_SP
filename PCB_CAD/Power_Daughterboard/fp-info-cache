@@ -1,4 +1,4 @@
-23853465238693575
+23860388260249862
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54691,6 +54691,13 @@ SMD SMT ceramic resonator filter filter hand-soldering
 3
 3
 CustomModels
+CONN4_1131.12_SAI
+
+CMF2.1111.12 
+0
+8
+8
+CustomModels
 CONN_SD-47053-001_H10p00_MOL
 
 470531000 
@@ -54733,6 +54740,13 @@ DIX9211PTR
 48
 48
 CustomModels
+FUSE_SS-5H-1A_EAT
+
+SS-5H-1A-APH 
+0
+2
+2
+CustomModels
 FW6190
 FW6190-2
 Connector
@@ -54746,6 +54760,20 @@ Power Supply
 0
 4
 4
+CustomModels
+MOV14D561KTR
+MOV-14D561KTR-2
+Varistor
+0
+2
+2
+CustomModels
+SOP80P1176X120-54N
+54 Pin TSSOP II
+Integrated Circuit
+0
+54
+54
 CustomModels
 TSSOP16_NAU8402_NUV
 
