@@ -10437,7 +10437,7 @@
 	)
 	(wire
 		(pts
-			(xy 510.54 260.35) (xy 523.24 260.35)
+			(xy 510.54 260.35) (xy 546.1 260.35)
 		)
 		(stroke
 			(width 0)
@@ -10544,16 +10544,6 @@
 			(type default)
 		)
 		(uuid "396b8999-7baa-4d14-b5fe-c2de3345b5ba")
-	)
-	(wire
-		(pts
-			(xy 528.32 260.35) (xy 546.1 260.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d8a2b20-9a6b-4b84-9970-673f4014fcea")
 	)
 	(wire
 		(pts
@@ -13443,6 +13433,17 @@
 			(justify left bottom)
 		)
 		(uuid "92ff23b7-e8c1-403c-bcd9-9f8e2d1bcde8")
+	)
+	(label "SPDIFRX_IN0"
+		(at 462.28 320.04 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "93a50192-986d-4377-9a2a-db51d981dbfb")
 	)
 	(label "FMC_A4"
 		(at 556.26 359.41 0)
@@ -17774,74 +17775,6 @@
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "DacAnalogSupply_bead1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 525.78 260.35 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6bc3f6ef-a05b-4934-9741-62afc7cf0282")
-		(property "Reference" "DacMute_CurrentLimit1"
-			(at 525.78 254 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "10k"
-			(at 529.336 261.62 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 525.78 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 525.78 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 525.78 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6558e8ba-9b88-45f9-b88c-38ae9e95add2")
-		)
-		(pin "1"
-			(uuid "5b522b64-abae-42c8-a55a-a61c728c8ae5")
-		)
-		(instances
-			(project ""
-				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DacMute_CurrentLimit1")
 					(unit 1)
 				)
 			)
