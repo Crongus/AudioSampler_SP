@@ -14913,7 +14913,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1a3e7c6f-04e3-451c-b02c-8ebe826405bf")
-		(property "Reference" "adcReset_rc_res"
+		(property "Reference" "adcReset_rc_res1"
 			(at 318.77 196.85 90)
 			(effects
 				(font
@@ -14930,7 +14930,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 318.77 203.2 0)
 			(effects
 				(font
@@ -14966,7 +14966,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adcReset_rc_res")
+					(reference "adcReset_rc_res1")
 					(unit 1)
 				)
 			)
@@ -16347,7 +16347,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "466a13c9-9cc5-4789-b8a6-f6ab51885548")
-		(property "Reference" "adcBead"
+		(property "Reference" "adcBead1"
 			(at 292.1 167.6018 0)
 			(effects
 				(font
@@ -16366,7 +16366,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 287.782 168.91 90)
 			(effects
 				(font
@@ -16402,7 +16402,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adcBead")
+					(reference "adcBead1")
 					(unit 1)
 				)
 			)
@@ -18415,7 +18415,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 304.8 177.8 0)
 			(effects
 				(font
@@ -19977,7 +19977,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9b34793a-1ecb-4324-bc9f-b52d903fa6b9")
-		(property "Reference" "VdivLow"
+		(property "Reference" "VdivLow1"
 			(at 459.74 132.08 90)
 			(effects
 				(font
@@ -20030,7 +20030,7 @@
 		(instances
 			(project "PCB_Order2"
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "VdivLow")
+					(reference "VdivLow1")
 					(unit 1)
 				)
 			)
@@ -21058,7 +21058,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b4c7e8d1-3311-4a6b-b140-21ecce1d229b")
-		(property "Reference" "adc_aSupply_bulk"
+		(property "Reference" "adc_aSupply_bulk1"
 			(at 294.64 172.2881 0)
 			(effects
 				(font
@@ -21077,7 +21077,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 292.1 173.99 0)
 			(effects
 				(font
@@ -21113,7 +21113,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_aSupply_bulk")
+					(reference "adc_aSupply_bulk1")
 					(unit 1)
 				)
 			)
@@ -21264,7 +21264,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bc4e8f55-285b-419d-a769-027d40288302")
-		(property "Reference" "adc_aSupply_noise"
+		(property "Reference" "adc_aSupply_noise1"
 			(at 294.6463 173.99 90)
 			(effects
 				(font
@@ -21281,7 +21281,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 294.64 180.34 0)
 			(effects
 				(font
@@ -21317,7 +21317,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_aSupply_noise")
+					(reference "adc_aSupply_noise1")
 					(unit 1)
 				)
 			)
@@ -21935,7 +21935,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ca14dfe2-bf07-4539-b031-a1ca7240d7c8")
-		(property "Reference" "adc_rego"
+		(property "Reference" "adc_rego1"
 			(at 284.48 215.4681 0)
 			(effects
 				(font
@@ -21954,7 +21954,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 281.94 217.17 0)
 			(effects
 				(font
@@ -21990,7 +21990,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_rego")
+					(reference "adc_rego1")
 					(unit 1)
 				)
 			)
@@ -22140,7 +22140,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cf70d870-1836-4dbc-8baf-c473517784ee")
-		(property "Reference" "VdivHigh"
+		(property "Reference" "VdivHigh1"
 			(at 444.5 132.08 90)
 			(effects
 				(font
@@ -22193,7 +22193,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "VdivHigh")
+					(reference "VdivHigh1")
 					(unit 1)
 				)
 			)
@@ -22428,7 +22428,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 307.34 171.45 0)
 			(effects
 				(font
@@ -22694,7 +22694,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e5fc6bf9-c1f0-4385-ba07-a3d73d51be75")
-		(property "Reference" "adc_vcom"
+		(property "Reference" "adc_vcom1"
 			(at 281.9463 201.93 90)
 			(effects
 				(font
@@ -22747,7 +22747,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_vcom")
+					(reference "adc_vcom1")
 					(unit 1)
 				)
 			)
@@ -22894,7 +22894,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f0c24ba8-ff4d-4d02-a5ca-a4188d01a608")
-		(property "Reference" "adc_L_acCouple"
+		(property "Reference" "adc_L_acCouple1"
 			(at 277.6982 191.77 90)
 			(effects
 				(font
@@ -22911,7 +22911,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 278.13 198.12 0)
 			(effects
 				(font
@@ -22947,7 +22947,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_L_acCouple")
+					(reference "adc_L_acCouple1")
 					(unit 1)
 				)
 			)
@@ -23434,7 +23434,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fa953508-3626-4f67-844c-217b8d49fe02")
-		(property "Reference" "adcReset_rc_cap"
+		(property "Reference" "adcReset_rc_cap1"
 			(at 340.36 204.0381 0)
 			(effects
 				(font
@@ -23453,7 +23453,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 337.82 205.74 0)
 			(effects
 				(font
@@ -23489,7 +23489,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adcReset_rc_cap")
+					(reference "adcReset_rc_cap1")
 					(unit 1)
 				)
 			)
@@ -23504,7 +23504,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fb5ba20b-bd7e-4806-bb5f-19549c251647")
-		(property "Reference" "adc_R_acCouple"
+		(property "Reference" "adc_R_acCouple1"
 			(at 277.6982 186.69 90)
 			(effects
 				(font
@@ -23521,7 +23521,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 278.13 193.04 0)
 			(effects
 				(font
@@ -23557,7 +23557,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "adc_R_acCouple")
+					(reference "adc_R_acCouple1")
 					(unit 1)
 				)
 			)
