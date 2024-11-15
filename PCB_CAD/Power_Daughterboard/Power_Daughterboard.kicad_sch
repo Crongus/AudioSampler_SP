@@ -1875,28 +1875,22 @@
 		)
 	)
 	(junction
-		(at 106.68 57.15)
+		(at 93.98 57.15)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2016fe47-2aca-4e98-ad6e-927452d55345")
+		(uuid "28401a6c-4e7b-41bc-8227-79bb63034ba8")
 	)
 	(junction
-		(at 92.71 52.07)
+		(at 93.98 52.07)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "3390dc64-c3d5-4bd1-a9f4-5248c254124d")
+		(uuid "2d360312-87ec-489e-8bdb-19208a079172")
 	)
 	(junction
 		(at 106.68 52.07)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "53c2a7d8-8ca5-49ce-bd49-8c0b56da1d66")
-	)
-	(junction
-		(at 92.71 57.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "774f6ad6-d11b-437c-99b6-13c5c549bcc4")
+		(uuid "633c16c4-6179-4144-8097-abf8bb1bb59e")
 	)
 	(junction
 		(at 55.88 69.85)
@@ -1910,6 +1904,12 @@
 		(color 0 0 0 0)
 		(uuid "cbfb06c7-6aa4-4cd4-ae3e-3d1909a9ccf9")
 	)
+	(junction
+		(at 106.68 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e7adda7c-a1e3-45d4-a73c-73e590ae9b2a")
+	)
 	(no_connect
 		(at 125.73 57.15)
 		(uuid "267760f4-2a22-4a5d-9246-7f8d15e6a3c4")
@@ -1920,23 +1920,13 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 57.15) (xy 106.68 57.15)
+			(xy 121.92 54.61) (xy 125.73 54.61)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "16472996-b6bf-4c82-934b-6d9a35b574ed")
-	)
-	(wire
-		(pts
-			(xy 106.68 57.15) (xy 116.84 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ff662cb-aae3-40a8-b31b-2835807618ae")
+		(uuid "1d27839b-a615-4709-a837-62677667e899")
 	)
 	(wire
 		(pts
@@ -1970,13 +1960,13 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 57.15) (xy 116.84 54.61)
+			(xy 121.92 52.07) (xy 125.73 52.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "35cbdc1d-17e9-488a-87e2-38a4fa0ba755")
+		(uuid "3e607bb9-aeca-40fa-bdf8-11cf09932dda")
 	)
 	(wire
 		(pts
@@ -2000,17 +1990,7 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 54.61) (xy 125.73 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "64a94279-876d-4f2a-8fef-31e23cb569fb")
-	)
-	(wire
-		(pts
-			(xy 86.36 52.07) (xy 92.71 52.07)
+			(xy 86.36 52.07) (xy 93.98 52.07)
 		)
 		(stroke
 			(width 0)
@@ -2020,7 +2000,17 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 57.15) (xy 92.71 57.15)
+			(xy 106.68 52.07) (xy 111.76 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f734443-6315-493f-90dc-aa67cee09f71")
+	)
+	(wire
+		(pts
+			(xy 86.36 57.15) (xy 93.98 57.15)
 		)
 		(stroke
 			(width 0)
@@ -2047,6 +2037,16 @@
 			(type default)
 		)
 		(uuid "b8a98a31-0878-4a50-a6c1-69afbc5abdc8")
+	)
+	(wire
+		(pts
+			(xy 106.68 57.15) (xy 111.76 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be9bce5d-f10d-4e45-95ad-3e8d2bc8a882")
 	)
 	(wire
 		(pts
@@ -2100,13 +2100,23 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 52.07) (xy 125.73 52.07)
+			(xy 93.98 57.15) (xy 106.68 57.15)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f47912fe-bf8a-4cce-af84-24dcb1c568ea")
+		(uuid "ef8d3183-3098-4e52-bbe9-0b5c93604ac6")
+	)
+	(wire
+		(pts
+			(xy 93.98 52.07) (xy 106.68 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f89856e1-d089-471b-bd4d-36815f769089")
 	)
 	(wire
 		(pts
@@ -2120,16 +2130,6 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 52.07) (xy 106.68 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fc6a89e1-d0bd-4f67-9b20-45d7714a4179")
-	)
-	(wire
-		(pts
 			(xy 22.86 36.83) (xy 22.86 29.21)
 		)
 		(stroke
@@ -2137,6 +2137,50 @@
 			(type default)
 		)
 		(uuid "ff96c501-ba93-4d30-bd6f-5a34c6134069")
+	)
+	(label "VOUT"
+		(at 111.76 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1a2db1d6-409c-43bb-b7b1-77aa0be70b68")
+	)
+	(label "VOUT"
+		(at 121.92 54.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4fa01ccf-c86f-40bd-91e9-24e911dbc3f2")
+	)
+	(label "VGND"
+		(at 111.76 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6c38de47-c034-40c6-9dc5-3e6358e1112d")
+	)
+	(label "VGND"
+		(at 121.92 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "96e1a3cd-b018-4a01-bc93-cf0a8082cf39")
 	)
 	(symbol
 		(lib_id "MOV-14D561KTR:MOV-14D561KTR")
@@ -2148,7 +2192,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19d79973-5ab5-4229-abf0-7d7de820be9e")
-		(property "Reference" "RV1"
+		(property "Reference" "MOV1"
 			(at 59.69 59.6899 90)
 			(effects
 				(font
@@ -2276,7 +2320,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "RV1")
+					(reference "MOV1")
 					(unit 1)
 				)
 			)
@@ -2292,7 +2336,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2507ee2b-b86c-4604-bd5d-a9c32d2ee3a3")
-		(property "Reference" "PS1"
+		(property "Reference" "PSU1"
 			(at 73.66 44.45 0)
 			(effects
 				(font
@@ -2422,7 +2466,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "PS1")
+					(reference "PSU1")
 					(unit 1)
 				)
 			)
@@ -2430,16 +2474,15 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small_US")
-		(at 106.68 54.61 180)
+		(at 93.98 54.61 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "404b5cef-5647-4439-89c5-d2ae97e6f834")
-		(property "Reference" "PSU_bulk1"
-			(at 109.22 53.7717 0)
+		(property "Reference" "Cb1"
+			(at 96.52 53.7717 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2449,7 +2492,7 @@
 			)
 		)
 		(property "Value" "100u"
-			(at 109.22 56.3117 0)
+			(at 90.678 59.436 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2458,7 +2501,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 106.68 54.61 0)
+			(at 93.98 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2467,7 +2510,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 106.68 54.61 0)
+			(at 93.98 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2476,7 +2519,7 @@
 			)
 		)
 		(property "Description" "electrolytic"
-			(at 106.68 54.61 0)
+			(at 93.98 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2493,7 +2536,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "PSU_bulk1")
+					(reference "Cb1")
 					(unit 1)
 				)
 			)
@@ -2509,7 +2552,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3c122e7-a2c2-492f-8cbc-7e884a1c9cee")
-		(property "Reference" "J1"
+		(property "Reference" "PXM1"
 			(at 139.7 54.6099 0)
 			(effects
 				(font
@@ -2571,7 +2614,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "J1")
+					(reference "PXM1")
 					(unit 1)
 				)
 			)
@@ -2587,7 +2630,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ba260307-ce26-4000-8f17-148ff3adf199")
-		(property "Reference" "F1"
+		(property "Reference" "FUSE1"
 			(at 36.83 48.26 0)
 			(effects
 				(font
@@ -2643,7 +2686,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "F1")
+					(reference "FUSE1")
 					(unit 1)
 				)
 			)
@@ -2651,16 +2694,15 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 92.71 54.61 0)
+		(at 106.68 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e387a93f-ec96-400e-9881-7aa2cd6bcfba")
-		(property "Reference" "PSU_noise1"
-			(at 95.25 53.3462 0)
+		(property "Reference" "Cn1"
+			(at 109.22 53.3462 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2670,7 +2712,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 95.25 55.8862 0)
+			(at 104.902 59.436 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2679,7 +2721,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 92.71 54.61 0)
+			(at 106.68 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2688,7 +2730,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 92.71 54.61 0)
+			(at 106.68 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2697,7 +2739,7 @@
 			)
 		)
 		(property "Description" "ceramic, acap (to PSU)"
-			(at 92.71 54.61 0)
+			(at 106.68 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2714,7 +2756,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "PSU_noise1")
+					(reference "Cn1")
 					(unit 1)
 				)
 			)
@@ -2730,7 +2772,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed3863a8-4c9f-4ff1-a0a4-8846697f8400")
-		(property "Reference" "J2"
+		(property "Reference" "PEM1"
 			(at 46.99 31.7499 0)
 			(effects
 				(font
@@ -2792,7 +2834,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "J2")
+					(reference "PEM1")
 					(unit 1)
 				)
 			)
