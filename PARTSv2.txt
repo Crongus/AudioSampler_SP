@@ -145,3 +145,5 @@ https://www.digikey.com/en/products/detail/schurter-inc/6250-5530/641011
 Need: 3-prong "male blades" (ie C14), 180 degree thru-hole solderable. Filtered also by active/stocked/not marketplace. Power handling capacity is pretty much immaterial, at our level of draw anything would do it. Schurter sells a few of these with small variations, picked the one with a 1-pole fuse receptacle and hopefully we can put the fuse that the PSU specs in there.
 
 https://www.digikey.com/en/products/detail/texas-instruments/SN74AXCH1T45DCKR/9954213 logic level shifter
+
+https://www.digikey.com/en/products/detail/c-k/PTS645SK43SMTR92-LFS/1162181?s=N4IgTCBcDaIMIGkByBOADADgCxwCogF0BfIA button

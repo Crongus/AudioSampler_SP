@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "USB-M26FTR"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2024-11-16-12:11:59)
+    (mountForm default
+        (footprintRef "USBM26FTR")
+        (spec "System")
+    )
+)

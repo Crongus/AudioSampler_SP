@@ -1,0 +1,16 @@
+.USB-M26FTR :1 ;Conn Mini USB Type B RCP 5 POS 0.8mm Solder RA SMD 10 Terminal 1 Port T/R
+USBM26FTR
+*STM J
+*NGS
+*PLB 1="1" 2="2" 3="3" 4="4" 5="5" 6="MP1" 7="MP2" 8="MP3" 9="MP4"
+*MXP 11
+*DFN USB-M26FTR
+~!Manufacturer_Name (On Shore Technology Inc.)
+~!Manufacturer_Part_Number (USB-M26FTR)
+~!Arrow Part Number (USB-M26FTR)
+~!Link Arrow Price/Stock (https://www.arrow.com/en/products/usb-m26ftr/on-shore-technology?region=nac)
+~!Link Datasheet (https://www.on-shore.com/wp-content/uploads/USB-M26FXX.pdf)
+~!Height (3.95mm)
+~!3D_Model (USB-M26FTR)
+USB-M26FTR
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 

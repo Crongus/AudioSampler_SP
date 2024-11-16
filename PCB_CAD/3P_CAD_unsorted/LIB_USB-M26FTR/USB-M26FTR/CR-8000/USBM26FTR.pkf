@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "USBM26FTR"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "USBM26FTR")
+        (spec "default")
+    )
+)

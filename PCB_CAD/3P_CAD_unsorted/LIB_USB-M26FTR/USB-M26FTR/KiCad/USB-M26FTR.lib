@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model USB-M26FTR
+#/1445176/1502811/2.50/9/3/Connector
+DEF USB-M26FTR J 0 30 Y Y 1 F N
+F0 "J" 750 300 50 H V L CNN
+F1 "USB-M26FTR" 750 200 50 H V L CNN
+F2 "USBM26FTR" 750 100 50 H I L CNN
+F3 "https://www.on-shore.com/wp-content/uploads/USB-M26FXX.pdf" 750 0 50 H I L CNN
+F4 "Conn Mini USB Type B RCP 5 POS 0.8mm Solder RA SMD 10 Terminal 1 Port T/R" 750 -100 50 H I L CNN "Description"
+F5 "3.95" 750 -200 50 H I L CNN "Height"
+F6 "On Shore Technology Inc." 750 -300 50 H I L CNN "Manufacturer_Name"
+F7 "USB-M26FTR" 750 -400 50 H I L CNN "Manufacturer_Part_Number"
+F8 "USB-M26FTR" 750 -500 50 H I L CNN "Arrow Part Number"
+F9 "https://www.arrow.com/en/products/usb-m26ftr/on-shore-technology?region=nac" 750 -600 50 H I L CNN "Arrow Price/Stock"
+DRAW
+X 1 1 0 0 200 R 50 50 0 0 P
+X 2 2 0 -100 200 R 50 50 0 0 P
+X 3 3 0 -200 200 R 50 50 0 0 P
+X 4 4 0 -300 200 R 50 50 0 0 P
+X 5 5 0 -400 200 R 50 50 0 0 P
+X MP1 6 900 0 200 L 50 50 0 0 P
+X MP2 7 900 -100 200 L 50 50 0 0 P
+X MP3 8 900 -200 200 L 50 50 0 0 P
+X MP4 9 900 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 700 100 700 -500 200 -500 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

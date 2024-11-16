@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP USB-M26FTR
+D Conn Mini USB Type B RCP 5 POS 0.8mm Solder RA SMD 10 Terminal 1 Port T/R
+K
+F https://www.on-shore.com/wp-content/uploads/USB-M26FXX.pdf
+$ENDCMP
+#
+#End Doc Library

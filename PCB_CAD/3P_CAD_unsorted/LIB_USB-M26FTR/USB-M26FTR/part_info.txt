@@ -1,0 +1,9 @@
+Manufacturer=On Shore Technology Inc.
+PartNumber=USB-M26FTR
+PartCategory=Connector
+PackageCategory=Other
+PinCount=9
+Version=1.5
+Released=2024-11-16 12:11:59
+Downloaded=2024-11-16 20:08:32
+3D=Y
