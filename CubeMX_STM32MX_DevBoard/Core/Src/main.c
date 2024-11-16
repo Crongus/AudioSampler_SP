@@ -110,59 +110,24 @@ int main(void)
   // Variable instanciation
 
   // Clip i Left and Right channel
-  int16_t C1L;
-  int16_t C1R;
-  int16_t C2L;
-  int16_t C2R;
-  int16_t C3L;
-  int16_t C3R;
-  int16_t C4L;
-  int16_t C4R;
-  int16_t C5L;
-  int16_t C5R;
-  int16_t C6L;
-  int16_t C6R;
-  int16_t C7L;
-  int16_t C7R;
-  int16_t C8L;
-  int16_t C8R;
-  int16_t C9L;
-  int16_t C9R;
-  int16_t C10L;
-  int16_t C10R;
-  int16_t C11L;
-  int16_t C11R;
-  int16_t C12L;
-  int16_t C12R;
+  int16_t CL[12];
+  int16_t CR[12];
+
 
   // Clip i Enable
-  int16_t C1E = 0x0000;
-  int16_t C2E = 0x0000;
-  int16_t C3E = 0x0000;
-  int16_t C4E = 0x0000;
-  int16_t C5E = 0x0000;
-  int16_t C6E = 0x0000;
-  int16_t C7E = 0x0000;
-  int16_t C8E = 0x0000;
-  int16_t C9E = 0x0000;
-  int16_t C10E = 0x0000;
-  int16_t C11E = 0x0000;
-  int16_t C12E = 0x0000;
+  int16_t CE[12];
 
   // Clip i pointer, points to the memory location of the current place the clip is being read from
   // This really crams it in there
-  int16_t *C1ptr = 0x80000000;
-  int16_t *C2ptr = 0x80000000 + 2000000;
-  int16_t *C3ptr = 0x80000000 + 2*2000000;
-  int16_t *C4ptr = 0x80000000 + 3*2000000;
-  int16_t *C5ptr = 0x80000000 + 4*2000000;
-  int16_t *C6ptr = 0x80000000 + 5*2000000;
-  int16_t *C7ptr = 0x80000000 + 6*2000000;
-  int16_t *C8ptr = 0x80000000 + 7*2000000;
-  int16_t *C9ptr = 0x80000000 + 8*2000000;
-  int16_t *C10ptr = 0x80000000 + 9*2000000;
-  int16_t *C11ptr = 0x80000000 + 10*2000000;
-  int16_t *C12ptr = 0x80000000 + 11*2000000;
+  int32_t *Cptr[12];
+
+  for(int i = 1; i <= 12; i++) {
+	  CE[i] = 0x00000000;
+	  Cptr[i] = 0x80000000 + (i-1) * 2000000;
+  }
+
+  // Data to send to I2S
+  int32_t output;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -172,9 +137,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  C1L = *C1ptr | CLIP_LEFT_HALF;
-	  C1R = *C1ptr | CLIP_RIGHT_HALF;
-	  C1PTR++;
+	  for(int i = 1; i <= 12; i++) {
+	  CL[i] = (*Cptr[i] | CLIP_LEFT_HALF) >> 16;
+	  CR[i] = *Cptr[i] | CLIP_RIGHT_HALF;
+	  Cptr[i]++;
+	  output = ((CL[i] << 16) + CR[i]);
+	  HAL_I2S_TRANSMIT(output);
+
+	  }
   }
   /* USER CODE END 3 */
 }
