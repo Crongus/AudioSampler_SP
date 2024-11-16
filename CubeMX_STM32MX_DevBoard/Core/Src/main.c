@@ -43,7 +43,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define CLIP_LEFT_HALF (0xFFFF0000)
+#define CLIP_RIGHT_HALF (0x0000FFFF)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -106,6 +107,62 @@ int main(void)
   MX_USB_OTG_HS_USB_Init();
   /* USER CODE BEGIN 2 */
 
+  // Variable instanciation
+
+  // Clip i Left and Right channel
+  int16_t C1L;
+  int16_t C1R;
+  int16_t C2L;
+  int16_t C2R;
+  int16_t C3L;
+  int16_t C3R;
+  int16_t C4L;
+  int16_t C4R;
+  int16_t C5L;
+  int16_t C5R;
+  int16_t C6L;
+  int16_t C6R;
+  int16_t C7L;
+  int16_t C7R;
+  int16_t C8L;
+  int16_t C8R;
+  int16_t C9L;
+  int16_t C9R;
+  int16_t C10L;
+  int16_t C10R;
+  int16_t C11L;
+  int16_t C11R;
+  int16_t C12L;
+  int16_t C12R;
+
+  // Clip i Enable
+  int16_t C1E = 0x0000;
+  int16_t C2E = 0x0000;
+  int16_t C3E = 0x0000;
+  int16_t C4E = 0x0000;
+  int16_t C5E = 0x0000;
+  int16_t C6E = 0x0000;
+  int16_t C7E = 0x0000;
+  int16_t C8E = 0x0000;
+  int16_t C9E = 0x0000;
+  int16_t C10E = 0x0000;
+  int16_t C11E = 0x0000;
+  int16_t C12E = 0x0000;
+
+  // Clip i pointer, points to the memory location of the current place the clip is being read from
+  // This really crams it in there
+  int16_t *C1ptr = 0x80000000;
+  int16_t *C2ptr = 0x80000000 + 2000000;
+  int16_t *C3ptr = 0x80000000 + 2*2000000;
+  int16_t *C4ptr = 0x80000000 + 3*2000000;
+  int16_t *C5ptr = 0x80000000 + 4*2000000;
+  int16_t *C6ptr = 0x80000000 + 5*2000000;
+  int16_t *C7ptr = 0x80000000 + 6*2000000;
+  int16_t *C8ptr = 0x80000000 + 7*2000000;
+  int16_t *C9ptr = 0x80000000 + 8*2000000;
+  int16_t *C10ptr = 0x80000000 + 9*2000000;
+  int16_t *C11ptr = 0x80000000 + 10*2000000;
+  int16_t *C12ptr = 0x80000000 + 11*2000000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,6 +172,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  C1L = *C1ptr | CLIP_LEFT_HALF;
+	  C1R = *C1ptr | CLIP_RIGHT_HALF;
+	  C1PTR++;
   }
   /* USER CODE END 3 */
 }
