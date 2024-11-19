@@ -1,5 +1,5 @@
 
-(footprint CUI_RCJ-027 (layer F.Cu) (tedit 66FEF464)
+(module CUI_RCJ-027 (layer F.Cu) (tedit 673CB3C6)
   (descr "<b>DC POWER JACK</b><p>Source: DCJ0202.pdf")
   (fp_text reference REF** (at -2.205795 -6.237225 0) (layer F.SilkS)
     (effects (font (size 1.00035433071 1.00035433071) (thickness 0.15)))
