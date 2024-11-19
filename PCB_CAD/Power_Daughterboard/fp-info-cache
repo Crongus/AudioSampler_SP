@@ -1,4 +1,4 @@
-23862119198192616
+23869046212156592
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54695,8 +54695,8 @@ CONN4_1131.12_SAI
 
 CMF2.1111.12 
 0
-8
-8
+9
+9
 CustomModels
 CONN_SD-47053-001_H10p00_MOL
 
@@ -54768,6 +54768,20 @@ Varistor
 2
 2
 CustomModels
+SLW-883935_CUD
+
+SLW-883935-2A-D 
+0
+3
+3
+CustomModels
+SOD-962   SL2_TOS
+
+DF2S5M4SL_L3F 
+0
+2
+2
+CustomModels
 SOP80P1176X120-54N
 54 Pin TSSOP II
 Integrated Circuit
@@ -54775,12 +54789,26 @@ Integrated Circuit
 54
 54
 CustomModels
+SWITCH_45SK43SMTR92LFS
+
+PTS645SK43SMTR92LFS 
+0
+4
+4
+CustomModels
 TSSOP16_NAU8402_NUV
 
 NAU8402WG 
 0
 16
 16
+CustomModels
+USBM26FTR
+USB-M26FTR-4
+Connector
+0
+9
+9
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator

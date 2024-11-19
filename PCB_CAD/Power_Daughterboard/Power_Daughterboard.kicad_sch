@@ -961,165 +961,6 @@
 				)
 			)
 		)
-		(symbol "Device:C_Polarized_Small_US"
-			(pin_numbers hide)
-			(pin_names
-				(offset 0.254) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C_Polarized_Small_US"
-				(at 0.254 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Polarized capacitor, small US symbol"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "CP_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_Polarized_Small_US_0_1"
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 1.524) (xy -0.762 1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 1.27) (xy -1.016 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 1.524 -0.762)
-					(mid 0 -0.3734)
-					(end -1.524 -0.762)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_Polarized_Small_US_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:C_Small"
 			(pin_numbers hide)
 			(pin_names
@@ -1960,16 +1801,6 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 52.07) (xy 125.73 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e607bb9-aeca-40fa-bdf8-11cf09932dda")
-	)
-	(wire
-		(pts
 			(xy 55.88 69.85) (xy 60.96 69.85)
 		)
 		(stroke
@@ -2000,7 +1831,17 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 52.07) (xy 111.76 52.07)
+			(xy 121.92 57.15) (xy 121.92 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7eb93b76-b25b-4fe0-9a2a-5c71683046e5")
+	)
+	(wire
+		(pts
+			(xy 106.68 52.07) (xy 125.73 52.07)
 		)
 		(stroke
 			(width 0)
@@ -2040,7 +1881,7 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 57.15) (xy 111.76 57.15)
+			(xy 106.68 57.15) (xy 121.92 57.15)
 		)
 		(stroke
 			(width 0)
@@ -2137,50 +1978,6 @@
 			(type default)
 		)
 		(uuid "ff96c501-ba93-4d30-bd6f-5a34c6134069")
-	)
-	(label "VOUT"
-		(at 111.76 57.15 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1a2db1d6-409c-43bb-b7b1-77aa0be70b68")
-	)
-	(label "VOUT"
-		(at 121.92 54.61 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4fa01ccf-c86f-40bd-91e9-24e911dbc3f2")
-	)
-	(label "VGND"
-		(at 111.76 52.07 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6c38de47-c034-40c6-9dc5-3e6358e1112d")
-	)
-	(label "VGND"
-		(at 121.92 52.07 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "96e1a3cd-b018-4a01-bc93-cf0a8082cf39")
 	)
 	(symbol
 		(lib_id "MOV-14D561KTR:MOV-14D561KTR")
@@ -2473,7 +2270,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small_US")
+		(lib_id "Device:C_Small")
 		(at 93.98 54.61 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2481,7 +2278,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "404b5cef-5647-4439-89c5-d2ae97e6f834")
-		(property "Reference" "Cb1"
+		(property "Reference" "C1"
 			(at 96.52 53.7717 0)
 			(effects
 				(font
@@ -2491,7 +2288,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "100u"
+		(property "Value" "0.1u"
 			(at 90.678 59.436 0)
 			(effects
 				(font
@@ -2500,7 +2297,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.6mm_W2.0mm_P2.50mm_MKS02_FKP02"
 			(at 93.98 54.61 0)
 			(effects
 				(font
@@ -2518,7 +2315,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "electrolytic"
+		(property "Description" "ceramic, closer to PSU"
 			(at 93.98 54.61 0)
 			(effects
 				(font
@@ -2536,7 +2333,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "Cb1")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -2695,14 +2492,15 @@
 	(symbol
 		(lib_id "Device:C_Small")
 		(at 106.68 54.61 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "e387a93f-ec96-400e-9881-7aa2cd6bcfba")
-		(property "Reference" "Cn1"
-			(at 109.22 53.3462 0)
+		(property "Reference" "C2"
+			(at 109.22 55.8738 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2711,8 +2509,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.1u"
-			(at 104.902 59.436 0)
+		(property "Value" "1u"
+			(at 104.902 49.784 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2720,7 +2518,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.6mm_W2.0mm_P2.50mm_MKS02_FKP02"
 			(at 106.68 54.61 0)
 			(effects
 				(font
@@ -2738,7 +2536,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "ceramic, acap (to PSU)"
+		(property "Description" "ceramic, closer to PXM"
 			(at 106.68 54.61 0)
 			(effects
 				(font
@@ -2756,7 +2554,7 @@
 		(instances
 			(project ""
 				(path "/90df3e27-f695-4db1-b86b-e403ac5fc296"
-					(reference "Cn1")
+					(reference "C2")
 					(unit 1)
 				)
 			)
