@@ -19168,7 +19168,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 510.794 290.83 90)
 			(effects
 				(font
@@ -19717,7 +19717,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 256.794 250.444 90)
 			(effects
 				(font
@@ -20761,7 +20761,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 597.916 334.264 0)
 			(effects
 				(font
@@ -20962,7 +20962,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 491.744 356.616 90)
 			(effects
 				(font
@@ -21227,7 +21227,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 305.054 250.698 90)
 			(effects
 				(font
@@ -22491,7 +22491,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical_SMD_Pin1Right"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical"
 			(at 237.49 304.8 0)
 			(effects
 				(font
@@ -22825,7 +22825,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "15u"
+		(property "Value" "10u"
 			(at 508 243.078 90)
 			(effects
 				(font
@@ -23379,7 +23379,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 670.814 328.422 90)
 			(effects
 				(font
@@ -23711,7 +23711,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 493.776 330.962 0)
 			(effects
 				(font
@@ -23883,7 +23883,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5e168bf1-8dd6-4bed-8b7e-e4ec6440986d")
-		(property "Reference" "LLSOUT"
+		(property "Reference" "LLSOUT1"
 			(at 687.578 197.612 0)
 			(effects
 				(font
@@ -23950,7 +23950,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLSOUT")
+					(reference "LLSOUT1")
 					(unit 1)
 				)
 			)
@@ -23975,7 +23975,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 575.818 325.628 0)
 			(effects
 				(font
@@ -24054,7 +24054,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 231.14 269.24 0)
 			(effects
 				(font
@@ -24914,7 +24914,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 496.57 318.262 0)
 			(effects
 				(font
@@ -27044,7 +27044,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "901deb0d-9fd5-4602-be8a-b2af1d9816e3")
-		(property "Reference" "RCAAin"
+		(property "Reference" "RCAAin1"
 			(at 254.762 193.294 0)
 			(effects
 				(font
@@ -27174,7 +27174,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "RCAAin")
+					(reference "RCAAin1")
 					(unit 1)
 				)
 			)
@@ -27651,7 +27651,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 591.566 274.574 0)
 			(effects
 				(font
@@ -28361,7 +28361,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 237.49 323.85 0)
 			(effects
 				(font
@@ -28972,7 +28972,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 507.746 252.222 90)
 			(effects
 				(font
@@ -29175,7 +29175,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 575.564 310.134 0)
 			(effects
 				(font
@@ -30582,7 +30582,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c343bf49-ef3d-4a21-b8da-a8468a39751c")
-		(property "Reference" "DCPEM"
+		(property "Reference" "DCPEM1"
 			(at 218.44 119.888 0)
 			(effects
 				(font
@@ -30645,7 +30645,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "DCPEM")
+					(reference "DCPEM1")
 					(unit 1)
 				)
 			)
@@ -30920,7 +30920,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GNDA")
+		(lib_id "power:GNDD")
 		(at 440.69 355.6 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -30937,7 +30937,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GNDA"
+		(property "Value" "GNDD"
 			(at 446.532 356.362 0)
 			(effects
 				(font
@@ -30963,7 +30963,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
 			(at 440.69 355.6 0)
 			(effects
 				(font
@@ -31124,7 +31124,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c9d3f4f0-f124-4379-b2e8-a49f853749ed")
-		(property "Reference" "TVS"
+		(property "Reference" "TVS1"
 			(at 234.188 142.494 90)
 			(effects
 				(font
@@ -31181,7 +31181,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "TVS")
+					(reference "TVS1")
 					(unit 1)
 				)
 			)
@@ -31488,7 +31488,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 222.25 323.85 0)
 			(effects
 				(font
@@ -31684,7 +31684,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 338.074 297.434 90)
 			(effects
 				(font
@@ -31818,7 +31818,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 612.902 273.05 0)
 			(effects
 				(font
@@ -32014,7 +32014,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "de23ff6a-c69a-4f00-b50b-0c46547378f4")
-		(property "Reference" "LLSIN"
+		(property "Reference" "LLSIN1"
 			(at 279.908 262.89 0)
 			(effects
 				(font
@@ -32081,7 +32081,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLSIN")
+					(reference "LLSIN1")
 					(unit 1)
 				)
 			)
@@ -32584,7 +32584,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "0.15u"
+		(property "Value" "0.1u"
 			(at 493.268 302.768 0)
 			(effects
 				(font
@@ -33582,7 +33582,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f9a5d1df-cac5-4e7d-86cf-cace0a147c92")
-		(property "Reference" "SPDIFTX"
+		(property "Reference" "SPDIFTX1"
 			(at 582.676 198.882 0)
 			(effects
 				(font
@@ -33775,7 +33775,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "SPDIFTX")
+					(reference "SPDIFTX1")
 					(unit 1)
 				)
 			)
