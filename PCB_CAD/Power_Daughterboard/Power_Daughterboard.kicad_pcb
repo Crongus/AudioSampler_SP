@@ -2274,6 +2274,32 @@
 		(layer "Edge.Cuts")
 		(uuid "f0646660-eac0-45b6-accd-9bff8925c73c")
 	)
+	(gr_text "AC 115~230V 50~60Hz IN\nDC 3.3V 600mA (2W) OUT\nUse a PC fan cable"
+		(at 139.5 127.5 0)
+		(layer "B.SilkS")
+		(uuid "0d2a8a4f-db25-434c-802d-ac06290dc14b")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "Liam Cringle CE\nIsaac Terrell EE\nPower daughterboard"
+		(at 152.5 93.5 0)
+		(layer "B.SilkS")
+		(uuid "12b8218a-6fa3-4428-af83-e9d46f5379e2")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
 	(gr_text "C1"
 		(at 147.5 79 0)
 		(layer "F.SilkS")
@@ -2375,19 +2401,19 @@
 	)
 	(segment
 		(start 129.060003 113.33)
-		(end 143.669998 113.33)
+		(end 132.900005 109.489998)
 		(width 0.75)
 		(layer "B.Cu")
 		(net 4)
-		(uuid "5379a189-c417-4bef-a593-cc547c71478c")
+		(uuid "1d37943e-bb54-4ff9-9402-e67939c3dae8")
 	)
 	(segment
-		(start 143.669998 113.33)
+		(start 132.900005 109.489998)
 		(end 147.51 109.489998)
 		(width 0.75)
 		(layer "B.Cu")
 		(net 4)
-		(uuid "896f95c5-b008-4c5e-9737-e01c18e50190")
+		(uuid "f8158038-ad58-4f6e-87ac-9f1e61f98671")
 	)
 	(segment
 		(start 164.5 82.5)
