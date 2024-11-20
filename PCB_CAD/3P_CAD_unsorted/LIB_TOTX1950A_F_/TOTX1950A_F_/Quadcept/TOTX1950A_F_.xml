@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--/2368533/1502811/2.50/6/4/LED/-->
+<quadcept_library>
+  <setting unit="mil" />
+  <textstyle name="Default" height="47.244094488189" strokewidth="7.8740157480315" charwidth="47.244094488189" />
+  <textstyle name="Dimension" height="19.6850393700787" strokewidth="0" charwidth="19.6850393700787" />
+  <textstyle name="H127W0635TH00762" height="50" strokewidth="3" charwidth="25" />
+  <textstyle name="H15W15TH02" height="59.0551181102362" strokewidth="7.8740157480315" charwidth="59.0551181102362" />
+  <padstyle name="c130.3_h76" surface="False" plated="True" isvia="False" nopaste="True" nomask="True" complex="False" holesize="29.921259842519">
+    <padshape layer="TOP" shape="round" width="51.299212598425" height="51.299212598425" />
+    <padshape layer="TOP_SOLDER_MASK" shape="round" width="59.173228346456" height="59.173228346456" />
+    <padshape layer="INNER" shape="round" width="51.299212598425" height="51.299212598425" />
+    <padshape layer="BOTTOM" shape="round" width="51.299212598425" height="51.299212598425" />
+    <padshape layer="BOTTOM_SOLDER_MASK" shape="round" width="59.173228346456" height="59.173228346456" />
+  </padstyle>
+  <padstyle name="c130_h80" surface="False" plated="True" isvia="False" nopaste="True" nomask="True" complex="False" holesize="31.496062992126">
+    <padshape layer="TOP" shape="round" width="51.181102362204" height="51.181102362204" />
+    <padshape layer="TOP_SOLDER_MASK" shape="round" width="59.055118110235" height="59.055118110235" />
+    <padshape layer="INNER" shape="round" width="51.181102362204" height="51.181102362204" />
+    <padshape layer="BOTTOM" shape="round" width="51.181102362204" height="51.181102362204" />
+    <padshape layer="BOTTOM_SOLDER_MASK" shape="round" width="59.055118110235" height="59.055118110235" />
+  </padstyle>
+  <footprint name="TOTX1950AF" originx="0" originy="0" pickpointx="0" pickpointy="0">
+    <pcbpin number="1" name="1" style="c130.3_h76" originx="0" originy="0" rotation="90" />
+    <pcbpin number="2" name="2" style="c130.3_h76" originx="99.999999999999" originy="0" rotation="90" />
+    <pcbpin number="3" name="3" style="c130.3_h76" originx="200" originy="0" rotation="90" />
+    <pcbpin number="4" name="4" style="c130.3_h76" originx="300" originy="0" rotation="90" />
+    <pcbpin number="5" name="5" style="c130_h80" originx="354.72440944881" originy="165.35433070866" rotation="90" />
+    <pcbpin number="6" name="6" style="c130_h80" originx="-54.724409448818" originy="165.35433070866" rotation="90" />
+    <line layer="TOP_ASSEMBLY" originx="-105.90551181102" originy="393.70078740157" endx="405.90551181102" endy="393.70078740157" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="405.90551181102" originy="393.70078740157" endx="405.90551181102" endy="-216.53543307086" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="405.90551181102" originy="-216.53543307086" endx="-105.90551181102" endy="-216.53543307086" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="-105.90551181102" originy="-216.53543307086" endx="-105.90551181102" endy="393.70078740157" width="7.8740157480314" />
+    <line layer="TOP_SILKSCREEN" originx="-105.90551181102" originy="393.70078740157" endx="405.90551181102" endy="393.70078740157" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="405.90551181102" originy="393.70078740157" endx="405.90551181102" endy="-216.53543307086" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="405.90551181102" originy="-216.53543307086" endx="-105.90551181102" endy="-216.53543307086" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-105.90551181102" originy="-216.53543307086" endx="-105.90551181102" endy="393.70078740157" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="-145.27559055118" originy="433.07086614173" endx="445.27559055118" endy="433.07086614173" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="445.27559055118" originy="433.07086614173" endx="445.27559055118" endy="-255.90551181102" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="445.27559055118" originy="-255.90551181102" endx="-145.27559055118" endy="-255.90551181102" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="-145.27559055118" originy="-255.90551181102" endx="-145.27559055118" endy="433.07086614173" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-125.9842519685" originy="0" endx="-125.9842519685" endy="0" width="3.9370078740157" />
+    <arc layer="TOP_SILKSCREEN" originx="-127.95275590551" originy="0" startangle=".0" sweepangle="180.0" radius="1.9685039370079" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-129.92125984252" originy="0" endx="-129.92125984252" endy="0" width="3.9370078740157" />
+    <arc layer="TOP_SILKSCREEN" originx="-127.95275590551" originy="0" startangle="180.0" sweepangle="180.0" radius="1.9685039370079" width="3.9370078740157" />
+  </footprint>
+  <symbol name="TOTX1950A_F_" originx="0" originy="0">
+    <line originx="200" originy="100" endx="2400" endy="100" width="0" />
+    <line originx="2400" originy="-400" endx="2400" endy="100" width="0" />
+    <line originx="2400" originy="-400" endx="200" endy="-400" width="0" />
+    <line originx="200" originy="100" endx="200" endy="-400" width="0" />
+    <sympin number="1" originx="200" originy="0" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="0" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="GND" />
+      <text name="pindes" originx="140" originy="20" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="1" />
+    </sympin>
+    <sympin number="2" originx="200" originy="-100" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="-100" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="_CURRENT_LIMITING_RESISTOR_OF_LED" />
+      <text name="pindes" originx="140" originy="-80" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="2" />
+    </sympin>
+    <sympin number="3" originx="200" originy="-200" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="-200" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="VCC" />
+      <text name="pindes" originx="140" originy="-180" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="3" />
+    </sympin>
+    <sympin number="4" originx="200" originy="-300" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="-300" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="INPUT" />
+      <text name="pindes" originx="140" originy="-280" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="4" />
+    </sympin>
+    <sympin number="5" originx="2400" originy="-100" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="2370" originy="-100" style="Default" rotation="0" justify="right" flipped="False" hidden="False" data="N.C_1" />
+      <text name="pindes" originx="2460" originy="-80" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="5" />
+    </sympin>
+    <sympin number="6" originx="2400" originy="0" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="2370" originy="0" style="Default" rotation="0" justify="right" flipped="False" hidden="False" data="N.C_2" />
+      <text name="pindes" originx="2460" originy="20" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="6" />
+    </sympin>
+  </symbol>
+  <component name="TOTX1950A_F_" designatorprefix="LED" height="346.45669291338" footprint="TOTX1950AF">
+    <comppin designator="1" sympin="1" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="GND" />
+    <comppin designator="2" sympin="2" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="_CURRENT_LIMITING_RESISTOR_OF_LED" />
+    <comppin designator="3" sympin="3" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="VCC" />
+    <comppin designator="4" sympin="4" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="INPUT" />
+    <comppin designator="5" sympin="5" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="N.C_1" />
+    <comppin designator="6" sympin="6" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="N.C_2" />
+    <attached_symbol gate="1" name="TOTX1950A_F_" />
+    <pinmap designator="1" footprintpin="1" />
+    <pinmap designator="2" footprintpin="2" />
+    <pinmap designator="3" footprintpin="3" />
+    <pinmap designator="4" footprintpin="4" />
+    <pinmap designator="5" footprintpin="5" />
+    <pinmap designator="6" footprintpin="6" />
+    <text name="Datasheet" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="" />
+    <text name="Description" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Fiber Optic Transmitters, Receivers, Transceivers 650 nm LED OPTICAL TRANSMN MOD" />
+    <text name="Mouser Part Number" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="757-TOTX1950AF" />
+    <text name="Mouser Price/Stock" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://www.mouser.co.uk/ProductDetail/Toshiba/TOTX1950AF?qs=gev7jUp%252BQ%252BhDjDGaeAaJXw%3D%3D" />
+    <text name="Manufacturer_Name" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Toshiba" />
+    <text name="Manufacturer_Part_Number" originx="2450" originy="200" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="TOTX1950A(F)" />
+  </component>
+</quadcept_library>

@@ -1,0 +1,17 @@
+.TORX1950A_F_ :1 ;Optical Receiver 10Mbps Single 50m 6-Pin )
+TORX1950AF
+*STM IC
+*NGS
+*PNM 1=1 2=2 3=3 4=4 5=MH1 6=MH2
+*PLB 1="OUTPUT" 2="GND1" 3="VCC" 4="GND2" 5="CASE_1" 6="CASE_2"
+*MXP 6
+*DFN TORX1950A_F_
+~!Mouser Part Number (71-TORX1950A(F))
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Toshiba/TORX1950AF?qs=gev7jUp%252BQ%252BhPDbv%252Bwuk0PA%3D%3D)
+~!Manufacturer_Name (Toshiba)
+~!Manufacturer_Part_Number (TORX1950A(F))
+~!Link Datasheet (-)
+~!Height (8.8mm)
+~!3D_Model (TORX1950A_F_)
+TORX1950A_F_
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 

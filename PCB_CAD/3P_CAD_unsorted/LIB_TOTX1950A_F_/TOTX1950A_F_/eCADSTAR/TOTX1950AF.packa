@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "TOTX1950A_F_"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2020-12-15-12:10:44)
+    (mountForm default
+        (footprintRef "TOTX1950AF")
+        (spec "System")
+    )
+)

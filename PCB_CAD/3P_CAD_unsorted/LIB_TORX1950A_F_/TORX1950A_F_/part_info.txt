@@ -1,0 +1,9 @@
+Manufacturer=Toshiba
+PartNumber=TORX1950A(F)
+PartCategory=Integrated Circuit
+PackageCategory=Other
+PinCount=6
+Version=1.3
+Released=2021-03-22 11:02:28
+Downloaded=2024-11-20 00:29:51
+3D=Y

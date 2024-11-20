@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "TORX1950AF"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "TORX1950AF")
+        (spec "default")
+    )
+)

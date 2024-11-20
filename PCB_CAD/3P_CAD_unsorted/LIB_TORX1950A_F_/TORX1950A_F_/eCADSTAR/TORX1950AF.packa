@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "TORX1950A_F_"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2021-03-22-11:02:28)
+    (mountForm default
+        (footprintRef "TORX1950AF")
+        (spec "System")
+    )
+)

@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "TOTX1950AF"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "TOTX1950AF")
+        (spec "default")
+    )
+)
