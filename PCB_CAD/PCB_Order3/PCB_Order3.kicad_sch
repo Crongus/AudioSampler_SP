@@ -22672,7 +22672,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "40b779a6-4ddf-4af6-bf41-64ce0e2c8b10")
-		(property "Reference" "LLSIN"
+		(property "Reference" "LLSIN1"
 			(at 520.7 118.364 0)
 			(effects
 				(font
@@ -22689,7 +22689,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "DBV0006A_N"
+		(property "Footprint" "CustomModels:TI_LLS_50"
 			(at 521.97 119.38 0)
 			(effects
 				(font
@@ -22739,7 +22739,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLSIN")
+					(reference "LLSIN1")
 					(unit 1)
 				)
 			)
@@ -28830,7 +28830,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9aa04976-1fca-487b-a9a4-f4d4dd8aacb7")
-		(property "Reference" "TOSLINKOUT"
+		(property "Reference" "TOSLINKOUT1"
 			(at 584.454 133.096 0)
 			(effects
 				(font
@@ -28847,7 +28847,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "TOTX1950AF"
+		(property "Footprint" "CustomModels:TOTX1950AF"
 			(at 613.41 232.08 0)
 			(effects
 				(font
@@ -28947,7 +28947,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "TOSLINKOUT")
+					(reference "TOSLINKOUT1")
 					(unit 1)
 				)
 			)
@@ -29028,7 +29028,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9eb72042-fe0d-4dcd-b878-35fcd5eaca6d")
-		(property "Reference" "TOSLINKIN"
+		(property "Reference" "TOSLINKIN1"
 			(at 585.216 92.202 0)
 			(effects
 				(font
@@ -29045,7 +29045,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "TORX1950AF"
+		(property "Footprint" "CustomModels:TORX1950AF"
 			(at 598.17 191.44 0)
 			(effects
 				(font
@@ -29145,7 +29145,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "TOSLINKIN")
+					(reference "TOSLINKIN1")
 					(unit 1)
 				)
 			)
@@ -32221,7 +32221,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cc35c022-a731-45a1-be08-fd9f9169c611")
-		(property "Reference" "LLSOUT"
+		(property "Reference" "LLSOUT1"
 			(at 662.432 136.652 0)
 			(effects
 				(font
@@ -32238,7 +32238,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "DBV0006A_N"
+		(property "Footprint" "CustomModels:TI_LLS_50"
 			(at 662.94 137.16 0)
 			(effects
 				(font
@@ -32288,7 +32288,7 @@
 		(instances
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
-					(reference "LLSOUT")
+					(reference "LLSOUT1")
 					(unit 1)
 				)
 			)
