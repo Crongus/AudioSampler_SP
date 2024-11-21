@@ -1,4 +1,4 @@
-23869061408626624
+23874274868525067
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54796,6 +54796,27 @@ PTS645SK43SMTR92LFS
 4
 4
 CustomModels
+TI_LLS_50
+
+SN74LVC1T45DBVR 
+0
+6
+6
+CustomModels
+TORX1950AF
+TORX1950A(F)-2
+Integrated Circuit
+0
+6
+6
+CustomModels
+TOTX1950AF
+TOTX1950A(F)-1
+LED
+0
+6
+6
+CustomModels
 TSSOP16_NAU8402_NUV
 
 NAU8402WG 
@@ -63615,13 +63636,6 @@ solder jumper open
 0
 5
 3
-KiCad
-SOP50P2000X120-48N
-TSOP-48
-Integrated Circuit
-0
-48
-48
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -96865,3 +96879,10 @@ Varistor VF
 0
 2
 2
+custom_self
+86jb2
+
+
+0
+0
+0

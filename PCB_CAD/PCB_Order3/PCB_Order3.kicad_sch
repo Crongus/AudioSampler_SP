@@ -2089,7 +2089,7 @@
 				)
 			)
 		)
-		(symbol "Connector:Conn_01x03_Socket"
+		(symbol "Connector:Conn_01x04_Socket"
 			(pin_names
 				(offset 1.016) hide)
 			(exclude_from_sim no)
@@ -2103,8 +2103,8 @@
 					)
 				)
 			)
-			(property "Value" "Conn_01x03_Socket"
-				(at 0 -5.08 0)
+			(property "Value" "Conn_01x04_Socket"
+				(at 0 -7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2129,7 +2129,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Generic connector, single row, 01x03, script generated"
+			(property "Description" "Generic connector, single row, 01x04, script generated"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2164,11 +2164,35 @@
 					(hide yes)
 				)
 			)
-			(symbol "Conn_01x03_Socket_1_1"
+			(symbol "Conn_01x04_Socket_1_1"
+				(arc
+					(start 0 -4.572)
+					(mid -0.5058 -5.08)
+					(end 0 -5.588)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(arc
 					(start 0 -2.032)
 					(mid -0.5058 -2.54)
 					(end 0 -3.048)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -5.08) (xy -0.508 -5.08)
+					)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -2284,6 +2308,24 @@
 						)
 					)
 					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -5.08 0)
+					(length 3.81)
+					(name "Pin_4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -12567,12 +12609,6 @@
 		(uuid "82977202-e006-405c-b7db-f3b6c7d4e91b")
 	)
 	(junction
-		(at 218.4627 307.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8358c27f-280d-41ed-8196-ac7b8d6cd963")
-	)
-	(junction
 		(at 280.67 314.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12595,6 +12631,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9428c686-7af6-4a0c-b87d-9a986ba29a7a")
+	)
+	(junction
+		(at 218.4627 311.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "95048fdf-bd1e-4196-a1b4-539f9556ba10")
 	)
 	(junction
 		(at 241.3 115.57)
@@ -13295,6 +13337,16 @@
 	(no_connect
 		(at 462.28 289.56)
 		(uuid "fdf418a3-8f98-4e46-80b0-15861fbe3d65")
+	)
+	(wire
+		(pts
+			(xy 232.41 307.34) (xy 212.09 307.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "001c1cb7-9c92-4608-a675-85d2fa344867")
 	)
 	(wire
 		(pts
@@ -14105,6 +14157,16 @@
 			(type default)
 		)
 		(uuid "2c449189-aa80-4c15-aed3-74382404a25d")
+	)
+	(wire
+		(pts
+			(xy 232.41 311.15) (xy 232.41 309.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c48cd37-fdf7-47b6-a2ec-c7f27789fa16")
 	)
 	(wire
 		(pts
@@ -15238,16 +15300,6 @@
 	)
 	(wire
 		(pts
-			(xy 218.4627 307.34) (xy 232.41 307.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "72aba1f2-92ca-42a2-9d4d-c1a047e4f9f7")
-	)
-	(wire
-		(pts
 			(xy 440.69 133.35) (xy 449.58 133.35)
 		)
 		(stroke
@@ -15695,6 +15747,16 @@
 			(type default)
 		)
 		(uuid "8ca8b195-144c-4e3c-9444-34746d00b155")
+	)
+	(wire
+		(pts
+			(xy 218.44 311.15) (xy 218.4627 311.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d250856-bce4-4133-bd65-f94d4a764c74")
 	)
 	(wire
 		(pts
@@ -16328,6 +16390,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.4627 311.15) (xy 232.41 311.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa77b7e9-cdca-43ba-9ca4-bccdd6821092")
+	)
+	(wire
+		(pts
 			(xy 318.77 340.36) (xy 321.31 340.36)
 		)
 		(stroke
@@ -16655,6 +16727,16 @@
 			(type default)
 		)
 		(uuid "bdf4ac71-0c77-442c-9934-d9771cc65970")
+	)
+	(wire
+		(pts
+			(xy 212.09 307.34) (xy 212.09 299.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be1597ae-8d83-4ec7-b7b0-dc85cc86522a")
 	)
 	(wire
 		(pts
@@ -17525,16 +17607,6 @@
 			(type default)
 		)
 		(uuid "f8e96f20-52d0-4888-997f-bc466687cbf3")
-	)
-	(wire
-		(pts
-			(xy 218.44 307.34) (xy 218.4627 307.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f915a75c-758b-415e-a588-9a0ae7b9b393")
 	)
 	(wire
 		(pts
@@ -20013,7 +20085,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 648.97 257.81 0)
 			(effects
 				(font
@@ -20961,7 +21033,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 642.62 256.54 0)
 			(effects
 				(font
@@ -21299,7 +21371,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 251.46 113.03 0)
 			(effects
 				(font
@@ -21542,6 +21614,72 @@
 			(project ""
 				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
 					(reference "#PWR0105")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 212.09 299.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "28f2d799-df09-4c7c-bea4-a3dcae49ed89")
+		(property "Reference" "#PWR049"
+			(at 212.09 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD"
+			(at 212.09 294.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 212.09 299.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 212.09 299.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 212.09 299.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0a4dc914-c49b-4724-bf03-4927cec9444c")
+		)
+		(instances
+			(project ""
+				(path "/85a2a93a-53e0-46c8-b7f5-ee661b6f3053"
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -22271,7 +22409,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDD")
-		(at 218.4627 307.34 0)
+		(at 218.4627 311.15 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22280,7 +22418,7 @@
 		(fields_autoplaced yes)
 		(uuid "3b4416a5-fe6c-4d98-aead-5bdff3994eda")
 		(property "Reference" "#PWR0104"
-			(at 218.4627 313.69 0)
+			(at 218.4627 317.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22289,7 +22427,7 @@
 			)
 		)
 		(property "Value" "GNDD"
-			(at 218.4627 311.15 0)
+			(at 218.4627 314.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22297,7 +22435,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 218.4627 307.34 0)
+			(at 218.4627 311.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22306,7 +22444,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 218.4627 307.34 0)
+			(at 218.4627 311.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22315,7 +22453,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 218.4627 307.34 0)
+			(at 218.4627 311.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23142,7 +23280,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x03_Socket")
+		(lib_id "Connector:Conn_01x04_Socket")
 		(at 237.49 304.8 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -23152,7 +23290,7 @@
 		(fields_autoplaced yes)
 		(uuid "4a5b5f18-eb54-428c-970e-25b20a20df33")
 		(property "Reference" "J1"
-			(at 238.76 303.5299 0)
+			(at 238.76 304.7999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23161,7 +23299,7 @@
 			)
 		)
 		(property "Value" "Conn_01x03_Socket"
-			(at 238.76 306.0699 0)
+			(at 238.76 307.3399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23169,7 +23307,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical"
 			(at 237.49 304.8 0)
 			(effects
 				(font
@@ -23187,7 +23325,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x03, script generated"
+		(property "Description" "Generic connector, single row, 01x04, script generated"
 			(at 237.49 304.8 0)
 			(effects
 				(font
@@ -23204,6 +23342,9 @@
 		)
 		(pin "2"
 			(uuid "efc7cf0d-99eb-44d6-9fcd-9e4cb664482d")
+		)
+		(pin "4"
+			(uuid "5a891e55-f9ba-41be-9a01-2d408d57ad20")
 		)
 		(instances
 			(project ""
@@ -25443,7 +25584,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_10.4x10.4_H4.8"
+		(property "Footprint" "Inductor_SMD:L_1812_4532Metric_Pad1.30x3.40mm_HandSolder"
 			(at 557.53 101.6 0)
 			(effects
 				(font
