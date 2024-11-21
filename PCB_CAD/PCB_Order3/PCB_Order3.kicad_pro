@@ -58,7 +58,11 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "clearance|224481150|98988400|d315314c-aae4-4799-aa07-79440694cc8d|e678bcf8-5b6a-4639-aa4b-addf88c6432b",
+        "connection_width|182024999|71437500|c7321d93-f7d6-4b10-b021-b8ba75b2bf52|00000000-0000-0000-0000-000000000000",
+        "connection_width|182024999|71437500|f16eca20-a120-41dc-99ef-0b56dc5c8b5b|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
@@ -222,6 +226,10 @@
         {
           "diameter": 0.45,
           "drill": 0.3
+        },
+        {
+          "diameter": 0.55,
+          "drill": 0.4
         }
       ],
       "zones_allow_external_fillets": false

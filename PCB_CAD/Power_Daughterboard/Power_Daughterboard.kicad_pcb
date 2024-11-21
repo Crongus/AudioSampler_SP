@@ -45,10 +45,10 @@
 			(layerselection 0x00010fc_ffffffff)
 			(plot_on_all_layers_selection 0x0000000_00000000)
 			(disableapertmacros no)
-			(usegerberextensions no)
-			(usegerberattributes yes)
-			(usegerberadvancedattributes yes)
-			(creategerberjobfile yes)
+			(usegerberextensions yes)
+			(usegerberattributes no)
+			(usegerberadvancedattributes no)
+			(creategerberjobfile no)
 			(dashed_line_dash_ratio 12.000000)
 			(dashed_line_gap_ratio 3.000000)
 			(svgprecision 4)
@@ -67,16 +67,16 @@
 			(psnegative no)
 			(psa4output no)
 			(plotreference yes)
-			(plotvalue yes)
+			(plotvalue no)
 			(plotfptext yes)
 			(plotinvisibletext no)
 			(sketchpadsonfab no)
-			(subtractmaskfromsilk no)
+			(subtractmaskfromsilk yes)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "gerbers/")
 		)
 	)
 	(net 0 "")
@@ -97,6 +97,7 @@
 		(property "Reference" "C2"
 			(at 4.75 0 180)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "6f82e89f-9d14-4a8e-a217-a158d449ca09")
 			(effects
 				(font
@@ -2264,8 +2265,8 @@
 		)
 	)
 	(gr_rect
-		(start 103.5 69.5)
-		(end 169.5 130)
+		(start 104.5 69.5)
+		(end 169.5 129.5)
 		(stroke
 			(width 0.2)
 			(type default)
@@ -2300,15 +2301,28 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "C1"
-		(at 147.5 79 0)
+	(gr_text "0.1µ"
+		(at 146.68 79.64 0)
 		(layer "F.SilkS")
-		(uuid "e12a6de9-38b7-4473-afb3-f66c53f2dac3")
+		(uuid "bd37bcfa-4469-4361-99a8-78f0b646e890")
 		(effects
 			(font
 				(size 1 1)
 				(thickness 0.15)
 			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "1µ"
+		(at 158.13 80.43 0)
+		(layer "F.SilkS")
+		(uuid "c1471eea-61e3-4a1a-9145-cdcaf6eed0de")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
 		)
 	)
 	(segment
