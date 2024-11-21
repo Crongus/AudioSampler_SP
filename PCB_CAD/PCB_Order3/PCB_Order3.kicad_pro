@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.2954,
-          "height": 1.2954,
-          "width": 1.2954
+          "drill": 0.0,
+          "height": 0.95,
+          "width": 0.975
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -59,10 +59,8 @@
         }
       ],
       "drc_exclusions": [
-        "clearance|178450000|121920000|e678bcf8-5b6a-4639-aa4b-addf88c6432b|d315314c-aae4-4799-aa07-79440694cc8d",
         "lib_footprint_issues|158420000|84515000|493e21a8-4f0c-4f1c-9b60-e63970ab3647|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|120000000|83535000|9dbd774f-7147-490a-8575-a999a336cf38|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|179578850|124131600|54811eb3-8744-4b89-aa8f-5d89063e51ac|00000000-0000-0000-0000-000000000000"
+        "lib_footprint_mismatch|120000000|83535000|9dbd774f-7147-490a-8575-a999a336cf38|00000000-0000-0000-0000-000000000000"
       ],
       "meta": {
         "version": 2
@@ -518,7 +516,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
