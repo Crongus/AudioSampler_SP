@@ -99,7 +99,6 @@ int main(void)
   MX_FMC_Init();
   MX_I2S1_Init();
   MX_I2S2_Init();
-  MX_I2S3_Init();
   MX_SPDIFRX_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
