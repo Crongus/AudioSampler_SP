@@ -1,9 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    i2s.h
-  * @brief   This file contains all the function prototypes for
-  *          the i2s.c file
+  * @file    usb_otg.c
+  * @brief   This file provides code for the configuration
+  *          of the USB_OTG instances.
   ******************************************************************************
   * @attention
   *
@@ -17,39 +17,31 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __I2S_H__
-#define __I2S_H__
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "usb_otg.h"
 
-/* USER CODE BEGIN Includes */
+/* USER CODE BEGIN 0 */
 
-/* USER CODE END Includes */
+/* USER CODE END 0 */
 
-extern I2S_HandleTypeDef hi2s2;
+/* USB_OTG_HS init function */
 
-extern I2S_HandleTypeDef hi2s3;
+void MX_USB_OTG_HS_USB_Init(void)
+{
 
-/* USER CODE BEGIN Private defines */
+  /* USER CODE BEGIN USB_OTG_HS_Init 0 */
 
-/* USER CODE END Private defines */
+  /* USER CODE END USB_OTG_HS_Init 0 */
 
-void MX_I2S2_Init(void);
-void MX_I2S3_Init(void);
+  /* USER CODE BEGIN USB_OTG_HS_Init 1 */
 
-/* USER CODE BEGIN Prototypes */
+  /* USER CODE END USB_OTG_HS_Init 1 */
+  /* USER CODE BEGIN USB_OTG_HS_Init 2 */
 
-/* USER CODE END Prototypes */
+  /* USER CODE END USB_OTG_HS_Init 2 */
 
-#ifdef __cplusplus
 }
-#endif
 
-#endif /* __I2S_H__ */
+/* USER CODE BEGIN 1 */
 
+/* USER CODE END 1 */
