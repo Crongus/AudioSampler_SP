@@ -1,3 +1,0 @@
-../Core/Src/spdifrx.c:30:6:MX_SPDIFRX_Init	8	static
-../Core/Src/spdifrx.c:63:6:HAL_SPDIFRX_MspInit	232	static
-../Core/Src/spdifrx.c:102:6:HAL_SPDIFRX_MspDeInit	0	static
