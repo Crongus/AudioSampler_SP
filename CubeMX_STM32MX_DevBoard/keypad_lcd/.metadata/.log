@@ -1,0 +1,24 @@
+!SESSION 2024-12-02 16:12:17.421 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-02 16:12:41.516
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-02 16:12:41.520
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-02 16:12:57.078
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-02 16:14:51.974
+!MESSAGE Indexed 'keypad_lcd' (27 sources, 90 headers) in 11.9 sec: 8,523 declarations; 65,504 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0027%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-02 17:24:05.447
+!MESSAGE Indexed 'GPIO_InfiniteLedToggling' (7 sources, 71 headers) in 5.12 sec: 6,061 declarations; 16,497 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0089%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-02 17:25:56.729
+!MESSAGE Indexed 'GPIO_IOToggle' (18 sources, 84 headers) in 5.62 sec: 6,769 declarations; 42,782 references; 5 unresolved inclusions; 83 syntax errors; 4,087 unresolved names (7.6%)
