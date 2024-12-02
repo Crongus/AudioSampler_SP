@@ -35,6 +35,7 @@ extern NAND_HandleTypeDef hnand1;
 extern SDRAM_HandleTypeDef hsdram1;
 
 /* USER CODE BEGIN Private defines */
+#define SDRAM_BANK_ADDR 0xC0000000
 
 /* USER CODE END Private defines */
 

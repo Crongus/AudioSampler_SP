@@ -72,7 +72,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	int buffer = 0;
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -104,10 +104,10 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_OTG_HS_PCD_Init();
   /* USER CODE BEGIN 2 */
-  while(1) {
+  /*while(1) {
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
   	  HAL_Delay(50);
-  }
+  }*/
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,7 +115,16 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  // Write to starting address
+	  *(__IO uint32_t*) SDRAM_BANK_ADDR = 42;
 
+	  // Read from starting address
+	  buffer = *(__IO uint32_t*) SDRAM_BANK_ADDR;
+
+	  if (buffer == 42) {
+		  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		  HAL_Delay(50);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
