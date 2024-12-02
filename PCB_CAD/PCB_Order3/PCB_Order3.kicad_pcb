@@ -3122,7 +3122,7 @@
 		)
 		(fp_arc
 			(start -0.576537 -0.906071)
-			(mid -0.449563 -1.033046)
+			(mid -0.449562 -1.033046)
 			(end -0.322588 -0.906071)
 			(stroke
 				(width 0.127)
@@ -18839,7 +18839,7 @@
 		)
 		(fp_arc
 			(start -0.576537 -0.906071)
-			(mid -0.449563 -1.033046)
+			(mid -0.449562 -1.033046)
 			(end -0.322588 -0.906071)
 			(stroke
 				(width 0.127)
@@ -31772,19 +31772,6 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "With thanks to Jesus Christ and Andrew Sheaff"
-		(at 140.21 30.27 0)
-		(layer "B.SilkS")
-		(uuid "a685d835-8048-4e93-9b36-5a1c383cdd2a")
-		(effects
-			(font
-				(size 1.5 1.5)
-				(thickness 0.3)
-				(bold yes)
-			)
-			(justify left bottom mirror)
-		)
-	)
 	(gr_text "10µ"
 		(at 95.49 100.52 0)
 		(layer "B.SilkS")
@@ -32216,6 +32203,19 @@
 				(thickness 0.15)
 			)
 			(justify left bottom)
+		)
+	)
+	(gr_text "With thanks to Jesus Christ and Andrew Sheaff"
+		(at 140.21 30.27 0)
+		(layer "User.9")
+		(uuid "a685d835-8048-4e93-9b36-5a1c383cdd2a")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
 		)
 	)
 	(segment
