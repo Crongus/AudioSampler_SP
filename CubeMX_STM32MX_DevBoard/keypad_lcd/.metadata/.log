@@ -22,3 +22,28 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-12-02 17:25:56.729
 !MESSAGE Indexed 'GPIO_IOToggle' (18 sources, 84 headers) in 5.62 sec: 6,769 declarations; 42,782 references; 5 unresolved inclusions; 83 syntax errors; 4,087 unresolved names (7.6%)
+!SESSION 2024-12-03 10:13:10.377 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\keypad_lcd\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\keypad_lcd\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-03 10:13:49.371
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-03 10:13:49.377
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-03 10:14:04.188
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-03 10:14:16.991
+!MESSAGE Indexed 'keypad_lcd' (30 sources, 98 headers) in 8.81 sec: 9,084 declarations; 67,019 references; 0 unresolved inclusions; 2 syntax errors; 3 unresolved names (0.0039%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-03 12:01:06.602
+!MESSAGE Indexed 'keypad_lcd' (30 sources, 98 headers) in 4.33 sec: 9,100 declarations; 67,134 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0026%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-03 12:06:08.689
+!MESSAGE Indexed 'keypad_lcd' (30 sources, 98 headers) in 3.96 sec: 9,100 declarations; 67,135 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0026%)

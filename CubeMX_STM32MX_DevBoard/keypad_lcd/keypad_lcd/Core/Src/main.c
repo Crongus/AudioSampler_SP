@@ -61,7 +61,9 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C4_Init(void);
 /* USER CODE BEGIN PFP */
-
+void DriveAllRowPins(int);
+void DriveOneRowPin(int, int);
+int ReadOneColPin(int);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -125,43 +127,132 @@ int main(void)
   {
     Error_Handler();
   }
-
-  ssd1306_TestAll();
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint16_t ColNum, RowNum, RowNumStable;
   while (1)
   {
-	  uint16_t rows[4] = {0, 0, 0, 0};
+	  RowNumStable = RowNum;
 	  uint16_t cols[5] = {1, 1, 1, 1, 1};
-	  uint16_t ColNum;
-	  //Ensure all buffers rest state before we start
-	  HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_RESET);
-	  HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_RESET);
-	  HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_RESET);
-	  HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_RESET);
+	  //Ensure col buffer rest state before we start
+	  DriveAllRowPins(0);
+	  HAL_Delay(3); //Passed as ms
 	  //Drive all kp rows LO before we go into the keypad reading loop
-	  cols[0] = HAL_GPIO_ReadPin(C1GPIOBANK, C1GPIOPIN);
-	  cols[1] = HAL_GPIO_ReadPin(C2GPIOBANK, C2GPIOPIN);
-	  cols[2] = HAL_GPIO_ReadPin(C3GPIOBANK, C3GPIOPIN);
-	  cols[3] = HAL_GPIO_ReadPin(C4GPIOBANK, C4GPIOPIN);
-	  cols[4] = HAL_GPIO_ReadPin(C5GPIOBANK, C5GPIOPIN);
+	  for (ColNum = 0; ColNum < 5; ColNum++) {
+		  cols[ColNum] = ReadOneColPin(ColNum);
+	  }
 	  if (!cols[0] | !cols[1] | !cols[2] | !cols[3] | !cols[4]) {
-		  for (ColNum = 0; ColNum < 5; i++) {
+		  for (ColNum = 0; ColNum < 5; ColNum++) {
 			  if (!cols[ColNum]) break;
 		  }
-		  HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_SET);
-		  //Drive all row pins HI and we'll check where the row is
+		  for (RowNum = 0; RowNum < 4; RowNum++) {
+			  DriveAllRowPins(1);
+			  HAL_Delay(3);
+			  DriveOneRowPin(RowNum, 0);
+			  //Drive all HI then check for a hit when driving one LO
+			  HAL_Delay(3);
+			  if (!ReadOneColPin(ColNum)) {
+				  break;
+			  }
+		  }
 	  }
-	  }
+	  if (RowNum == 4) RowNum = RowNumStable;
+	  //Ugly hack to fix problem with slow pull up.
+	  //If the row finder loop finishes without hitting, that shouldn't have happened.
+	  //We hack in the last good value instead.
+	  char RNforPrint[4], CNforPrint[4];
+	  //sprintf(CNforPrint, "%d", ColNum);
+	  sprintf(RNforPrint, "%d", RowNum);
+	  ssd1306_Fill(Black);
+	  ssd1306_SetCursor(2, 0);
+	  //ssd1306_WriteString(CNforPrint, Font_11x18, White);
+	  ssd1306_WriteString(RNforPrint, Font_11x18, White);
+	  ssd1306_UpdateScreen();
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+void DriveAllRowPins(int state) {
+	if (state) {
+		HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_SET);
+	}
+	else {
+		HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_RESET);
+	}
+}
+
+void DriveOneRowPin(int row, int state) {
+	//Be aware that "row" as passed is zero-indexed
+	//GPIOBANK and GPIOPIN constants are one-indexed
+	switch (row) {
+		case 0:
+			if (state) {
+				HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_SET);
+			}
+			else {
+				HAL_GPIO_WritePin(R1GPIOBANK, R1GPIOPIN, GPIO_PIN_RESET);
+			}
+			break;
+		case 1:
+			if (state) {
+				HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_SET);
+			}
+			else {
+				HAL_GPIO_WritePin(R2GPIOBANK, R2GPIOPIN, GPIO_PIN_RESET);
+			}
+			break;
+		case 2:
+			if (state) {
+				HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_SET);
+			}
+			else {
+				HAL_GPIO_WritePin(R3GPIOBANK, R3GPIOPIN, GPIO_PIN_RESET);
+			}
+			break;
+		case 3:
+			if (state) {
+				HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_SET);
+			}
+			else {
+				HAL_GPIO_WritePin(R4GPIOBANK, R4GPIOPIN, GPIO_PIN_RESET);
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+int ReadOneColPin(int col) {
+	//Mind that the col variable is zero-indexed
+	//GPIOBANK and GPIOPIN constants are one-indexed
+	switch (col) {
+		case 0:
+			return(HAL_GPIO_ReadPin(C1GPIOBANK, C1GPIOPIN));
+			break;
+		case 1:
+			return(HAL_GPIO_ReadPin(C2GPIOBANK, C2GPIOPIN));
+			break;
+		case 2:
+			return(HAL_GPIO_ReadPin(C3GPIOBANK, C3GPIOPIN));
+			break;
+		case 3:
+			return(HAL_GPIO_ReadPin(C4GPIOBANK, C4GPIOPIN));
+			break;
+		case 4:
+			return(HAL_GPIO_ReadPin(C5GPIOBANK, C5GPIOPIN));
+			break;
+		default:
+			break;
+	}
+	return -1;
 }
 
 /**
