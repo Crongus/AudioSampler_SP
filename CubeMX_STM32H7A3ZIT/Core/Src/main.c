@@ -22,12 +22,14 @@
 #include "i2s.h"
 #include "memorymap.h"
 #include "spdifrx.h"
-#include "usb_otg.h"
+#include "usb_device.h"
 #include "gpio.h"
 #include "fmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//#include "usbd_cdc_if.c"
+#include "usbd_cdc_if.h"
 
 /* USER CODE END Includes */
 
@@ -102,12 +104,17 @@ int main(void)
   MX_SPDIFRX_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
-  MX_USB_OTG_HS_PCD_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  /*while(1) {
+
+  while(1) {
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-  	  HAL_Delay(50);
-  }*/
+  	  HAL_Delay(1000);
+  	  printf("Fart\r\n");
+  	  //uint8_t str[] = "Hello World\r\n";
+  	  //CDC_Transmit_HS(str, sizeof(str));
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,17 +122,22 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  // Write to starting address
-	  *(__IO uint32_t*) SDRAM_BANK_ADDR = 42;
 
-	  // Read from starting address
-	  buffer = *(__IO uint32_t*) SDRAM_BANK_ADDR;
-
-	  if (buffer == 42) {
-		  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-		  HAL_Delay(50);
-	  }
     /* USER CODE BEGIN 3 */
+	  // Write to starting address
+	  	  *(__IO uint32_t*) SDRAM_BANK_ADDR = 42;
+
+	  	  // Read from starting address
+	  	  buffer = *(__IO uint32_t*) SDRAM_BANK_ADDR;
+
+	  	  if (buffer == 42) {
+	  		  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	  		  HAL_Delay(50);
+	  	  }
+	  	  uint8_t str[] = "Hello World\r\n";
+		  CDC_Transmit_HS(str, sizeof(str));
+		  //printf("Hello World\r\n");
+	  	  //HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
