@@ -1,26 +1,13 @@
-14:23:43 **** Incremental Build of configuration Debug for project keypad_lcd ****
+19:57:56 **** Incremental Build of configuration Debug for project keypad_lcd ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_PWR_DIRECT_SMPS_SUPPLY -DUSE_NUCLEO_64 -DUSE_HAL_DRIVER -DSTM32H7A3xxQ -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/BSP/STM32H7xx_Nucleo -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:163:31: warning: unused variable 'CNforPrint' [-Wunused-variable]
-  163 |           char RNforPrint[4], CNforPrint[4];
-      |                               ^~~~~~~~~~
-../Core/Src/main.c:165:32: warning: '%d' directive writing between 1 and 5 bytes into a region of size 4 [-Wformat-overflow=]
-  165 |           sprintf(RNforPrint, "%d", RowNum);
-      |                                ^~
-../Core/Src/main.c:165:31: note: directive argument in the range [0, 65535]
-  165 |           sprintf(RNforPrint, "%d", RowNum);
-      |                               ^~~~
-../Core/Src/main.c:165:11: note: 'sprintf' output between 2 and 6 bytes into a destination of size 4
-  165 |           sprintf(RNforPrint, "%d", RowNum);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc "../Core/Src/lcdhandler.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_PWR_DIRECT_SMPS_SUPPLY -DUSE_NUCLEO_64 -DUSE_HAL_DRIVER -DSTM32H7A3xxQ -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/BSP/STM32H7xx_Nucleo -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/lcdhandler.d" -MT"Core/Src/lcdhandler.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/lcdhandler.o"
 arm-none-eabi-gcc -o "keypad_lcd.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\keypad_lcd\STM32H7A3ZITXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="keypad_lcd.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: keypad_lcd.elf
  
 arm-none-eabi-size  keypad_lcd.elf 
 arm-none-eabi-objdump -h -S keypad_lcd.elf  > "keypad_lcd.list"
    text	   data	    bss	    dec	    hex	filename
-  32824	    124	   3188	  36136	   8d28	keypad_lcd.elf
+  27884	     44	   2860	  30788	   7844	keypad_lcd.elf
 Finished building: default.size.stdout
  
 Finished building: keypad_lcd.list
