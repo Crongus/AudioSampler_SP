@@ -8,12 +8,20 @@
 #include <keypad.h>
 #include "main.h"
 
-uint16_t ColNum, RowNum, RowFudge;
 
+/*
+ * Returns an int 1-20. Read left to right with top left=1.
+ * Returns -1 if no key was found (this will happen if called without any press detected,
+ * or more commonly due to weak pull-up causing a phantom press detection upon key release).
+ * This function has NO KEY ROLLOVER. Simultaneous presses should be considered undefined
+ * behavior.
+ * Note also that this function currently leaves row pins as it was using them when it
+ * returns control. A desirable change might be to have it re-drive them LO so that the
+ * press detection algorithm does not have to handle it.
+ */
 int GetKey() {
-	uint16_t cols[5] = {1, 1, 1, 1, 1};
-	//Ensure col buffer rest state before we start
-	//We already expect all row pins LO when this function was passed into.
+	uint16_t ColNum, RowNum, RowFudge;
+	//Note that we expect row pins already LO when this function is passed into.
 	for (ColNum = 0; ColNum < 5; ColNum++) {
 		if (!ReadOneColPin(ColNum)) break;
 	} //Find the column that's currently LO and stop
@@ -22,7 +30,9 @@ int GetKey() {
 		DriveAllRowPins(1);
 		DriveOneRowPin(RowNum, 0);
 		//Get the rows HI then go through driving LO to see which one hits.
-		HAL_Delay(5);
+		HAL_Delay(3);
+		//Our STM32H7 is running at 280 MHz. 3 ms delay seems to be adequate.
+		//This should be adjusted up if performance isn't satisfactory, though
 		if (!ReadOneColPin(ColNum)) break;
 		//Find the row that gets the identified column LO when driven and stop
 	}

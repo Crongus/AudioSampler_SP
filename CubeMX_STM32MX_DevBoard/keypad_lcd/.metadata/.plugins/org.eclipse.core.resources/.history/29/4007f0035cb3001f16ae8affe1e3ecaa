@@ -1,0 +1,151 @@
+/*
+ * lcdhandler.c
+ *
+ *  Created on: Dec 4, 2024
+ *      Author: Isaac Terrell using driver by Olivier Van den Eede and Aleksander Alekseev
+ *      See https://github.com/afiskon/stm32-ssd1306
+ */
+
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
+#include "ssd1306_conf.h"
+#include "ssd1306_fonts.h"
+
+#include <string.h> //sprintf, strcat
+#include <stdlib.h> //abs
+
+#include "main.h"
+
+void LCD_Init() {
+	ssd1306_Init();
+	ssd1306_Fill(White);
+	ssd1306_SetCursor(2, 2);
+	ssd1306_WriteString("Clip", Font_6x8, Black);
+	ssd1306_SetCursor(52, 2);
+	ssd1306_WriteString("||||||||||||", Font_6x8, Black);
+	ssd1306_SetCursor(2, 12);
+	ssd1306_WriteString("Stored", Font_6x8, Black);
+	ssd1306_SetCursor(2, 22);
+	ssd1306_WriteString("Active", Font_6x8, Black);
+	ssd1306_SetCursor(2, 32);
+	ssd1306_WriteString("Pitch 0%", Font_6x8, Black);
+	ssd1306_SetCursor(2, 42);
+	ssd1306_WriteString("Mode--------", Font_6x8, Black);
+	ssd1306_SetCursor(82, 42);
+	ssd1306_WriteString("REC", Font_6x8, Black);
+	ssd1306_SetCursor(2, 52);
+	ssd1306_WriteString("Source------", Font_6x8, Black);
+	ssd1306_SetCursor(82, 52);
+	ssd1306_WriteString("DIGITAL", Font_6x8, Black);
+	ssd1306_UpdateScreen();
+	return;
+}
+
+
+/* clip is 1-12 one indexed.
+ * row is a boolean 0=storage row 1=activity row.
+ * state is a boolean 0=clear 1=fill.
+ * We don't need any handling to check the preexisting state,
+ * a redundant operation does not hurt anything.
+ */
+void DisplayClipsUpd(int clip, int row, int state) {
+	uint16_t CoordX = 52 + ((clip -1) * 6);
+	//Get the X position we're going to want to set the cursor to.
+	//The font is fixed width 6x8
+	uint16_t CoordY;
+	if (row) {
+		CoordY = 22; //activity row Y height
+	} else {
+		CoordY = 12; //storage row Y height
+	}
+	ssd1306_SetCursor(CoordX, CoordY);
+	if (state) {
+		ssd1306_WriteString("|", Font_6x8, Black);
+	} else {
+		ssd1306_WriteString(" ", Font_6x8, Black);
+	}
+	ssd1306_UpdateScreen();
+	return;
+}
+
+/* setting is a boolean 0=mode 1=input.
+ * The meaning of state depends upon the setting value passed
+ * setting=0 ---> state is 0=record 1=playback
+ * setting=1 ---> state is 0=digital 1=analog
+ * This function will clear the Source row if mode set PLAYBACK and will
+ * refill it with Source=Digital if mode set RECORD. It is not
+ * necessary to call the function a second time.
+ * As with ClipsUpd we don't check prior state because it's a
+ * don't-care.
+ */
+void DisplayModeUpd(int setting, int state) {
+	uint16_t CoordX = 82; //These lines start at this fixed X position
+	uint16_t CoordY;
+	char *String0, *String1;
+	if (setting) {
+		CoordY = 52;
+		String0 = "DIGITAL";
+		String1 = "ANALOG ";
+		//Must be space padded or else the trailing L from
+		//"DIGITAL" is left over
+	} else {
+		CoordY = 42;
+		String0 = "REC ";
+		String1 = "PLAY";
+	}
+	ssd1306_SetCursor(CoordX, CoordY);
+	if (state) {
+		ssd1306_WriteString(String1, Font_6x8, Black);
+	} else {
+		ssd1306_WriteString(String0, Font_6x8, Black);
+	}
+	/*
+	 * Following is:
+	 * Upon changing into PLAY from REC we blank the INPUT line.
+	 * Upon changing into REC from PLAY we refill the INPUT
+	 * line equivalent to LCD_Init().
+	 * Note that the expected behavior is INPUT always defaulting
+	 * to DIGITAL upon mode switch. If it wasn't we would need
+	 * to preserve that state somehow.
+	 */
+	if (!setting) {
+		ssd1306_SetCursor(2, 52);
+		if (state) {
+			ssd1306_WriteString("                     ", Font_6x8, Black);
+			//128-wide screen / 6x8 font and X offset 2 pixels =
+			//21 spaces blanks the row
+		} else {
+			ssd1306_WriteString("Source------", Font_6x8, Black);
+			ssd1306_SetCursor(82, 52);
+			ssd1306_WriteString("DIGITAL", Font_6x8, Black);
+		}
+	}
+	ssd1306_UpdateScreen();
+	return;
+}
+
+/*
+ * This function is not hardened against bad input. Pitch should be an
+ * int in the range -15 to 15 inclusive, as per the specification.
+ * If a pitch 3 digits or larger is passed this function will seg fault!!
+ */
+void DisplayPitchUpd(int pitch) {
+	char FinalOutput[5];
+	char FormattedNum[3];
+	if (pitch > 0) FinalOutput = "+";
+	//sprintf will display the negative sign on a negative pitch for us.
+	//For a positive pitch we have to add the appropriate sign ourselves
+	sprintf(FormattedNum, "%d", pitch);
+	strcat(FinalOutput, FormattedNum);
+	//This step doesn't do anything if pitch >= 0. The conditional was
+	//in the FinalOutput initialization
+	strcat(FinalOutput, "%");
+	ssd1306_SetCursor(38, 32);
+	ssd1306_WriteString(FinalOutput, Font_6x8, Black);
+	if (abs(pitch) < 10) {
+		ssd1306_SetCursor(56, 32);
+		ssd1306_WriteString(" ", Font_6x8, Black);
+	} //This handles a corner case in which a % character would be
+	  //dangling after going from a two-digit pitch to a
+	  //one-digit one
+}

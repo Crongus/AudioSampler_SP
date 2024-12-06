@@ -1,4 +1,4 @@
-../Core/Src/keypad.c:13:5:GetKey	24	static
+../Core/Src/keypad.c:12:5:GetKey	16	static
 ../Core/Src/keypad.c:37:5:ReadOneColPin	16	static
 ../Core/Src/keypad.c:62:6:DriveOneRowPin	16	static
 ../Core/Src/keypad.c:104:6:DriveAllRowPins	16	static

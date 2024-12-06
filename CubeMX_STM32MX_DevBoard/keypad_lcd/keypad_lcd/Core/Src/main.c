@@ -127,10 +127,34 @@ int main(void)
   LCD_Init();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint16_t ColNum, RowNum, RowNumStable;
+  uint16_t ColNum, TheFlag;
+  int16_t keynum, LastGoodKeynum;
+  uint16_t cols[5];
   while (1)
   {
-
+	  DriveAllRowPins(0);
+	  HAL_Delay(3);
+	  for (ColNum = 0; ColNum < 5; ColNum++) {
+		  cols[ColNum] = ReadOneColPin(ColNum);
+		  if (!cols[ColNum]) TheFlag = 1;
+	  }
+	  if (TheFlag) {
+		  LastGoodKeynum = keynum;
+		  keynum = GetKey();
+		  /*
+		   * The STM32 internal pull up is weak for matrix keypad use.
+		   * Hence sometimes upon key release the check for "button pressed"
+		   * WILL hit but subsequently the code that checks which button it is
+		   * WILL NOT hit (because no key is pressed).
+		   * We can obviate the effect of this by having the row and col check loops
+		   * throw a special value if they run all the way thru without hitting
+		   * (see keypad.c code) and then throw out the press if the return is
+		   * that value.
+		   */
+		  if (keynum < 1) keynum = LastGoodKeynum;
+		  DisplayPitchUpd(keynum);
+		  TheFlag = 0;
+	  }
   }
   /* USER CODE END 3 */
 }

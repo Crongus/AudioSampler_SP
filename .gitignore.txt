@@ -1,4 +1,0 @@
-*.kicad_prl
-*.kicad_pro
-*.project.prefs
-*.settings.xml

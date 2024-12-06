@@ -11,11 +11,9 @@
 //Make sure that the ssd1306_conf.h file is correct
 
 void LCD_Init(void);
-void DisplayClipsActiveUpd(int, int);
-void DisplayClipsStoredUpd(int, int);
+void DisplayClipsUpd(int, int, int);
 void DisplayPitchUpd(int);
-void DisplayModeUpd(int);
-void DisplayInputUpd(int);
+void DisplayModeUpd(int, int);
 
 
 #endif /* _LCDHANDLER_H_ */
