@@ -35,7 +35,14 @@ extern NAND_HandleTypeDef hnand1;
 extern SDRAM_HandleTypeDef hsdram1;
 
 /* USER CODE BEGIN Private defines */
-#define SDRAM_BANK_ADDR 0xC0000000
+#define SDRAM_BANK_ADDR 				0xC0000000
+#define FLASH_COMMON_BANK_ADDR			0x80000000
+#define FLASH_ATTRIBUTE_BANK_ADDR		0x88000000
+#define FLASH_DATA_OFFSET				0x00000000
+#define FLASH_COMMAND_OFFSET			0x01000000
+#define FLASH_ADDRESS_OFFSET			0x02000000
+
+
 
 /* USER CODE END Private defines */
 

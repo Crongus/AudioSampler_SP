@@ -4,6 +4,7 @@
 "./Core/Src/i2s.o"
 "./Core/Src/main.o"
 "./Core/Src/memorymap.o"
+"./Core/Src/sdram_init.o"
 "./Core/Src/spdifrx.o"
 "./Core/Src/stm32h7xx_hal_msp.o"
 "./Core/Src/stm32h7xx_it.o"

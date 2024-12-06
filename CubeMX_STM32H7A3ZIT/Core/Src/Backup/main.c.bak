@@ -28,8 +28,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "usbd_cdc_if.c"
 #include "usbd_cdc_if.h"
+#include "sdram_init.h"
 
 /* USER CODE END Includes */
 
@@ -75,6 +75,9 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 	int buffer = 0;
+	//extern FMC_SDRAM_CommandTypeDef command;
+	//extern SDRAM_HandleTypeDef hsdram1;
+
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -107,14 +110,6 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
-  while(1) {
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-  	  HAL_Delay(1000);
-  	  printf("Hello World\r\n");
-  	  //uint8_t str[] = "Hello World\r\n";
-  	  //CDC_Transmit_HS(str, sizeof(str));
-  }
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,19 +120,26 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  // Write to starting address
-	  	  *(__IO uint32_t*) SDRAM_BANK_ADDR = 42;
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	  HAL_Delay(1000);
+	  for (int i = 0; i < 4; i++) {
+		  *(__IO uint32_t*) (0xC4000000 + 4*i) = 42+i;
+	  }
+	  for (int i = 0; i < 4; i++) {
+	  	  buffer = *(__IO uint32_t*) (0xC4000000 + 4*i);
+	  }
 
-	  	  // Read from starting address
-	  	  buffer = *(__IO uint32_t*) SDRAM_BANK_ADDR;
 
-	  	  if (buffer == 42) {
-	  		  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  		  HAL_Delay(50);
-	  	  }
-	  	  uint8_t str[] = "Hello World\r\n";
-		  CDC_Transmit_HS(str, sizeof(str));
-		  //printf("Hello World\r\n");
-	  	  //HAL_Delay(1000);
+	   if (buffer == 42) {
+		   uint8_t str[] = "Memory Success\r\n";
+		   CDC_Transmit_HS(str, sizeof(str));
+	   } else {
+		   uint8_t str[] = "Memory Failure\r\n";
+		   CDC_Transmit_HS(str, sizeof(str));
+	   }
+
+	   //uint8_t str[] = "Hello World\r\n";
+	   //CDC_Transmit_HS(str, sizeof(str));
   }
   /* USER CODE END 3 */
 }
@@ -247,6 +249,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
+
   while (1)
   {
   }
