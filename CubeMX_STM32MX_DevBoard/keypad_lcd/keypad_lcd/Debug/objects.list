@@ -1,3 +1,5 @@
+"./Core/Src/keypad.o"
+"./Core/Src/lcdhandler.o"
 "./Core/Src/main.o"
 "./Core/Src/ssd1306.o"
 "./Core/Src/ssd1306_fonts.o"

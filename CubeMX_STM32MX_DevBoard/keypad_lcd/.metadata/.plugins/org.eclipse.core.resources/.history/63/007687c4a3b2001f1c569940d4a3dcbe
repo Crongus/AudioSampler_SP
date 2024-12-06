@@ -1,0 +1,42 @@
+/*
+ * lcdhandler.c
+ *
+ *  Created on: Dec 4, 2024
+ *      Author: Isaac Terrell using driver by Olivier Van den Eede and Aleksander Alekseev
+ *      See https://github.com/afiskon/stm32-ssd1306
+ */
+
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
+#include "ssd1306_conf.h"
+#include "ssd1306_fonts.h"
+
+#include "main.h"
+
+//This is a little useless at the moment.
+//More functionality could be added later if it turns out to be necessary
+void LCD_Init() {
+	ssd1306_Init();
+	ssd1306_Fill(White);
+	ssd1306_SetCursor(0, 0);
+	ssd1306_WriteString("Clip", Font_6x8, Black);
+	ssd1306_SetCursor(50, 0);
+	ssd1306_WriteString("||||||||||||", Font_6x8, Black);
+	ssd1306_SetCursor(0, 10);
+	ssd1306_WriteString("Stored", Font_6x8, Black);
+	ssd1306_SetCursor(0, 20);
+	ssd1306_WriteString("Active", Font_6x8, Black);
+	ssd1306_SetCursor(0, 30);
+	ssd1306_WriteString("Pitch 0", Font_6x8, Black);
+	ssd1306_SetCursor(0, 40);
+	ssd1306_WriteString("Mode--------", Font_6x8, Black);
+	ssd1306_SetCursor(80, 40);
+	ssd1306_WriteString("REC", Font_6x8, Black);
+	ssd1306_SetCursor(0, 50);
+	ssd1306_WriteString("Source------", Font_6x8, Black);
+	ssd1306_SetCursor(80, 50);
+	ssd1306_WriteString("DIGITAL", Font_6x8, Black);
+	ssd1306_UpdateScreen();
+	return;
+}
+

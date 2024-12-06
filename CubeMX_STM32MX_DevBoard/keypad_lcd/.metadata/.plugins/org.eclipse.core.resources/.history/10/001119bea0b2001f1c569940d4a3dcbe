@@ -1,0 +1,25 @@
+/*
+ * lcdhandler.c
+ *
+ *  Created on: Dec 4, 2024
+ *      Author: Isaac Terrell using driver by Olivier Van den Eede and Aleksander Alekseev
+ *      See https://github.com/afiskon/stm32-ssd1306
+ */
+
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
+#include "ssd1306_conf.h"
+#include "ssd1306_fonts.h"
+
+#include "main.h"
+
+//This is a little useless at the moment.
+//More functionality could be added later if it turns out to be necessary
+void LCD_Init() {
+	ssd1306_Init();
+	ssd1306_Fill(White);
+	ssd1306_SetCursor()
+	return;
+}
+
+void
