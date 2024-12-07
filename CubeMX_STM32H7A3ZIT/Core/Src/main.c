@@ -74,7 +74,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	int buffer = 0;
+	volatile uint16_t buffer[4];
+	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
 
@@ -119,25 +120,29 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  //HardFault_Handler();
 	  // Write to starting address
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	  HAL_Delay(1000);
-	  *(__IO uint32_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
-	  for (int i = 0; i < 4; i++) {
-		 // *(__IO uint32_t*) (0xC4000000 + 4*i) = 42+i;
+	  //*(__IO uint32_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
+
+
+	  //buffer = *(__IO uint16_t*) 0xC0000000;
+	  for (volatile int i = 0; i < 4; i++) {
+		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 42 + 2*i;
 	  }
-	  for (int i = 0; i < 4; i++) {
-	  	 // buffer = *(__IO uint32_t*) (0xC4000000 + 4*i);
+	  for (volatile int i = 0; i < 4; i++) {
+	  	 buffer[i] = *(__IO uint32_t*) (0xC0000000 + 4*i);
+	  	 if (buffer[i] == 42 + 2*i) {
+	  			   uint8_t str[] = "Memory Success\r\n";
+	  			   CDC_Transmit_HS(str, sizeof(str));
+	  		   } else {
+	  			   uint8_t str[] = "Memory Failure\r\n";
+	  			   CDC_Transmit_HS(str, sizeof(str));
+	  		   }
 	  }
 
 
-	   if (buffer == 42) {
-		   uint8_t str[] = "Memory Success\r\n";
-		   CDC_Transmit_HS(str, sizeof(str));
-	   } else {
-		   uint8_t str[] = "Memory Failure\r\n";
-		   CDC_Transmit_HS(str, sizeof(str));
-	   }
 
 	   //uint8_t str[] = "Hello World\r\n";
 	   //CDC_Transmit_HS(str, sizeof(str));
@@ -236,8 +241,21 @@ void MPU_Config(void)
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.BaseAddress = 0xC0000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_16MB;
+  MPU_InitStruct.SubRegionDisable = 0x0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */
-  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+ // HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 }
 

@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32h7xx_it.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32h7xx_hal_gpio.h"
@@ -92,7 +91,9 @@ void HardFault_Handler(void)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(500);
+	  for(int i = 0; i < 1000000; i++) {
+		  //empty
+	  }
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }

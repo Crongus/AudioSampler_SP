@@ -16,7 +16,7 @@
 #define SDCLOCK_PERIOD                   FMC_SDRAM_CLOCK_PERIOD_2
 /* #define SDCLOCK_PERIOD                FMC_SDRAM_CLOCK_PERIOD_3 */
 
-#define SDRAM_TIMEOUT     ((uint32_t)0x00FF)
+#define SDRAM_TIMEOUT     ((uint32_t)0xFFFF)
 #define SDRAM_MODEREG_BURST_LENGTH_1             ((uint16_t)0x0000)
 #define SDRAM_MODEREG_BURST_LENGTH_2             ((uint16_t)0x0001)
 #define SDRAM_MODEREG_BURST_LENGTH_4             ((uint16_t)0x0002)
