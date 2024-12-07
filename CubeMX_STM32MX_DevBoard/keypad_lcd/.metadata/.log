@@ -131,3 +131,40 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\OneDriv
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-12-05 16:11:03.243
 !MESSAGE Indexed 'keypad_lcd' (32 sources, 99 headers) in 9.88 sec: 9,120 declarations; 67,162 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0026%)
+!SESSION 2024-12-06 13:19:24.974 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  C:\Users\ift70\STM32Cube\Example\I2C_TwoBoards_ComPolling\STM32CubeIDE\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\STM32Cube\Example\I2C_TwoBoards_ComPolling\STM32CubeIDE\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-06 13:20:10.152
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-06 13:20:10.161
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-06 13:20:26.703
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-06 13:20:41.447
+!MESSAGE Indexed 'I2C_TwoBoards_ComPolling' (24 sources, 87 headers) in 13.5 sec: 7,846 declarations; 56,522 references; 5 unresolved inclusions; 96 syntax errors; 5,366 unresolved names (7.7%)
+!SESSION 2024-12-06 14:57:49.217 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-06 14:58:36.908
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-06 14:58:36.911
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32MX_DevBoard\keypad_lcd\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-06 14:58:52.542
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-06 15:01:25.162
+!MESSAGE Indexed 'Liamsfmctest' (32 sources, 92 headers) in 15.4 sec: 9,032 declarations; 69,900 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0025%)

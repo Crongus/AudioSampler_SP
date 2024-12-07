@@ -2,3 +2,4 @@
 *.kicad_pro
 *.project.prefs
 *.settings.xml
+*.gitignore

@@ -29,7 +29,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#define FLASH_COMMON_BANK_ADDR            0x80000000
+#define FLASH_ATTRIBUTE_BANK_ADDR        0x88000000
+#define FLASH_DATA_OFFSET                0x00000000
+#define FLASH_COMMAND_OFFSET            0x01000000
+#define FLASH_ADDRESS_OFFSET            0x02000000
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -138,14 +142,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  for(int i = 1; i <= 12; i++) {
-	  CL[i] = (*Cptr[i] | CLIP_LEFT_HALF) >> 16;
-	  CR[i] = *Cptr[i] | CLIP_RIGHT_HALF;
-	  Cptr[i]++;
-	  output = ((CL[i] << 16) + CR[i]);
-	  HAL_I2S_TRANSMIT(output);
-
-	  }
+	  (__IO uint32_t) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
   }
   /* USER CODE END 3 */
 }

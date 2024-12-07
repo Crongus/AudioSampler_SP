@@ -33,11 +33,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_macro  00030c8e  00000000  00000000  000223be  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_line   00016cc0  00000000  00000000  0005304c  2**0
+ 15 .debug_line   00016cc1  00000000  00000000  0005304c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    0013653e  00000000  00000000  00069d0c  2**0
+ 16 .debug_str    0013653e  00000000  00000000  00069d0d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .comment      00000043  00000000  00000000  001a024a  2**0
+ 17 .comment      00000043  00000000  00000000  001a024b  2**0
                   CONTENTS, READONLY
  18 .debug_frame  000043c0  00000000  00000000  001a0290  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -410,11 +410,11 @@ Disassembly of section .text:
  800068e:	bf00      	nop
 
 08000690 <GetKey>:
-
-#include <keypad.h>
-#include "main.h"
-
-
+ * behavior.
+ * Note also that this function currently leaves row pins as it was using them when it
+ * returns control. A desirable change might be to have it re-drive them LO so that the
+ * press detection algorithm does not have to handle it.
+ */
 int GetKey() {
  8000690:	b580      	push	{r7, lr}
  8000692:	b082      	sub	sp, #8
