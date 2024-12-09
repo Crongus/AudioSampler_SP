@@ -35,7 +35,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define TEST 100
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -74,7 +74,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	volatile uint16_t buffer[4];
+	volatile uint16_t buffer[TEST];
 	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
@@ -126,22 +126,26 @@ int main(void)
 	  HAL_Delay(1000);
 	  //*(__IO uint32_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
 
-
+	  int memtest = 1;
 	  //buffer = *(__IO uint16_t*) 0xC0000000;
-	  for (volatile int i = 0; i < 4; i++) {
-		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 42 + 2*i;
+	  for (volatile int i = 0; i < TEST; i++) {
+		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA;
 	  }
-	  for (volatile int i = 0; i < 4; i++) {
+	  for (volatile int i = 0; i < TEST; i++) {
 	  	 buffer[i] = *(__IO uint32_t*) (0xC0000000 + 4*i);
-	  	 if (buffer[i] == 42 + 2*i) {
-	  			   uint8_t str[] = "Memory Success\r\n";
-	  			   CDC_Transmit_HS(str, sizeof(str));
+	  	 if (buffer[i] == 0xAAAA) {
+
 	  		   } else {
-	  			   uint8_t str[] = "Memory Failure\r\n";
-	  			   CDC_Transmit_HS(str, sizeof(str));
+	  			   memtest = 0;
 	  		   }
 	  }
-
+	  if(memtest) {
+		  uint8_t str[] = "Total Memory Success\r\n";
+		  CDC_Transmit_HS(str, sizeof(str));
+	  } else {
+		  uint8_t str[] = "Partial Memory Failure\r\n";
+		  CDC_Transmit_HS(str, sizeof(str));
+	  }
 
 
 	   //uint8_t str[] = "Hello World\r\n";
