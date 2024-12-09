@@ -35,7 +35,10 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-#define TEST 100
+
+#define TEST_END 4194304
+#define TEST_BEGIN (TEST_END - 500000)
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -56,6 +59,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void PeriphCommonClock_Config(void);
 static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
 
@@ -74,7 +78,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	volatile uint16_t buffer[TEST];
+	volatile uint16_t buffer[TEST_END - TEST_BEGIN];
 	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
@@ -95,6 +99,9 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
+
+  /* Configure the peripherals common clocks */
+  PeriphCommonClock_Config();
 
   /* USER CODE BEGIN SysInit */
 
@@ -128,18 +135,18 @@ int main(void)
 
 	  int memtest = 1;
 	  //buffer = *(__IO uint16_t*) 0xC0000000;
-	  for (volatile int i = 0; i < TEST; i++) {
-		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA;
+	  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA; // write to a bunch of memory in the ram
 	  }
-	  for (volatile int i = 0; i < TEST; i++) {
-	  	 buffer[i] = *(__IO uint32_t*) (0xC0000000 + 4*i);
-	  	 if (buffer[i] == 0xAAAA) {
+	  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+	  	 buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4*i); // read from the same memory
+	  	 if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
 
 	  		   } else {
 	  			   memtest = 0;
 	  		   }
 	  }
-	  if(memtest) {
+	  if(memtest) { //printfs
 		  uint8_t str[] = "Total Memory Success\r\n";
 		  CDC_Transmit_HS(str, sizeof(str));
 	  } else {
@@ -217,6 +224,24 @@ void SystemClock_Config(void)
   }
 }
 
+/**
+  * @brief Peripherals Common Clock Configuration
+  * @retval None
+  */
+void PeriphCommonClock_Config(void)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
+  /** Initializes the peripherals clock
+  */
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CKPER;
+  PeriphClkInitStruct.CkperClockSelection = RCC_CLKPSOURCE_HSI;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
@@ -259,7 +284,7 @@ void MPU_Config(void)
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */
- // HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 }
 
