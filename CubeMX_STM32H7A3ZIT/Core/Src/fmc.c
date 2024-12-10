@@ -26,6 +26,11 @@
 
 FMC_SDRAM_CommandTypeDef command;
 
+
+void flashBoot(void) {
+	*(uint8_t *) (FLASH_COMMON_BANK_ADDR + FLASH_COMMAND_OFFSET) = 0xFF;
+}
+
 /* USER CODE END 0 */
 
 NAND_HandleTypeDef hnand1;

@@ -36,8 +36,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-#define TEST_END 4194304
-#define TEST_BEGIN (TEST_END - 500000)
+
 
 /* USER CODE END PTD */
 
@@ -48,7 +47,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define TEST_END 4194304
+#define TEST_BEGIN (TEST_END - 500000)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -62,7 +62,8 @@ void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
 static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
-
+void testRAM(void);
+int testFlash(uint8_t addr, uint8_t data);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -78,7 +79,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	volatile uint16_t buffer[TEST_END - TEST_BEGIN];
+	//volatile uint16_t buffer[TEST_END - TEST_BEGIN];
 	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
@@ -117,6 +118,9 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
+  flashBoot();
+  int good;
+  //int bad;
 
   /* USER CODE END 2 */
 
@@ -133,27 +137,35 @@ int main(void)
 	  HAL_Delay(1000);
 	  //*(__IO uint32_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
 
-	  int memtest = 1;
-	  //buffer = *(__IO uint16_t*) 0xC0000000;
-	  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA; // write to a bunch of memory in the ram
-	  }
-	  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-	  	 buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4*i); // read from the same memory
-	  	 if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
-
-	  		   } else {
-	  			   memtest = 0;
-	  		   }
-	  }
-	  if(memtest) { //printfs
-		  uint8_t str[] = "Total Memory Success\r\n";
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
+	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
+	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
+	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
+	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
+	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
+	  	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 12;
+	  	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0xFF;
+	//  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x01;
+	//  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 0xFF;
+	 // *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
+	  good = *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET);
+	  //printf("%d", bad);
+	  if(good == 42) {
+		  uint8_t str[] = "FLASH Success\r\n";
 		  CDC_Transmit_HS(str, sizeof(str));
 	  } else {
-		  uint8_t str[] = "Partial Memory Failure\r\n";
+		  uint8_t str[] = "FLASH Failure\r\n";
 		  CDC_Transmit_HS(str, sizeof(str));
 	  }
-
 
 	   //uint8_t str[] = "Hello World\r\n";
 	   //CDC_Transmit_HS(str, sizeof(str));
@@ -243,7 +255,41 @@ void PeriphCommonClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+int testFlash(uint8_t addr, uint8_t data) {
+	int ret = 1;
+	//NAND_AddressTypeDef Address;
+	//Address.Page = 0;
+	//Address.Plane = 1;
+	//Address.Block = 5;
+	//HAL_NAND_Read_Page();
+	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = addr;
+	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = data;
+	ret = *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET);
+	return ret;
+}
 
+void testRAM(void) {
+		  int memtest = 1;
+		  volatile uint16_t buffer[TEST_END - TEST_BEGIN];
+		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+			  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA; // write to a bunch of memory in the ram
+		  }
+		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		  	 buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4*i); // read from the same memory
+		  	 if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
+
+		  		   } else {
+		  			   memtest = 0;
+		  		   }
+		  }
+		  if(memtest) { //printfs
+			  uint8_t str[] = "Total RAM Success\r\n";
+			  CDC_Transmit_HS(str, sizeof(str));
+		  } else {
+			  uint8_t str[] = "Partial RAM Failure\r\n";
+			  CDC_Transmit_HS(str, sizeof(str));
+		  }
+}
 /* USER CODE END 4 */
 
  /* MPU Configuration */
@@ -280,7 +326,14 @@ void MPU_Config(void)
   MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
   MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
   MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-  MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER2;
+  MPU_InitStruct.BaseAddress = 0x8000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */
