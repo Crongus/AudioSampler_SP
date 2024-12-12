@@ -1,4 +1,4 @@
-15:07:21 **** Incremental Build of configuration Debug for project Liamsfmctest ****
+18:28:48 **** Build of configuration Debug for project Liamsfmctest ****
 make -j4 all 
 arm-none-eabi-size  Liamsfmctest.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  Liamsfmctest.elf
 Finished building: default.size.stdout
  
 
-15:07:22 Build Finished. 0 errors, 0 warnings. (took 769ms)
+18:28:51 Build Finished. 0 errors, 0 warnings. (took 3s.112ms)
 

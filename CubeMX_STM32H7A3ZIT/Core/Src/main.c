@@ -32,6 +32,9 @@
 #include "usbd_cdc_if.h"
 #include "sdram_init.h"
 
+#include "lcdhandler.h"
+#include "keypad.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -128,6 +131,7 @@ int main(void)
   uint8_t rxBuf[BUFFER_SIZE];
   int memtest = 1;
   NAND_IDTypeDef NAND_ID;
+  LCD_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -671,3 +671,254 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\OneDriv
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-12-06 15:03:21.963
 !MESSAGE Indexed 'Liamsfmctest' (32 sources, 129 headers) in 17.6 sec: 15,428 declarations; 94,056 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.16%)
+!SESSION 2024-12-12 17:21:10.729 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32H7A3ZIT\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32H7A3ZIT\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-12 17:47:36.239
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-12 17:47:36.242
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-12 17:48:13.969
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.ui 4 4 2024-12-12 17:48:19.188
+!MESSAGE To avoid deadlock while executing Display.syncExec() with argument: com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$3@20586c, thread Worker-4: Executing the early startup extensions will interrupt UI thread.
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-12 17:48:19.188
+!MESSAGE Worker-4: Executing the early startup extensions thread is an instance of Worker or owns an ILock
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread Worker-4: Executing the early startup extensions
+	at java.management@21.0.3/sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at java.management@21.0.3/sun.management.ThreadImpl.getThreadInfo(ThreadImpl.java:482)
+	at org.eclipse.ui.internal.UILockListener.reportInterruption(UILockListener.java:214)
+	at org.eclipse.ui.internal.UILockListener.interruptUI(UILockListener.java:180)
+	at org.eclipse.ui.internal.PendingSyncExec.waitUntilExecuted(PendingSyncExec.java:92)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:142)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4802)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter.importProjectImpl(MCUProjectImporter.java:376)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporterStartup.handleArguments(MCUProjectImporterStartup.java:141)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporterStartup.earlyStartup(MCUProjectImporterStartup.java:57)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2762)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-12 17:48:19.190
+!MESSAGE UI thread waiting on a job or lock.
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread main
+	at java.base@21.0.3/java.lang.Object.wait0(Native Method)
+	at java.base@21.0.3/java.lang.Object.wait(Object.java:366)
+	at org.eclipse.core.internal.jobs.ThreadJob.waitForRun(ThreadJob.java:337)
+	at org.eclipse.core.internal.jobs.ThreadJob.joinRun(ThreadJob.java:214)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:95)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:342)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(CProjectDescriptionManager.java:470)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(CProjectDescriptionManager.java:443)
+	at org.eclipse.cdt.internal.core.settings.model.CExternalSettingsManager.handleEvent(CExternalSettingsManager.java:631)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2190)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.fireLoadedEvent(AbstractCProjectDescriptionStorage.java:272)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:266)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2238)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:557)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2268)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:2996)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:805)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:878)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2912)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1995)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:688)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1964)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1921)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1907)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$2(StructuredViewer.java:1468)
+	at org.eclipse.jface.viewers.StructuredViewer$$Lambda/0x00000001008c9f50.run(Unknown Source)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1397)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:366)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1358)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1468)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:526)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1422)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.lambda$0(MakeContentProvider.java:242)
+	at org.eclipse.cdt.make.ui.MakeContentProvider$$Lambda/0x0000000100af2eb8.run(Unknown Source)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4046)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3662)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.block(ModalContext.java:166)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:368)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:470)
+	at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run(ProgressMonitorJobsDialog.java:230)
+	at org.eclipse.ui.internal.progress.ProgressManager.lambda$26(ProgressManager.java:836)
+	at org.eclipse.ui.internal.progress.ProgressManager$$Lambda/0x0000000100b5fca8.run(Unknown Source)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+	at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile(ProgressManager.java:869)
+	at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile(ProgressManager.java:845)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$3.run(MCUProjectImporter.java:383)
+	at org.eclipse.ui.internal.PendingSyncExec.run(PendingSyncExec.java:68)
+	at org.eclipse.ui.internal.UILockListener.doPendingWork(UILockListener.java:172)
+	at org.eclipse.ui.internal.UISynchronizer$$Lambda/0x0000000100b5fa88.run(Unknown Source)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4046)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3662)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.ui.internal.Workbench$$Lambda/0x000000010029d3b0.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base@21.0.3/java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(DirectMethodHandle$Holder)
+	at java.base@21.0.3/java.lang.invoke.LambdaForm$MH/0x00000001000c6800.invoke(LambdaForm$MH)
+	at java.base@21.0.3/java.lang.invoke.LambdaForm$MH/0x00000001000c6c00.invokeExact_MT(LambdaForm$MH)
+	at java.base@21.0.3/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:155)
+	at java.base@21.0.3/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base@21.0.3/java.lang.reflect.Method.invoke(Method.java:580)
+	at app//org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at app//org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at app//org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.cdt.core 4 0 2024-12-12 17:48:19.196
+!MESSAGE Error
+!STACK 0
+org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.core.internal.jobs.ThreadJob.waitForRun(ThreadJob.java:288)
+	at org.eclipse.core.internal.jobs.ThreadJob.joinRun(ThreadJob.java:214)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:95)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:342)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(CProjectDescriptionManager.java:470)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runWspModification(CProjectDescriptionManager.java:443)
+	at org.eclipse.cdt.internal.core.settings.model.CExternalSettingsManager.handleEvent(CExternalSettingsManager.java:631)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2190)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.fireLoadedEvent(AbstractCProjectDescriptionStorage.java:272)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:266)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2238)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:557)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2268)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:2996)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:805)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:878)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2912)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1995)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:688)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1964)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1921)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1907)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$2(StructuredViewer.java:1468)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1397)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:366)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1358)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1468)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:526)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1422)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.lambda$0(MakeContentProvider.java:242)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4046)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3662)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.block(ModalContext.java:166)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:368)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:470)
+	at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run(ProgressMonitorJobsDialog.java:230)
+	at org.eclipse.ui.internal.progress.ProgressManager.lambda$26(ProgressManager.java:836)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+	at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile(ProgressManager.java:869)
+	at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile(ProgressManager.java:845)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$3.run(MCUProjectImporter.java:383)
+	at org.eclipse.ui.internal.PendingSyncExec.run(PendingSyncExec.java:68)
+	at org.eclipse.ui.internal.UILockListener.doPendingWork(UILockListener.java:172)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4046)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3662)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-12 17:49:39.469
+!MESSAGE Indexed 'STM32H7A3ZIT' (50 sources, 150 headers) in 60.6 sec: 18,907 declarations; 125,226 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.12%)
+!SESSION 2024-12-12 17:56:01.014 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32H7A3ZIT\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\CubeMX_STM32H7A3ZIT\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-12 17:56:34.221
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-12 17:56:34.227
+!MESSAGE Log4j2 initialized with config file C:\Users\ift70\OneDrive\Documents\School\ECE402\AudioSampler_SP\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-12 17:56:53.377
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-12 17:57:36.137
+!MESSAGE Indexed 'STM32H7A3ZIT' (50 sources, 150 headers) in 40.1 sec: 18,906 declarations; 125,221 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.12%)
+
+!ENTRY org.eclipse.cdt.ui 4 0 2024-12-12 18:09:36.660
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element main.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:485)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:583)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:65)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:346)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:613)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:641)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:365)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:79)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2024-12-12 18:09:36.683
+!MESSAGE Element main.c does not exist.

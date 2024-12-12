@@ -1,0 +1,4 @@
+../Core/Src/keypad.c:22:5:GetKey	16	static
+../Core/Src/keypad.c:47:5:ReadOneColPin	16	static
+../Core/Src/keypad.c:72:6:DriveOneRowPin	16	static
+../Core/Src/keypad.c:114:6:DriveAllRowPins	16	static

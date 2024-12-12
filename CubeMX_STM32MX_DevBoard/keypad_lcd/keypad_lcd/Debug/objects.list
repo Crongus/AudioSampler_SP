@@ -1,3 +1,4 @@
+"./Core/Src/initialization.o"
 "./Core/Src/keypad.o"
 "./Core/Src/lcdhandler.o"
 "./Core/Src/main.o"
