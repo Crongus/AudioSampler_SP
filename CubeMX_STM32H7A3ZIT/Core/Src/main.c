@@ -22,6 +22,7 @@
 #include "i2s.h"
 #include "memorymap.h"
 #include "spdifrx.h"
+#include "tim.h"
 #include "usb_device.h"
 #include "gpio.h"
 #include "fmc.h"
@@ -49,6 +50,7 @@
 /* USER CODE BEGIN PM */
 #define TEST_END 4194304
 #define TEST_BEGIN (TEST_END - 500000)
+#define BUFFER_SIZE 2112
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -68,7 +70,7 @@ int testFlash(uint8_t addr, uint8_t data);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern NAND_HandleTypeDef hnand1;
 /* USER CODE END 0 */
 
 /**
@@ -117,11 +119,15 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C2_Init();
   MX_USB_DEVICE_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   flashBoot();
-  int good;
-  //int bad;
 
+  NAND_AddressTypedef Address;
+  uint8_t txBuf[BUFFER_SIZE];
+  uint8_t rxBuf[BUFFER_SIZE];
+  int memtest = 1;
+  NAND_IDTypeDef NAND_ID;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -131,41 +137,57 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //HardFault_Handler();
-	  // Write to starting address
+	  NAND_ID.Maker_Id = (uint16_t)0x00;
+	  NAND_ID.Device_Id = (uint16_t)0x00;
+	  NAND_ID.Third_Id = (uint16_t)0x00;
+	  NAND_ID.Fourth_Id = (uint16_t)0x00;
+	  /* Read the NAND memory ID */
+	  if(HAL_NAND_Read_ID(&hnand1, &NAND_ID) != HAL_OK)
+	  {
+	  return NAND_ERROR;
+	  }
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	  HAL_Delay(1000);
-	  //*(__IO uint32_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
 
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 42;
-	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
-	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
-	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
-	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
-	  	  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x10;
-	  	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 12;
-	  	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  		  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0xFF;
-	//  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x01;
-	//  *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET) = 0xFF;
-	 // *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_ADDRESS_OFFSET) = 0x00;
-	  good = *(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_DATA_OFFSET);
-	  //printf("%d", bad);
-	  if(good == 42) {
-		  uint8_t str[] = "FLASH Success\r\n";
-		  CDC_Transmit_HS(str, sizeof(str));
-	  } else {
-		  uint8_t str[] = "FLASH Failure\r\n";
-		  CDC_Transmit_HS(str, sizeof(str));
+	  Address.Page = 1;
+	  Address.Plane = 0;
+	  Address.Block = 0;
+	  for (int i = 0; i < BUFFER_SIZE; i++) {
+		txBuf[i] = i;
+		rxBuf[i] = 0;
 	  }
+	  // Erase block
+	  if (HAL_NAND_Erase_Block(&hnand1, &Address) != HAL_OK)
+	  {
+	  return NAND_ERROR;
+	  }
+	  // Write Block
+	  if (HAL_NAND_Write_Page(&hnand1,
+			  	  	  	  	  &Address,
+							  txBuf,
+							  1) != HAL_OK)
+	  {
+	  return NAND_ERROR;
+	  }
+	  /* Read back data from the NAND memory */
+	  if (HAL_NAND_Read_Page(&hnand1,
+	  &Address,
+	  rxBuf,
+	  1) != HAL_OK)
+	  {
+	  return NAND_ERROR;
+	  }
+	  // Checking
+	  for (int i = 0; i < BUFFER_SIZE; i++) {
+		  if(rxBuf[i] != txBuf[i]) memtest = 0; // Check if all sent values were received
+	  }
+	  if(memtest) { //printfs
+	  			  uint8_t str[] = "Total Flash Success\r\n";
+	  			  CDC_Transmit_HS(str, sizeof(str));
+	  		  } else {
+	  			  uint8_t str[] = "Partial Flash Failure\r\n";
+	  			  CDC_Transmit_HS(str, sizeof(str));
+	  		  }
 
 	   //uint8_t str[] = "Hello World\r\n";
 	   //CDC_Transmit_HS(str, sizeof(str));

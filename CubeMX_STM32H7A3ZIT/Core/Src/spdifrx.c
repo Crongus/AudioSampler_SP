@@ -93,6 +93,9 @@ void HAL_SPDIFRX_MspInit(SPDIFRX_HandleTypeDef* spdifrxHandle)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
+    /* SPDIFRX interrupt Init */
+    HAL_NVIC_SetPriority(SPDIF_RX_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(SPDIF_RX_IRQn);
   /* USER CODE BEGIN SPDIFRX_MspInit 1 */
 
   /* USER CODE END SPDIFRX_MspInit 1 */
@@ -115,6 +118,8 @@ void HAL_SPDIFRX_MspDeInit(SPDIFRX_HandleTypeDef* spdifrxHandle)
     */
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_7);
 
+    /* SPDIFRX interrupt Deinit */
+    HAL_NVIC_DisableIRQ(SPDIF_RX_IRQn);
   /* USER CODE BEGIN SPDIFRX_MspDeInit 1 */
 
   /* USER CODE END SPDIFRX_MspDeInit 1 */

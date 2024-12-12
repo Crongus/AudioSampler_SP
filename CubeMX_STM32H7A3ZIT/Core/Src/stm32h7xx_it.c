@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32h7xx_hal_gpio.h"
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +58,9 @@
 
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_OTG_HS;
+extern I2S_HandleTypeDef hi2s1;
+extern SPDIFRX_HandleTypeDef hspdif;
+extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -204,6 +208,35 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+  uint8_t str[] = "Timing Interrupt\r\n";
+  CDC_Transmit_HS(str, sizeof(str));
+  /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI1 global interrupt.
+  */
+void SPI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI1_IRQn 0 */
+
+  /* USER CODE END SPI1_IRQn 0 */
+  HAL_I2S_IRQHandler(&hi2s1);
+  /* USER CODE BEGIN SPI1_IRQn 1 */
+
+  /* USER CODE END SPI1_IRQn 1 */
+}
+
+/**
   * @brief This function handles USB On The Go HS End Point 1 Out global interrupt.
   */
 void OTG_HS_EP1_OUT_IRQHandler(void)
@@ -243,6 +276,20 @@ void OTG_HS_IRQHandler(void)
   /* USER CODE BEGIN OTG_HS_IRQn 1 */
 
   /* USER CODE END OTG_HS_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPDIF-RX global interrupt.
+  */
+void SPDIF_RX_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPDIF_RX_IRQn 0 */
+
+  /* USER CODE END SPDIF_RX_IRQn 0 */
+  HAL_SPDIFRX_IRQHandler(&hspdif);
+  /* USER CODE BEGIN SPDIF_RX_IRQn 1 */
+
+  /* USER CODE END SPDIF_RX_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

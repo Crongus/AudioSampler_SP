@@ -33,6 +33,8 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.o: \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sdram.h \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spdifrx.h \
+ C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h \
+ C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h \
  C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h
@@ -69,6 +71,8 @@ C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_H
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h:
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sdram.h:
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spdifrx.h:
+C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h:
+C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h:
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h:
 C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h:
