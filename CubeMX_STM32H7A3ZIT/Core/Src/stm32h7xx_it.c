@@ -217,8 +217,8 @@ void TIM2_IRQHandler(void)
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
-  uint8_t str[] = "Timing Interrupt\r\n";
-  CDC_Transmit_HS(str, sizeof(str));
+  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+ //HAL_Delay(1000);
   /* USER CODE END TIM2_IRQn 1 */
 }
 

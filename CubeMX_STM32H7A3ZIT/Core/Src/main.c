@@ -146,8 +146,8 @@ int main(void)
 	  {
 	  return NAND_ERROR;
 	  }
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(1000);
+	  //HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	 // HAL_Delay(1000);
 
 	  Address.Page = 1;
 	  Address.Plane = 0;
