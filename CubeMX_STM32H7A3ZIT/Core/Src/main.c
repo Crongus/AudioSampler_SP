@@ -132,10 +132,29 @@ int main(void)
   int memtest = 1;
   NAND_IDTypeDef NAND_ID;
   LCD_Init();
+  int Success1 = HAL_I2C_IsDeviceReady(&hi2c2, (0x3c << 1), 2, 25);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  while (1) {
+	  int cols[] = {0, 0, 0, 0, 0};
+	  int col, result;
+	  uint8_t str[100];
+	  int TheFlag = 0;
+	  for (col = 0; col < 5; col++) {
+		  DriveAllRowPins(0);
+		  HAL_Delay(10);
+		  cols[col] = ReadOneColPin(col);
+		  if (!cols[col]) TheFlag = 1;
+	  }
+	  if (TheFlag) {
+		  result = GetKey();
+		  sprintf(str, "%d\r\n", result);
+		  CDC_Transmit_HS(str, sizeof(str));
+		  HAL_Delay(60);
+	  }
+  }
   while (1)
   {
     /* USER CODE END WHILE */
