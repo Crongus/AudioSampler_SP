@@ -32,6 +32,9 @@
 #include "usbd_cdc_if.h"
 #include "sdram_init.h"
 
+#include "lcdhandler.h"
+#include "keypad.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -123,71 +126,98 @@ int main(void)
   /* USER CODE BEGIN 2 */
   flashBoot();
 
-  NAND_AddressTypedef Address;
-  uint8_t txBuf[BUFFER_SIZE];
-  uint8_t rxBuf[BUFFER_SIZE];
-  int memtest = 1;
-  NAND_IDTypeDef NAND_ID;
+  //NAND_AddressTypedef Address;
+  //uint8_t txBuf[BUFFER_SIZE];
+  //uint8_t rxBuf[BUFFER_SIZE];
+  //int memtest = 1;
+  //NAND_IDTypeDef NAND_ID;
+//  LCD_Init();
+//  int Success1 = HAL_I2C_IsDeviceReady(&hi2c2, (0x3c << 1), 2, 25);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+/*  while (1) {
+	  int cols[] = {0, 0, 0, 0, 0};
+	  int col, result;
+	  uint8_t str[100];
+	  int TheFlag = 0;
+	  for (col = 0; col < 5; col++) {
+		  DriveAllRowPins(0);
+		  HAL_Delay(10);
+		  cols[col] = ReadOneColPin(col);
+		  if (!cols[col]) TheFlag = 1;
+	  }
+	  if (TheFlag) {
+		  result = GetKey();
+		  sprintf(str, "%d\r\n", result);
+		  CDC_Transmit_HS(str, sizeof(str));
+		  HAL_Delay(60);
+	  }
+  }*/
+  __IO uint8_t fart = 0;
+  __IO uint32_t status = 0;
+  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_WRITE0;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET) = 144;
+  	  	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ1;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ2;
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_STATUS;
+  	  		  	  status =  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
+  	  		  if ((status & NAND_ERROR) == NAND_ERROR) {
+  	  		  	  		uint8_t str[] = "NAND Error\r\n";
+  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
+  	  		  	  	  } else if ((status & NAND_READY) == NAND_READY) {
+  	  		  	  		uint8_t str[] = "NAND Ready\r\n";
+  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
+  	  		  	  	  } else {
+  	  		  	  		uint8_t str[] = "NAND Busy\r\n";
+  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
+  	  		  	  	  }
+  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ2;
+  	  		  	  fart =  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  NAND_ID.Maker_Id = (uint16_t)0x00;
-	  NAND_ID.Device_Id = (uint16_t)0x00;
-	  NAND_ID.Third_Id = (uint16_t)0x00;
-	  NAND_ID.Fourth_Id = (uint16_t)0x00;
-	  /* Read the NAND memory ID */
-	  if(HAL_NAND_Read_ID(&hnand1, &NAND_ID) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  //HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	 // HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	  	  HAL_Delay(1000);
 
-	  Address.Page = 1;
-	  Address.Plane = 0;
-	  Address.Block = 0;
-	  for (int i = 0; i < BUFFER_SIZE; i++) {
-		txBuf[i] = i;
-		rxBuf[i] = 0;
-	  }
-	  // Erase block
-	  if (HAL_NAND_Erase_Block(&hnand1, &Address) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  // Write Block
-	  if (HAL_NAND_Write_Page(&hnand1,
-			  	  	  	  	  &Address,
-							  txBuf,
-							  1) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  /* Read back data from the NAND memory */
-	  if (HAL_NAND_Read_Page(&hnand1,
-	  &Address,
-	  rxBuf,
-	  1) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  // Checking
-	  for (int i = 0; i < BUFFER_SIZE; i++) {
-		  if(rxBuf[i] != txBuf[i]) memtest = 0; // Check if all sent values were received
-	  }
-	  if(memtest) { //printfs
-	  			  uint8_t str[] = "Total Flash Success\r\n";
-	  			  CDC_Transmit_HS(str, sizeof(str));
-	  		  } else {
-	  			  uint8_t str[] = "Partial Flash Failure\r\n";
-	  			  CDC_Transmit_HS(str, sizeof(str));
-	  		  }
+
+
+	  	  // cribbed from hal_status_read function
+
+	  	  /*
+	  	  if ((status & NAND_ERROR) == NAND_ERROR) {
+	  		uint8_t str[] = "NAND Error\r\n";
+	  		CDC_Transmit_HS(str, sizeof(str));
+	  	  } else if ((status & NAND_READY) == NAND_READY) {
+	  		uint8_t str[] = "NAND Ready\r\n";
+	  		CDC_Transmit_HS(str, sizeof(str));
+	  	  } else {
+	  		uint8_t str[] = "NAND Busy\r\n";
+	  		CDC_Transmit_HS(str, sizeof(str));
+	  	  }
+	  	  */
+	  	  if (fart == 57) {
+	  		  uint8_t joker[] = "Yes\r\n";
+	  		  CDC_Transmit_HS(joker, sizeof(joker));
+	  	  } else {
+	  		  uint8_t joker[] = "No\r\n";
+	  		  CDC_Transmit_HS(joker, sizeof(joker));
+	  	  }
+	  	  //HAL_NAND_Write_Page_8b
+	  	  //HAL_NAND_Read_Page_8b
 
 	   //uint8_t str[] = "Hello World\r\n";
 	   //CDC_Transmit_HS(str, sizeof(str));
@@ -354,8 +384,8 @@ void MPU_Config(void)
   /** Initializes and configures the Region and the memory to be protected
   */
   MPU_InitStruct.Number = MPU_REGION_NUMBER2;
-  MPU_InitStruct.BaseAddress = 0x8000000;
-  MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
+  MPU_InitStruct.BaseAddress = 0x80000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_256MB;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */

@@ -71,15 +71,15 @@ void MX_FMC_Init(void)
   hnand1.Config.PlaneSize = 0;
   hnand1.Config.ExtraCommandEnable = ENABLE;
   /* ComSpaceTiming */
-  ComSpaceTiming.SetupTime = 252;
-  ComSpaceTiming.WaitSetupTime = 252;
-  ComSpaceTiming.HoldSetupTime = 252;
-  ComSpaceTiming.HiZSetupTime = 252;
+  ComSpaceTiming.SetupTime = 0;
+  ComSpaceTiming.WaitSetupTime = 1;
+  ComSpaceTiming.HoldSetupTime = 1;
+  ComSpaceTiming.HiZSetupTime = 2;
   /* AttSpaceTiming */
-  AttSpaceTiming.SetupTime = 252;
-  AttSpaceTiming.WaitSetupTime = 252;
-  AttSpaceTiming.HoldSetupTime = 252;
-  AttSpaceTiming.HiZSetupTime = 252;
+  AttSpaceTiming.SetupTime = 0;
+  AttSpaceTiming.WaitSetupTime = 1;
+  AttSpaceTiming.HoldSetupTime = 1;
+  AttSpaceTiming.HiZSetupTime = 2;
 
   if (HAL_NAND_Init(&hnand1, &ComSpaceTiming, &AttSpaceTiming) != HAL_OK)
   {
