@@ -137,15 +137,35 @@ int main(void)
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 	flashBoot();
-
+	static int16_t data_frame[32] = {
+		  6392,  12539,  18204,  23169,  27244,  30272,  32137,  32767,  32137,
+		 30272,  27244,  23169,  18204,  12539,   6392,      0,  -6393, -12540,
+		-18205, -23170, -27245, -30273, -32138, -32767, -32138, -30273, -27245,
+		-23170, -18205, -12540,  -6393,     -1,
+	};
+	int nsamples = sizeof(adc_buf_i2s) / sizeof(adc_buf_i2s[0]);
+	HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, nsamples);
+	HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, nsamples);
   /* USER CODE END 2 */
 
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
 
-			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+		for (int j = 0; j < 10; j++) {
+			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j) = adc_buf_i2s[i];
+			}
+		}
+		for (int j = 0; j < 10; j++) {
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+			}
+			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+		}
 
-		HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+		//HAL_I2S_Transmit(&hi2s2, data_frame, 64, 1500);
 		//if (dataReadyFlag) processData();
     /* USER CODE END WHILE */
 
