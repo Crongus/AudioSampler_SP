@@ -68,7 +68,7 @@ dependents:
 
 # Tool invocations
 STM32H7A3ZIT.elf STM32H7A3ZIT.map: $(OBJS) $(USER_OBJS) C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Release/STM32H7A3ZIT.elf C:\Users\l42li\Documents\AudioSampler_SP\CubeMX_STM32H7A3ZIT\STM32H7A3ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32H7A3ZIT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\l42li\Documents\AudioSampler_SP\CubeMX_STM32H7A3ZIT\STM32H7A3ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32H7A3ZIT.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32H7A3ZIT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\l42li\Documents\AudioSampler_SP\CubeMX_STM32H7A3ZIT\STM32H7A3ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32H7A3ZIT.map" -Wl,--gc-sections -static  -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

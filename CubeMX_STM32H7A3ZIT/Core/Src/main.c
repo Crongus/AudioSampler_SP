@@ -1,23 +1,24 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
 #include "i2s.h"
 #include "memorymap.h"
@@ -34,26 +35,24 @@
 
 #include "lcdhandler.h"
 #include "keypad.h"
+#include "stm32h7xx_it.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define TEST_END 4194304
 #define TEST_BEGIN (TEST_END - 500000)
-#define BUFFER_SIZE 2112
+#define BUFFER_SIZE 50000
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -66,14 +65,24 @@
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
 static void MPU_Config(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 void testRAM(void);
 int testFlash(uint8_t addr, uint8_t data);
+void processData(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern NAND_HandleTypeDef hnand1;
+int mode = STOPMODE;
+extern int switchFlag;
+
+static volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
+static volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
+static volatile int16_t *inBuf = &adc_buf_i2s[0];
+static volatile int16_t *outBuf = &dac_buf_i2s[0];
+uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 /* USER CODE END 0 */
 
 /**
@@ -88,7 +97,6 @@ int main(void)
 	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
-
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -115,6 +123,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_FMC_Init();
   MX_I2S1_Init();
   MX_I2S2_Init();
@@ -123,98 +132,51 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_DEVICE_Init();
   MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
-  flashBoot();
 
-  NAND_AddressTypedef Address;
-  uint8_t txBuf[BUFFER_SIZE];
-  uint8_t rxBuf[BUFFER_SIZE];
-  int memtest = 1;
-  NAND_IDTypeDef NAND_ID;
-  LCD_Init();
-  int Success1 = HAL_I2C_IsDeviceReady(&hi2c2, (0x3c << 1), 2, 25);
+  /* Initialize interrupts */
+  MX_NVIC_Init();
+  /* USER CODE BEGIN 2 */
+	flashBoot();
+	static int16_t data_frame[32] = {
+		  6392,  12539,  18204,  23169,  27244,  30272,  32137,  32767,  32137,
+		 30272,  27244,  23169,  18204,  12539,   6392,      0,  -6393, -12540,
+		-18205, -23170, -27245, -30273, -32138, -32767, -32138, -30273, -27245,
+		-23170, -18205, -12540,  -6393,     -1,
+	};
+	int nsamples = sizeof(adc_buf_i2s) / sizeof(adc_buf_i2s[0]);
+	HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, nsamples);
+	HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, nsamples);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1) {
-	  int cols[] = {0, 0, 0, 0, 0};
-	  int col, result;
-	  uint8_t str[100];
-	  int TheFlag = 0;
-	  for (col = 0; col < 5; col++) {
-		  DriveAllRowPins(0);
-		  HAL_Delay(10);
-		  cols[col] = ReadOneColPin(col);
-		  if (!cols[col]) TheFlag = 1;
-	  }
-	  if (TheFlag) {
-		  result = GetKey();
-		  sprintf(str, "%d\r\n", result);
-		  CDC_Transmit_HS(str, sizeof(str));
-		  HAL_Delay(60);
-	  }
-  }
-  while (1)
-  {
+	while (1) {
+
+		for (int j = 0; j < 10; j++) {
+			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j) = adc_buf_i2s[i];
+			}
+		}
+		for (int j = 0; j < 10; j++) {
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+			}
+			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+		}
+
+		//HAL_I2S_Transmit(&hi2s2, data_frame, 64, 1500);
+		//if (dataReadyFlag) processData();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  NAND_ID.Maker_Id = (uint16_t)0x00;
-	  NAND_ID.Device_Id = (uint16_t)0x00;
-	  NAND_ID.Third_Id = (uint16_t)0x00;
-	  NAND_ID.Fourth_Id = (uint16_t)0x00;
-	  /* Read the NAND memory ID */
-	  if(HAL_NAND_Read_ID(&hnand1, &NAND_ID) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  //HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	 // HAL_Delay(1000);
 
-	  Address.Page = 1;
-	  Address.Plane = 0;
-	  Address.Block = 0;
-	  for (int i = 0; i < BUFFER_SIZE; i++) {
-		txBuf[i] = i;
-		rxBuf[i] = 0;
-	  }
-	  // Erase block
-	  if (HAL_NAND_Erase_Block(&hnand1, &Address) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  // Write Block
-	  if (HAL_NAND_Write_Page(&hnand1,
-			  	  	  	  	  &Address,
-							  txBuf,
-							  1) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  /* Read back data from the NAND memory */
-	  if (HAL_NAND_Read_Page(&hnand1,
-	  &Address,
-	  rxBuf,
-	  1) != HAL_OK)
-	  {
-	  return NAND_ERROR;
-	  }
-	  // Checking
-	  for (int i = 0; i < BUFFER_SIZE; i++) {
-		  if(rxBuf[i] != txBuf[i]) memtest = 0; // Check if all sent values were received
-	  }
-	  if(memtest) { //printfs
-	  			  uint8_t str[] = "Total Flash Success\r\n";
-	  			  CDC_Transmit_HS(str, sizeof(str));
-	  		  } else {
-	  			  uint8_t str[] = "Partial Flash Failure\r\n";
-	  			  CDC_Transmit_HS(str, sizeof(str));
-	  		  }
+		//HAL_NAND_Write_Page_8b
+		//HAL_NAND_Read_Page_8b
 
-	   //uint8_t str[] = "Hello World\r\n";
-	   //CDC_Transmit_HS(str, sizeof(str));
-  }
+		//uint8_t str[] = "Hello World\r\n";
+		//CDC_Transmit_HS(str, sizeof(str));
+	}
   /* USER CODE END 3 */
 }
 
@@ -291,15 +253,87 @@ void PeriphCommonClock_Config(void)
 
   /** Initializes the peripherals clock
   */
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CKPER;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SPI2|RCC_PERIPHCLK_SPI1
+                              |RCC_PERIPHCLK_CKPER;
+  PeriphClkInitStruct.PLL2.PLL2M = 33;
+  PeriphClkInitStruct.PLL2.PLL2N = 279;
+  PeriphClkInitStruct.PLL2.PLL2P = 6;
+  PeriphClkInitStruct.PLL2.PLL2Q = 2;
+  PeriphClkInitStruct.PLL2.PLL2R = 2;
+  PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_0;
+  PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
+  PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.CkperClockSelection = RCC_CLKPSOURCE_HSI;
+  PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* EXTI2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI2_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI2_IRQn);
+  /* EXTI3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI3_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+  /* EXTI9_5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+  /* EXTI15_10_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
 /* USER CODE BEGIN 4 */
+
+void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+	inBuf = &adc_buf_i2s[0];
+	outBuf = &adc_buf_i2s[0];
+
+	dataReadyFlag = 1;
+}
+
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+  inBuf = &adc_buf_i2s[BUFFER_SIZE/2];
+  outBuf = &adc_buf_i2s[BUFFER_SIZE/2];
+
+  dataReadyFlag = 1;
+}
+
+void processData(void)
+{
+
+    for (int16_t i = 0; i < BUFFER_SIZE/2; i++) //PROCESSING ONLY ONE HALF OF THE BUFFER
+    {
+
+      //ALL THE DSP ALGORITHMS FOR THE LEFT CHANNEL SHOULD BE CALLED HERE
+
+      //AFTER THE LEFT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
+      	*outBuf = *inBuf;
+        outBuf++;
+        inBuf++;
+
+      //ALL THE DSP ALGORITHMS FOR THE RIGHT CHANNEL SHOULD BE CALLED HERE
+
+      //AFTER THE RIGHT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
+      	*outBuf = *inBuf;
+        outBuf++;
+        inBuf++;
+    }
+
+    dataReadyFlag = 0;
+
+}
+
 int testFlash(uint8_t addr, uint8_t data) {
 	int ret = 1;
 	//NAND_AddressTypeDef Address;
@@ -314,26 +348,26 @@ int testFlash(uint8_t addr, uint8_t data) {
 }
 
 void testRAM(void) {
-		  int memtest = 1;
-		  volatile uint16_t buffer[TEST_END - TEST_BEGIN];
-		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-			  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA; // write to a bunch of memory in the ram
-		  }
-		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		  	 buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4*i); // read from the same memory
-		  	 if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
+	int memtest = 1;
+	volatile uint16_t buffer[TEST_END - TEST_BEGIN];
+	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		*(__IO uint16_t*) (0xC0000000 + 4 * i) = 0xAAAA; // write to a bunch of memory in the ram
+	}
+	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4 * i); // read from the same memory
+		if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
 
-		  		   } else {
-		  			   memtest = 0;
-		  		   }
-		  }
-		  if(memtest) { //printfs
-			  uint8_t str[] = "Total RAM Success\r\n";
-			  CDC_Transmit_HS(str, sizeof(str));
-		  } else {
-			  uint8_t str[] = "Partial RAM Failure\r\n";
-			  CDC_Transmit_HS(str, sizeof(str));
-		  }
+		} else {
+			memtest = 0;
+		}
+	}
+	if (memtest) { //printfs
+		uint8_t str[] = "Total RAM Success\r\n";
+		CDC_Transmit_HS(str, sizeof(str));
+	} else {
+		uint8_t str[] = "Partial RAM Failure\r\n";
+		CDC_Transmit_HS(str, sizeof(str));
+	}
 }
 /* USER CODE END 4 */
 
@@ -377,8 +411,8 @@ void MPU_Config(void)
   /** Initializes and configures the Region and the memory to be protected
   */
   MPU_InitStruct.Number = MPU_REGION_NUMBER2;
-  MPU_InitStruct.BaseAddress = 0x8000000;
-  MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
+  MPU_InitStruct.BaseAddress = 0x80000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_256MB;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */
@@ -393,12 +427,11 @@ void MPU_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
 
-  while (1)
-  {
-  }
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 

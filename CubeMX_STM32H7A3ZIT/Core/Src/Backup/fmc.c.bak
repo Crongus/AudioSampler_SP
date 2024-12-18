@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * File Name          : FMC.c
-  * Description        : This file provides code for the configuration
-  *                      of the FMC peripheral.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * File Name          : FMC.c
+ * Description        : This file provides code for the configuration
+ *                      of the FMC peripheral.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -26,9 +26,8 @@
 
 FMC_SDRAM_CommandTypeDef command;
 
-
 void flashBoot(void) {
-	*(uint8_t *) (FLASH_COMMON_BANK_ADDR + FLASH_COMMAND_OFFSET) = 0xFF;
+	*(uint8_t*) (FLASH_COMMON_BANK_ADDR + FLASH_COMMAND_OFFSET) = 0xFF;
 }
 
 /* USER CODE END 0 */
@@ -71,15 +70,15 @@ void MX_FMC_Init(void)
   hnand1.Config.PlaneSize = 0;
   hnand1.Config.ExtraCommandEnable = ENABLE;
   /* ComSpaceTiming */
-  ComSpaceTiming.SetupTime = 252;
-  ComSpaceTiming.WaitSetupTime = 252;
-  ComSpaceTiming.HoldSetupTime = 252;
-  ComSpaceTiming.HiZSetupTime = 252;
+  ComSpaceTiming.SetupTime = 1;
+  ComSpaceTiming.WaitSetupTime = 2;
+  ComSpaceTiming.HoldSetupTime = 2;
+  ComSpaceTiming.HiZSetupTime = 5;
   /* AttSpaceTiming */
-  AttSpaceTiming.SetupTime = 252;
-  AttSpaceTiming.WaitSetupTime = 252;
-  AttSpaceTiming.HoldSetupTime = 252;
-  AttSpaceTiming.HiZSetupTime = 252;
+  AttSpaceTiming.SetupTime = 0;
+  AttSpaceTiming.WaitSetupTime = 1;
+  AttSpaceTiming.HoldSetupTime = 1;
+  AttSpaceTiming.HiZSetupTime = 2;
 
   if (HAL_NAND_Init(&hnand1, &ComSpaceTiming, &AttSpaceTiming) != HAL_OK)
   {
@@ -115,7 +114,7 @@ void MX_FMC_Init(void)
   }
 
   /* USER CODE BEGIN FMC_Init 2 */
-  SDRAM_Initialization_Sequence(&hsdram1, &command);
+	SDRAM_Initialization_Sequence(&hsdram1, &command);
   /* USER CODE END FMC_Init 2 */
 }
 
