@@ -34,6 +34,24 @@
 #define C4GPIOPIN GPIO_PIN_3
 #define C5GPIOPIN GPIO_PIN_2
 
+#define CLIP1 				0
+#define CLIP2 				1
+#define CLIP3 				2
+#define CLIP4 				3
+#define CLIP5 				4
+#define CLIP6 				5
+#define CLIP7 				6
+#define CLIP8 				7
+#define CLIP9 				8
+#define CLIP10 				9
+#define CLIP11 				10
+#define CLIP12 				11
+
+#define PITCH_DOWN			15
+#define PITCH_UP 			16
+#define MODESWITCH 			19
+
+
 int GetKey(void);
 //This function is intended to be passed into after a keypad press was detected.
 //Returns an int 1-20 identifying keypad button pressed (top left = 1, read left to right)
@@ -46,6 +64,7 @@ void DriveOneRowPin(int, int);
 //Pass the row# you want to drive (zero indexed) and the logic state you want in that order.
 void DriveAllRowPins(int);
 //Pass the logic state you want.
+void interruptTest(void);
 
 
 #endif /* _KEYPAD_H_ */

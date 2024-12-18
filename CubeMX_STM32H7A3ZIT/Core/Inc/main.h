@@ -41,7 +41,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+extern int mode;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -57,9 +57,35 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Keypad_C5_Pin GPIO_PIN_2
+#define Keypad_C5_GPIO_Port GPIOE
+#define Keypad_C5_EXTI_IRQn EXTI2_IRQn
+#define Keypad_C4_Pin GPIO_PIN_3
+#define Keypad_C4_GPIO_Port GPIOE
+#define Keypad_C4_EXTI_IRQn EXTI3_IRQn
+#define Keypad_R1_Pin GPIO_PIN_4
+#define Keypad_R1_GPIO_Port GPIOE
+#define Keypad_C3_Pin GPIO_PIN_5
+#define Keypad_C3_GPIO_Port GPIOE
+#define Keypad_C3_EXTI_IRQn EXTI9_5_IRQn
+#define Keypad_R2_Pin GPIO_PIN_6
+#define Keypad_R2_GPIO_Port GPIOE
+#define Keypad_R3_Pin GPIO_PIN_13
+#define Keypad_R3_GPIO_Port GPIOC
+#define Keypad_C2_Pin GPIO_PIN_14
+#define Keypad_C2_GPIO_Port GPIOC
+#define Keypad_C2_EXTI_IRQn EXTI15_10_IRQn
+#define Keypad_C1_Pin GPIO_PIN_15
+#define Keypad_C1_GPIO_Port GPIOC
+#define Keypad_C1_EXTI_IRQn EXTI15_10_IRQn
+#define Keypad_R4_Pin GPIO_PIN_7
+#define Keypad_R4_GPIO_Port GPIOF
 
 /* USER CODE BEGIN Private defines */
-
+#define STOPMODE		0
+#define TXMODE			1
+#define RXMODE			2
+#define ERRMODE			-1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

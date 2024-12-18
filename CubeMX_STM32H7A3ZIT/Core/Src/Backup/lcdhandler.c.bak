@@ -41,7 +41,6 @@ void LCD_Init() {
 	return;
 }
 
-
 /* clip is 1-12 one indexed.
  * row is a boolean 0=storage row 1=activity row.
  * state is a boolean 0=clear 1=fill.
@@ -49,7 +48,7 @@ void LCD_Init() {
  * a redundant operation does not hurt anything.
  */
 void DisplayClipsUpd(int clip, int row, int state) {
-	uint16_t CoordX = 52 + ((clip -1) * 6);
+	uint16_t CoordX = 52 + ((clip - 1) * 6);
 	//Get the X position we're going to want to set the cursor to.
 	//The font is fixed width 6x8
 	uint16_t CoordY;
@@ -134,7 +133,8 @@ void DisplayPitchUpd(int pitch) {
 	char FormattedNum[8] = "";
 	//FormattedNum is two digit characters (plus margin of error)
 	//FinalOutput is that plus sign and percent characters
-	if (pitch > 0) strcat(FinalOutput, "+");
+	if (pitch > 0)
+		strcat(FinalOutput, "+");
 	//sprintf will display the negative sign on a negative pitch for us.
 	//For a positive pitch we have to add the appropriate sign ourselves
 	sprintf(FormattedNum, "%d", pitch);

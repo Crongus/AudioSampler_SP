@@ -1,23 +1,24 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
 #include "i2s.h"
 #include "memorymap.h"
@@ -34,26 +35,24 @@
 
 #include "lcdhandler.h"
 #include "keypad.h"
+#include "stm32h7xx_it.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define TEST_END 4194304
 #define TEST_BEGIN (TEST_END - 500000)
-#define BUFFER_SIZE 2112
+#define BUFFER_SIZE 32
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -66,14 +65,24 @@
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
 static void MPU_Config(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 void testRAM(void);
 int testFlash(uint8_t addr, uint8_t data);
+void processData(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern NAND_HandleTypeDef hnand1;
+int mode = STOPMODE;
+extern switchFlag;
+
+static volatile int16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
+static volatile int16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
+static volatile int16_t *inBuf = &adc_buf_i2s[0];
+static volatile int16_t *outBuf = &dac_buf_i2s[0];
+uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 /* USER CODE END 0 */
 
 /**
@@ -88,7 +97,6 @@ int main(void)
 	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
 	//extern FMC_SDRAM_CommandTypeDef command;
 	//extern SDRAM_HandleTypeDef hsdram1;
-
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -115,6 +123,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_FMC_Init();
   MX_I2S1_Init();
   MX_I2S2_Init();
@@ -123,105 +132,142 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_DEVICE_Init();
   MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
-  flashBoot();
 
-  //NAND_AddressTypedef Address;
-  //uint8_t txBuf[BUFFER_SIZE];
-  //uint8_t rxBuf[BUFFER_SIZE];
-  //int memtest = 1;
-  //NAND_IDTypeDef NAND_ID;
+  /* Initialize interrupts */
+  MX_NVIC_Init();
+  /* USER CODE BEGIN 2 */
+	flashBoot();
+
+	//NAND_AddressTypedef Address;
+	//uint8_t txBuf[BUFFER_SIZE];
+	//uint8_t rxBuf[BUFFER_SIZE];
+	//int memtest = 1;
+	//NAND_IDTypeDef NAND_ID;
 //  LCD_Init();
 //  int Success1 = HAL_I2C_IsDeviceReady(&hi2c2, (0x3c << 1), 2, 25);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-/*  while (1) {
-	  int cols[] = {0, 0, 0, 0, 0};
-	  int col, result;
-	  uint8_t str[100];
-	  int TheFlag = 0;
-	  for (col = 0; col < 5; col++) {
-		  DriveAllRowPins(0);
-		  HAL_Delay(10);
-		  cols[col] = ReadOneColPin(col);
-		  if (!cols[col]) TheFlag = 1;
-	  }
-	  if (TheFlag) {
-		  result = GetKey();
-		  sprintf(str, "%d\r\n", result);
-		  CDC_Transmit_HS(str, sizeof(str));
-		  HAL_Delay(60);
-	  }
-  }*/
-  __IO uint8_t fart = 0;
-  __IO uint32_t status = 0;
-  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_WRITE0;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET) = 144;
-  	  	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ1;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ2;
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_STATUS;
-  	  		  	  status =  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
-  	  		  if ((status & NAND_ERROR) == NAND_ERROR) {
-  	  		  	  		uint8_t str[] = "NAND Error\r\n";
-  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
-  	  		  	  	  } else if ((status & NAND_READY) == NAND_READY) {
-  	  		  	  		uint8_t str[] = "NAND Ready\r\n";
-  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
-  	  		  	  	  } else {
-  	  		  	  		uint8_t str[] = "NAND Busy\r\n";
-  	  		  	  		CDC_Transmit_HS(str, sizeof(str));
-  	  		  	  	  }
-  	  		  	  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) = NAND_CMD_READ2;
-  	  		  	  fart =  *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
-  while (1)
-  {
+	/*  while (1) {
+	 int cols[] = {0, 0, 0, 0, 0};
+	 int col, result;
+	 uint8_t str[100];
+	 int TheFlag = 0;
+	 for (col = 0; col < 5; col++) {
+	 DriveAllRowPins(0);
+	 HAL_Delay(10);
+	 cols[col] = ReadOneColPin(col);
+	 if (!cols[col]) TheFlag = 1;
+	 }
+	 if (TheFlag) {
+	 result = GetKey();
+	 sprintf(str, "%d\r\n", result);
+	 CDC_Transmit_HS(str, sizeof(str));
+	 HAL_Delay(60);
+	 }
+	 }*/
+	__IO uint8_t fart = 0;
+	__IO uint32_t status = 0;
+	/*
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_WRITE0;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET) = 144;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_WRITE_TRUE1;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_READ1;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_READ2;
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_STATUS;
+	status = *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
+	*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+			NAND_CMD_READ1;
+	fart = *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
+	*/
+	HAL_Delay(2000);
+
+	while (1) {
+		HAL_I2S_Receive_DMA(&hi2s2, (uint16_t*) adc_buf_i2s, BUFFER_SIZE); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+		HAL_I2S_Transmit_DMA(&hi2s1, (uint16_t*) dac_buf_i2s, BUFFER_SIZE); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+		if (dataReadyFlag) processData();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  	  HAL_Delay(1000);
+		//HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		//HAL_Delay(1);
+		//HAL_StatusTypeDef RxDMAresult = HAL_I2S_Receive_DMA(&hi2s1, Reception, 8);
+		//HAL_StatusTypeDef Rxresult = HAL_I2S_Receive(&hi2s1, Reception, 2, 10);
+		//HAL_StatusTypeDef Txresult = HAL_I2S_Transmit_DMA(&hi2s2, Reception, 2);
+		/*
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_WRITE0;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET) = 144;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_WRITE_TRUE1;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_READ1;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_ADDRESS_OFFSET) = 0x00;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_READ2;
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_STATUS;
+		status = *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
+		*(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_COMMAND_OFFSET) =
+				NAND_CMD_READ1;
+		fart = *(__IO uint8_t*) (FLASH_COMMON_BANK_ADDR | FLASH_DATA_OFFSET);
+		*/
+		//uint8_t joker[] = "Test\r\n";
+		//CDC_Transmit_HS(joker, sizeof(joker));
+		// cribbed from hal_status_read function
 
+		/*
+		 if ((status & NAND_ERROR) == NAND_ERROR) {
+		 uint8_t str[] = "NAND Error\r\n";
+		 CDC_Transmit_HS(str, sizeof(str));
+		 } else if ((status & NAND_READY) == NAND_READY) {
+		 uint8_t str[] = "NAND Ready\r\n";
+		 CDC_Transmit_HS(str, sizeof(str));
+		 } else {
+		 uint8_t str[] = "NAND Busy\r\n";
+		 CDC_Transmit_HS(str, sizeof(str));
+		 }
+		 */
+		/*
+		if (fart == 57) {
+			uint8_t joker[] = "Yes\r\n";
+			CDC_Transmit_HS(joker, sizeof(joker));
+		} else {
+			uint8_t joker[] = "No\r\n";
+			CDC_Transmit_HS(joker, sizeof(joker));
+		}
+		*/
+		//HAL_NAND_Write_Page_8b
+		//HAL_NAND_Read_Page_8b
 
-
-	  	  // cribbed from hal_status_read function
-
-	  	  /*
-	  	  if ((status & NAND_ERROR) == NAND_ERROR) {
-	  		uint8_t str[] = "NAND Error\r\n";
-	  		CDC_Transmit_HS(str, sizeof(str));
-	  	  } else if ((status & NAND_READY) == NAND_READY) {
-	  		uint8_t str[] = "NAND Ready\r\n";
-	  		CDC_Transmit_HS(str, sizeof(str));
-	  	  } else {
-	  		uint8_t str[] = "NAND Busy\r\n";
-	  		CDC_Transmit_HS(str, sizeof(str));
-	  	  }
-	  	  */
-	  	  if (fart == 57) {
-	  		  uint8_t joker[] = "Yes\r\n";
-	  		  CDC_Transmit_HS(joker, sizeof(joker));
-	  	  } else {
-	  		  uint8_t joker[] = "No\r\n";
-	  		  CDC_Transmit_HS(joker, sizeof(joker));
-	  	  }
-	  	  //HAL_NAND_Write_Page_8b
-	  	  //HAL_NAND_Read_Page_8b
-
-	   //uint8_t str[] = "Hello World\r\n";
-	   //CDC_Transmit_HS(str, sizeof(str));
-  }
+		//uint8_t str[] = "Hello World\r\n";
+		//CDC_Transmit_HS(str, sizeof(str));
+	}
   /* USER CODE END 3 */
 }
 
@@ -306,7 +352,69 @@ void PeriphCommonClock_Config(void)
   }
 }
 
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* EXTI2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI2_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI2_IRQn);
+  /* EXTI3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI3_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+  /* EXTI9_5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+  /* EXTI15_10_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
 /* USER CODE BEGIN 4 */
+
+void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+	inBuf = &adc_buf_i2s[0];
+	outBuf = &adc_buf_i2s[0];
+
+	dataReadyFlag = 1;
+}
+
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+  inBuf = &adc_buf_i2s[BUFFER_SIZE/2];
+  outBuf = &adc_buf_i2s[BUFFER_SIZE/2];
+
+  dataReadyFlag = 1;
+}
+
+void processData(void)
+{
+
+    for (int16_t i = 0; i < BUFFER_SIZE/2; i++) //PROCESSING ONLY ONE HALF OF THE BUFFER
+    {
+
+      //ALL THE DSP ALGORITHMS FOR THE LEFT CHANNEL SHOULD BE CALLED HERE
+
+      //AFTER THE LEFT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
+      	*outBuf = *inBuf;
+        outBuf++;
+        inBuf++;
+
+      //ALL THE DSP ALGORITHMS FOR THE RIGHT CHANNEL SHOULD BE CALLED HERE
+
+      //AFTER THE RIGHT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
+      	*outBuf = *inBuf;
+        outBuf++;
+        inBuf++;
+    }
+
+    dataReadyFlag = 0;
+
+}
+
 int testFlash(uint8_t addr, uint8_t data) {
 	int ret = 1;
 	//NAND_AddressTypeDef Address;
@@ -321,26 +429,26 @@ int testFlash(uint8_t addr, uint8_t data) {
 }
 
 void testRAM(void) {
-		  int memtest = 1;
-		  volatile uint16_t buffer[TEST_END - TEST_BEGIN];
-		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-			  *(__IO uint16_t*) (0xC0000000 + 4*i) = 0xAAAA; // write to a bunch of memory in the ram
-		  }
-		  for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		  	 buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4*i); // read from the same memory
-		  	 if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
+	int memtest = 1;
+	volatile uint16_t buffer[TEST_END - TEST_BEGIN];
+	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		*(__IO uint16_t*) (0xC0000000 + 4 * i) = 0xAAAA; // write to a bunch of memory in the ram
+	}
+	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
+		buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4 * i); // read from the same memory
+		if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
 
-		  		   } else {
-		  			   memtest = 0;
-		  		   }
-		  }
-		  if(memtest) { //printfs
-			  uint8_t str[] = "Total RAM Success\r\n";
-			  CDC_Transmit_HS(str, sizeof(str));
-		  } else {
-			  uint8_t str[] = "Partial RAM Failure\r\n";
-			  CDC_Transmit_HS(str, sizeof(str));
-		  }
+		} else {
+			memtest = 0;
+		}
+	}
+	if (memtest) { //printfs
+		uint8_t str[] = "Total RAM Success\r\n";
+		CDC_Transmit_HS(str, sizeof(str));
+	} else {
+		uint8_t str[] = "Partial RAM Failure\r\n";
+		CDC_Transmit_HS(str, sizeof(str));
+	}
 }
 /* USER CODE END 4 */
 
@@ -400,12 +508,11 @@ void MPU_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
 
-  while (1)
-  {
-  }
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 

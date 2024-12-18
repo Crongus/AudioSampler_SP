@@ -1,0 +1,15 @@
+/*
+ * I2sCallbacks.c
+ *
+ *  Created on: Dec 17, 2024
+ *      Author: Isaac Terrell
+ */
+
+//void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s);
+//void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s);
+//void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s);
+//void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s);
+
+
+
+
