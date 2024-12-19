@@ -46,6 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 extern int mode;
+extern int drmode;
 int switchFlag;
 /* USER CODE END PV */
 
@@ -219,8 +220,13 @@ void EXTI2_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI2_IRQn 0 */
 	// Col 5
-	interruptTest();
-
+	//interruptTest();
+	int key = GetKey();
+	if (key == 19) {
+		mode = !mode;
+	} else if (key == 18) {
+		drmode = !drmode;
+	}
   /* USER CODE END EXTI2_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(Keypad_C5_Pin);
   /* USER CODE BEGIN EXTI2_IRQn 1 */

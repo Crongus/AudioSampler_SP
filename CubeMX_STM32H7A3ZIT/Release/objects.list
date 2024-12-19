@@ -1,3 +1,4 @@
+"./Core/Src/DIX9211init.o"
 "./Core/Src/dma.o"
 "./Core/Src/fmc.o"
 "./Core/Src/gpio.o"

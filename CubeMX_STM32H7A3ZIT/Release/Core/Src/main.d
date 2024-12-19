@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/SineWave.h \
+ ../Core/Inc/main.h \
  C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -37,7 +38,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h \
  C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h \
  C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h \
- ../Core/Inc/dma.h ../Core/Inc/main.h ../Core/Inc/i2c.h ../Core/Inc/i2s.h \
+ ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/i2c.h ../Core/Inc/i2s.h \
  ../Core/Inc/memorymap.h ../Core/Inc/spdifrx.h ../Core/Inc/tim.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
@@ -50,7 +51,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
  ../Core/Inc/sdram_init.h ../Core/Inc/lcdhandler.h ../Core/Inc/keypad.h \
- ../Core/Inc/stm32h7xx_it.h
+ ../Core/Inc/stm32h7xx_it.h ../Core/Inc/DIX9211init.h ../Core/Inc/i2c.h
+../Core/Inc/SineWave.h:
 ../Core/Inc/main.h:
 C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -90,8 +92,8 @@ C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HA
 C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h:
 C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h:
 C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h:
-../Core/Inc/dma.h:
 ../Core/Inc/main.h:
+../Core/Inc/dma.h:
 ../Core/Inc/i2c.h:
 ../Core/Inc/i2s.h:
 ../Core/Inc/memorymap.h:
@@ -113,3 +115,5 @@ C:/Users/l42li/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HA
 ../Core/Inc/lcdhandler.h:
 ../Core/Inc/keypad.h:
 ../Core/Inc/stm32h7xx_it.h:
+../Core/Inc/DIX9211init.h:
+../Core/Inc/i2c.h:

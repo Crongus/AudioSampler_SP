@@ -82,6 +82,7 @@ static volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
 static volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
 static volatile int16_t *inBuf = &adc_buf_i2s[0];
 static volatile int16_t *outBuf = &dac_buf_i2s[0];
+int nsamples = sizeof(adc_buf_i2s) / sizeof(adc_buf_i2s[0]);
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 /* USER CODE END 0 */
 
@@ -143,23 +144,31 @@ int main(void)
 		-18205, -23170, -27245, -30273, -32138, -32767, -32138, -30273, -27245,
 		-23170, -18205, -12540,  -6393,     -1,
 	};
-	int nsamples = sizeof(adc_buf_i2s) / sizeof(adc_buf_i2s[0]);
+
+	//HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, nsamples);
+	//HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, nsamples);
   /* USER CODE END 2 */
 
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
+		/*for (int i = 0; i < 32; (hi2s2.Instance->TXDR == HAL_OK)?i++:i) {
+			SET_BIT(hi2s2->Instance->CR1, SPI_CR1_CSTART);
+			(hi2s2.Instance->TXDR) = data_frame[i];
+		}*/
 
-		for (int j = 0; j < 10; j++) {
-			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+
+		for (int j = 0; j < 2; j++) {
+			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
 			for (int i = 0; i < BUFFER_SIZE; i++) {
 				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j) = adc_buf_i2s[i];
 			}
 		}
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < 2; j++) {
 			for (int i = 0; i < BUFFER_SIZE; i++) {
 				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
 			}
-			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
 		}
 
 		//HAL_I2S_Transmit(&hi2s2, data_frame, 64, 1500);
@@ -365,6 +374,18 @@ void testRAM(void) {
 		uint8_t str[] = "Partial RAM Failure\r\n";
 		CDC_Transmit_HS(str, sizeof(str));
 	}
+}
+void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s) {
+	if (SPI2 == hi2s->Instance) {
+			__HAL_I2S_DISABLE(hi2s);
+			__HAL_I2S_ENABLE(hi2s);
+			HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, nsamples);
+		}
+}
+void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s) {
+	if (SPI1 == hi2s->Instance) {
+			HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, nsamples);
+		}
 }
 /* USER CODE END 4 */
 

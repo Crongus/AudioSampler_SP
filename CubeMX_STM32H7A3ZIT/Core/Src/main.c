@@ -17,6 +17,7 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <SineWave.h>
 #include "main.h"
 #include "dma.h"
 #include "i2c.h"
@@ -36,7 +37,8 @@
 #include "lcdhandler.h"
 #include "keypad.h"
 #include "stm32h7xx_it.h"
-
+#include "DIX9211init.h"
+#include "SineWave.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,9 +52,11 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define TEST_END 4194304
+#define TEST_END 500000
 #define TEST_BEGIN (TEST_END - 500000)
 #define BUFFER_SIZE 50000
+#define TX	1
+#define RX	0
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -75,13 +79,12 @@ void processData(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern NAND_HandleTypeDef hnand1;
-int mode = STOPMODE;
+int mode = RX;
+int drmode = 1;
 extern int switchFlag;
-
+extern const uint16_t sineLookupTable[];
 static volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
 static volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
-static volatile int16_t *inBuf = &adc_buf_i2s[0];
-static volatile int16_t *outBuf = &dac_buf_i2s[0];
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 /* USER CODE END 0 */
 
@@ -93,10 +96,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	//volatile uint16_t buffer[TEST_END - TEST_BEGIN];
-	//__IO uint32_t *pointer = (__IO uint32_t*) 0xC4000000;
-	//extern FMC_SDRAM_CommandTypeDef command;
-	//extern SDRAM_HandleTypeDef hsdram1;
+
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -137,43 +137,58 @@ int main(void)
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 	flashBoot();
-	static int16_t data_frame[32] = {
-		  6392,  12539,  18204,  23169,  27244,  30272,  32137,  32767,  32137,
-		 30272,  27244,  23169,  18204,  12539,   6392,      0,  -6393, -12540,
-		-18205, -23170, -27245, -30273, -32138, -32767, -32138, -30273, -27245,
-		-23170, -18205, -12540,  -6393,     -1,
-	};
-	int nsamples = sizeof(adc_buf_i2s) / sizeof(adc_buf_i2s[0]);
-	HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, nsamples);
-	HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, nsamples);
+	DIX9211init();
+	int RXcnt;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-
-		for (int j = 0; j < 10; j++) {
-			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
-			for (int i = 0; i < BUFFER_SIZE; i++) {
-				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j) = adc_buf_i2s[i];
+		if (drmode == 1) { // button = mode switch mode
+			if (mode == RX) {
+				for (RXcnt = 0; RXcnt < 80; RXcnt++) { // ~30 seconds at max is 50 ~45 seconds at 80
+					if (mode == TX) break;
+					if (drmode == 0) break; // For design review purposes
+					HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+					for (int i = 0; i < BUFFER_SIZE; i++) {
+						*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
+					}
+				}
+			} else if (mode == TX) {
+				for (int j = 0; j < RXcnt; j++) {
+					if (mode == RX) break;
+					if (drmode == 0) break; // For design review purposes
+					for (int i = 0; i < BUFFER_SIZE; i++) {
+						adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+					}
+					HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+				}
+			}
+		} else if (drmode == 0) { // just do 45 seconds mode
+			for (RXcnt = 0; RXcnt < 80; RXcnt++) { // ~30 seconds at max is 50
+				if (drmode == 1) break; // For design review purposes
+				HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+				for (int i = 0; i < BUFFER_SIZE; i++) {
+					*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
+				}
+			}
+			for (int j = 0; j < 80; j++) {
+				if (drmode == 1) break; // For design review purposes
+				for (int i = 0; i < BUFFER_SIZE; i++) {
+					adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+				}
+				HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
 			}
 		}
-		for (int j = 0; j < 10; j++) {
-			for (int i = 0; i < BUFFER_SIZE; i++) {
-				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
-			}
-			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, nsamples, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
-		}
-
-		//HAL_I2S_Transmit(&hi2s2, data_frame, 64, 1500);
-		//if (dataReadyFlag) processData();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
+
+		// The following 4 comments are here for reference and/or copy pasting from
+
 		//HAL_NAND_Write_Page_8b
 		//HAL_NAND_Read_Page_8b
-
 		//uint8_t str[] = "Hello World\r\n";
 		//CDC_Transmit_HS(str, sizeof(str));
 	}
@@ -293,47 +308,6 @@ static void MX_NVIC_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
-{
-	inBuf = &adc_buf_i2s[0];
-	outBuf = &adc_buf_i2s[0];
-
-	dataReadyFlag = 1;
-}
-
-void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
-{
-  inBuf = &adc_buf_i2s[BUFFER_SIZE/2];
-  outBuf = &adc_buf_i2s[BUFFER_SIZE/2];
-
-  dataReadyFlag = 1;
-}
-
-void processData(void)
-{
-
-    for (int16_t i = 0; i < BUFFER_SIZE/2; i++) //PROCESSING ONLY ONE HALF OF THE BUFFER
-    {
-
-      //ALL THE DSP ALGORITHMS FOR THE LEFT CHANNEL SHOULD BE CALLED HERE
-
-      //AFTER THE LEFT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
-      	*outBuf = *inBuf;
-        outBuf++;
-        inBuf++;
-
-      //ALL THE DSP ALGORITHMS FOR THE RIGHT CHANNEL SHOULD BE CALLED HERE
-
-      //AFTER THE RIGHT SAMPLE IS PROCESSED, IT IS COPIED TO THE OUTPUT BUFFER AND BOTH POINTERS ADVANCE ONE POSITION
-      	*outBuf = *inBuf;
-        outBuf++;
-        inBuf++;
-    }
-
-    dataReadyFlag = 0;
-
-}
-
 int testFlash(uint8_t addr, uint8_t data) {
 	int ret = 1;
 	//NAND_AddressTypeDef Address;
@@ -354,7 +328,7 @@ void testRAM(void) {
 		*(__IO uint16_t*) (0xC0000000 + 4 * i) = 0xAAAA; // write to a bunch of memory in the ram
 	}
 	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		buffer[i - TEST_BEGIN] = *(__IO uint32_t*) (0xC0000000 + 4 * i); // read from the same memory
+		buffer[i - TEST_BEGIN] = *(__IO uint16_t*) (0xC0000000 + 4 * i); // read from the same memory
 		if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
 
 		} else {
@@ -362,13 +336,14 @@ void testRAM(void) {
 		}
 	}
 	if (memtest) { //printfs
-		uint8_t str[] = "Total RAM Success\r\n";
-		CDC_Transmit_HS(str, sizeof(str));
+		uint8_t testr[] = "Total RAM Success\r\n";
+		CDC_Transmit_HS(testr, sizeof(testr));
 	} else {
-		uint8_t str[] = "Partial RAM Failure\r\n";
-		CDC_Transmit_HS(str, sizeof(str));
+		uint8_t testr[] = "Partial RAM Failure\r\n";
+		CDC_Transmit_HS(testr, sizeof(testr));
 	}
 }
+
 /* USER CODE END 4 */
 
  /* MPU Configuration */
