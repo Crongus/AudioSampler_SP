@@ -1,0 +1,17 @@
+.FCR684216R :1 ;Fiber Optic Receiver Digital Audio 16Mbps -24dBm 2.7V ~ 5.5V 10 mA , 10mA , -20 to 70
+FCR684216R
+*STM U
+*NGS
+*PLB 1="VOUT" 2="GND" 3="VCC"
+*MXP 6
+*DFN FCR684216R
+~!Manufacturer_Name (CLIFF ELECTRONIC COMPONENTS)
+~!Manufacturer_Part_Number (FCR684216R)
+~!Mouser Part Number (-)
+~!Mouser Price/Stock (-)
+~!Arrow Part Number (-)
+~!Arrow Price/Stock (-)
+~!Link Datasheet (https://www.cliffuk.co.uk/products/optical/FCR684216R.pdf)
+~!Height (13.2mm)
+FCR684216R
+1.1!U 2.1!U 3.1!U 

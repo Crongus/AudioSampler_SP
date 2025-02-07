@@ -1,0 +1,9 @@
+Manufacturer=CLIFF ELECTRONIC COMPONENTS
+PartNumber=FCR684216R
+PartCategory=Undefined or Miscellaneous
+PackageCategory=Other
+PinCount=3
+Version=1.3
+Released=2025-02-06 10:33:45
+Downloaded=2025-02-07 18:28:53
+3D=N

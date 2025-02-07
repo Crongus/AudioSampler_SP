@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "FCR684216R"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2025-02-06-10:33:45)
+    (mountForm default
+        (footprintRef "FCR684216R")
+        (spec "System")
+    )
+)

@@ -1,0 +1,17 @@
+.FCR684216T :1 ;Fiber Optic Transmitter with Driver 655nm 16Mbps 2.7V ~ 5.5V 10 mA, -20 to 70
+FCR684216T
+*STM U
+*NGS
+*PLB 1="GND" 2="VCC" 3="VIN"
+*MXP 6
+*DFN FCR684216T
+~!Manufacturer_Name (CLIFF ELECTRONIC COMPONENTS)
+~!Manufacturer_Part_Number (FCR684216T)
+~!Mouser Part Number (-)
+~!Mouser Price/Stock (-)
+~!Arrow Part Number (-)
+~!Arrow Price/Stock (-)
+~!Link Datasheet (https://www.cliffuk.co.uk/products/optical/FCR684216T.pdf)
+~!Height (13.2mm)
+FCR684216T
+1.1!U 2.1!U 3.1!U 

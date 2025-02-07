@@ -1,0 +1,72 @@
+(Japanese_coding: sjis)
+(function "ECS_20351201"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2025-02-06-10:43:10)
+    (utime 2025-02-06-10:43:10)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+        (port "3" (symbPinId 3) (portType INOUT))
+    )
+    (property "symbolName" "FCR684216T")
+)
+
+
+(pinAssign "ECS_20351201"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2025-02-06-10:43:10)
+    (utime 2025-02-06-10:43:10)
+    (interface
+        (port "1" (symbPinId 1) (portName "GND") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "VCC") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "VIN") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_20351201")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+                (port "3" (match "3"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "FCR684216T")
+)
+
+
+(part "FCR684216T"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2025-02-06-10:43:10)
+    (utime 2025-02-06-10:43:10)
+    (packageRef "FCR684216T")
+    (pinAssignRef "ECS_20351201")
+    (interface
+        (port "1" (symbPinId 1) (portName "GND") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "VCC") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "VIN") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "U")
+    (property "description" "Fiber Optic Transmitter with Driver 655nm 16Mbps 2.7V ~ 5.5V 10 mA, -20 to 70")
+    (property "Manufacturer_Name" "CLIFF ELECTRONIC COMPONENTS")
+    (property "Manufacturer_Part_Number" "FCR684216T")
+    (property "Mouser_Part_Number" "")
+    (property "Mouser_Price/Stock" "")
+    (property "Arrow_Part_Number" "")
+    (property "Arrow_Price/Stock" "")
+    (property "Datasheet_Link" "https://www.cliffuk.co.uk/products/optical/FCR684216T.pdf")
+    (property "compAreaTopHeight" 13.2)
+)
+
+

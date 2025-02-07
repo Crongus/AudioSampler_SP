@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'FCR684216T'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "CLIFF ELECTRONIC COMPONENTS", "FCR684216T" (!) = "", "FCR684216T", "Other", "", "", "", "", "Fiber Optic Transmitter with Driver 655nm 16Mbps 2.7V ~ 5.5V 10 mA, -20 to 70", "https://www.cliffuk.co.uk/products/optical/FCR684216T.pdf", "13.2 mm"
+END_PART
+
+END.

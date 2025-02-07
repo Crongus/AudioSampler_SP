@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP FCR684216R
+D Fiber Optic Receiver Digital Audio 16Mbps -24dBm 2.7V ~ 5.5V 10 mA , 10mA , -20 to 70
+K
+F https://www.cliffuk.co.uk/products/optical/FCR684216R.pdf
+$ENDCMP
+#
+#End Doc Library

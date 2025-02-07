@@ -1,0 +1,161 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "FCR684216T"
+   (description "Fiber Optic Transmitter with Driver 655nm 16Mbps 2.7V ~ 5.5V 10 mA, -20 to 70")
+   (family "ANA")
+   (package "FCR684216T")
+   (attribute "Datasheet Link" "https://www.cliffuk.co.uk/products/optical/FCR684216T.pdf")
+   (attribute "Geometry.Height" "13.2mm")
+   (attribute "Manufacturer_Name" "CLIFF ELECTRONIC COMPONENTS")
+   (attribute "Manufacturer_Part_Number" "FCR684216T")
+   (attribute "Mouser Part Number" "")
+   (attribute "Mouser Price/Stock" "")
+   (attribute "Arrow Part Number" "")
+   (attribute "Arrow Price/Stock" "")
+   (gate
+    (symbol "FCR684216T")
+    (pin "GND" 1 PS)
+    (pin "VCC" 2 PS)
+    (pin "VIN" 3 PS)
+   )
+  )
+  (symbol "FCR684216T"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -300) (pt 200 -300) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "FCR684216T"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -8.29 3.5)
+      (pt 3.21 3.5)
+      (pt 3.21 -8.5)
+      (pt -8.29 -8.5)
+      (pt -8.29 3.5))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -9.29 4.5)
+      (pt 4.21 4.5)
+      (pt 4.21 -11.8)
+      (pt -9.29 -11.8)
+      (pt -9.29 4.5))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -7.14 -8.5)
+      (pt -7.14 -10.8)
+      (pt 2.06 -10.8)
+      (pt 2.06 -8.5))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -7.14 -8.5)
+      (pt -7.14 -10.8)
+      (pt 2.06 -10.8)
+      (pt 2.06 -8.5))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -8.29 1)
+      (pt -8.29 -8.5)
+      (pt 3.21 -8.5)
+      (pt 3.21 1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 3.21 3)
+      (pt 3.21 3.5)
+      (pt -8.29 3.5)
+      (pt -8.29 3))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 3.66 0)
+      (arc (pt 3.660 0.000) (pt 3.660 -0.050) (pt 3.760 0.050) (start 180.0) (sweep -180.0))
+      (pt 3.76 0)
+      (arc (pt 3.760 0.000) (pt 3.660 -0.050) (pt 3.760 0.050) (start 180.0) (sweep .0))
+      (pt 3.66 0))))
+   (leg 1 (pt 0.000 0.000) (padstack 1))
+   (leg 2 (pt -2.540 0.000) (padstack 2))
+   (leg 3 (pt -5.080 0.000) (padstack 3))
+   (leg 4 (pt 2.060 2.100) (padstack 0))
+   (leg 5 (pt -2.540 -3.900) (padstack 0))
+   (leg 6 (pt -7.140 2.100) (padstack 0))
+   (padstack 0
+    (hole 2)
+    (plated false)
+    (pad (layer TCOP) (round 1.000))
+    (pad (layer INNER) (round 1.000))
+    (pad (layer BCOP) (round 1.000))
+   )
+   (padstack 1
+    (hole 0.8)
+    (plated true)
+    (pad (layer TCOP) (square 1.300))
+    (pad (layer INNER) (round 1.300))
+    (pad (layer BCOP) (square 1.300))
+   )
+   (padstack 2
+    (hole 0.8)
+    (plated true)
+    (pad (layer TCOP) (round 1.300))
+    (pad (layer INNER) (round 1.300))
+    (pad (layer BCOP) (round 1.300))
+   )
+   (padstack 3
+    (hole 0.8)
+    (plated true)
+    (pad (layer TCOP) (round 1.300))
+    (pad (layer INNER) (round 1.300))
+    (pad (layer BCOP) (round 1.300))
+   )
+  )
+ )
+)
