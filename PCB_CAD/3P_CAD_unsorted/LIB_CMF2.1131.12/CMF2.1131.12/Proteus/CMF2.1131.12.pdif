@@ -1,0 +1,232 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "CMF2.1131.12"
+   (description "Power Entry Connector Receptacle, Male Pins - Module IEC 320-C8 Panel Mount, Snap-In; Through Hole, Right Angle , 250VAC , 2.5A")
+   (family "CON")
+   (package "CMF2113112")
+   (attribute "Datasheet Link" "https://www.schurter.com/en/datasheet/typ_CMF2.pdf")
+   (attribute "Geometry.Height" "18mm")
+   (attribute "Manufacturer_Name" "SCHURTER")
+   (attribute "Manufacturer_Part_Number" "CMF2.1131.12")
+   (attribute "Mouser Part Number" "693-CMF2.1131.12")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Schurter/CMF2.1131.12?qs=h0lr9otJFD4rz3xL8%2FqzdA%3D%3D")
+   (attribute "Arrow Part Number" "")
+   (attribute "Arrow Price/Stock" "")
+   (gate
+    (symbol "CMF2.1131.12")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+    (pin "L1" L1 PS)
+    (pin "N1" N1 PS)
+   )
+  )
+  (symbol "CMF2.1131.12"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -200) (pt 200 -200) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 900 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "CMF2113112"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -41 1)
+      (pt 12.3 1)
+      (pt 12.3 -18)
+      (pt -41 -18)
+      (pt -41 1))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -46 4)
+      (pt 17.3 4)
+      (pt 17.3 -22.3)
+      (pt -46 -22.3)
+      (pt -46 4))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -41 1)
+      (pt -41 3)
+      (pt 12.3 3)
+      (pt 12.3 1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 12.3 1)
+      (pt 12.3 3)
+      (pt -41 3)
+      (pt -41 1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 1.6 1)
+      (pt 12.3 1)
+      (pt 12.3 -18)
+      (pt -41 -18)
+      (pt -41 1)
+      (pt -8.2 1))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 4.75 -18)
+      (pt -7.05 -21.3)
+      (pt -8 -20.45)
+      (arc (pt -8.000 -20.450) (pt -9.270 -21.421) (pt -1.647 -13.798) (start -42.3) (sweep -131.8))
+      (pt -9.25 -18))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -1.6 1)
+      (pt -5.8 1))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 12.3 -8.3)
+      (pt 16.3 -8.3)
+      (pt 16.3 -11.7)
+      (pt 12.3 -11.7))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -41 -8.3)
+      (pt -45 -8.3)
+      (pt -45 -11.7)
+      (pt -41 -11.7))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 0 3.45)
+      (arc (pt 0.000 3.450) (pt -0.050 3.450) (pt 0.050 3.550) (start 180.0) (sweep -90.0))
+      (pt 0 3.55)
+      (arc (pt 0.000 3.550) (pt -0.050 3.450) (pt 0.050 3.550) (start 180.0) (sweep 90.0))
+      (pt 0 3.45))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -9.25 -18)
+      (arc (pt -9.250 -18.000) (pt -9.270 -21.421) (pt -1.647 -13.798) (start 42.3) (sweep -174.1))
+      (pt -8 -20.45)
+      (pt -7.05 -21.3)
+      (pt 4.75 -18))))
+   (leg 1 (pt 0.000 0.000) (padstack 1))
+   (leg 2 (pt -7.000 0.000) (padstack 0))
+   (leg 5 (pt 14.600 -10.000) (padstack 3))
+   (leg 6 (pt 8.150 -10.000) (padstack 4))
+   (leg 7 (pt -15.250 -7.000) (padstack 5))
+   (leg 8 (pt -36.850 -10.000) (padstack 6))
+   (leg 9 (pt -43.300 -10.000) (padstack 7))
+   (leg L1 (pt -25.450 -3.840) (padstack 0))
+   (leg N1 (pt -34.050 -3.840) (padstack 0))
+   (padstack 0
+    (hole 1.6)
+    (plated true)
+    (pad (layer TCOP) (round 2.400))
+    (pad (layer INNER) (round 2.400))
+    (pad (layer BCOP) (round 2.400))
+   )
+   (padstack 1
+    (hole 1.6)
+    (plated true)
+    (pad (layer TCOP) (square 2.400))
+    (pad (layer INNER) (round 2.400))
+    (pad (layer BCOP) (square 2.400))
+   )
+   (padstack 3
+    (hole 3)
+    (plated false)
+    (pad (layer TCOP) (round 1.500))
+    (pad (layer INNER) (round 1.500))
+    (pad (layer BCOP) (round 1.500))
+   )
+   (padstack 4
+    (hole 3.2)
+    (plated false)
+    (pad (layer TCOP) (round 1.600))
+    (pad (layer INNER) (round 1.600))
+    (pad (layer BCOP) (round 1.600))
+   )
+   (padstack 5
+    (hole 3.6)
+    (plated false)
+    (pad (layer TCOP) (round 1.800))
+    (pad (layer INNER) (round 1.800))
+    (pad (layer BCOP) (round 1.800))
+   )
+   (padstack 6
+    (hole 3.2)
+    (plated false)
+    (pad (layer TCOP) (round 1.600))
+    (pad (layer INNER) (round 1.600))
+    (pad (layer BCOP) (round 1.600))
+   )
+   (padstack 7
+    (hole 3)
+    (plated false)
+    (pad (layer TCOP) (round 1.500))
+    (pad (layer INNER) (round 1.500))
+    (pad (layer BCOP) (round 1.500))
+   )
+   (model "CMF2.1131.12.stp"
+    (euler 90 0 0)
+    (offset -14.350000381469727 -18.100000381469727 9)
+   )
+  )
+ )
+)

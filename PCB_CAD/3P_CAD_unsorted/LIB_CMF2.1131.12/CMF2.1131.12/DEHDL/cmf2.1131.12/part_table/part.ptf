@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CMF2.1131.12'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "SCHURTER", "CMF2.1131.12" (!) = "", "CMF2113112", "Other", "693-CMF2.1131.12", "https://www.mouser.co.uk/ProductDetail/Schurter/CMF2.1131.12?qs=h0lr9otJFD4rz3xL8%2FqzdA%3D%3D", "", "", "Power Entry Connector Receptacle, Male Pins - Module IEC 320-C8 Panel Mount, Snap-In; Through Hole, Right Angle , 250VAC , 2.5A", "https://www.schurter.com/en/datasheet/typ_CMF2.pdf", "18 mm"
+END_PART
+
+END.

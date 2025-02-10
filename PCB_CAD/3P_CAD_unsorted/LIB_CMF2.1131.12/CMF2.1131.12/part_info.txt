@@ -1,0 +1,9 @@
+Manufacturer=SCHURTER
+PartNumber=CMF2.1131.12
+PartCategory=Connector
+PackageCategory=Other
+PinCount=4
+Version=2.1
+Released=2025-02-10 11:07:54
+Downloaded=2025-02-10 18:45:46
+3D=Y

@@ -1,0 +1,27 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model CMF2.1131.12
+#/794173/1502811/2.50/4/3/Connector
+DEF CMF2.1131.12 J 0 30 Y Y 1 F N
+F0 "J" 750 300 50 H V L CNN
+F1 "CMF2.1131.12" 750 200 50 H V L CNN
+F2 "CMF2113112" 750 100 50 H I L CNN
+F3 "https://www.schurter.com/en/datasheet/typ_CMF2.pdf" 750 0 50 H I L CNN
+F4 "Power Entry Connector Receptacle, Male Pins - Module IEC 320-C8 Panel Mount, Snap-In; Through Hole, Right Angle , 250VAC , 2.5A" 750 -100 50 H I L CNN "Description"
+F5 "18" 750 -200 50 H I L CNN "Height"
+F6 "SCHURTER" 750 -300 50 H I L CNN "Manufacturer_Name"
+F7 "CMF2.1131.12" 750 -400 50 H I L CNN "Manufacturer_Part_Number"
+F8 "693-CMF2.1131.12" 750 -500 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/Schurter/CMF2.1131.12?qs=h0lr9otJFD4rz3xL8%2FqzdA%3D%3D" 750 -600 50 H I L CNN "Mouser Price/Stock"
+F10 "" 750 -700 50 H I L CNN "Arrow Part Number"
+F11 "" 750 -800 50 H I L CNN "Arrow Price/Stock"
+DRAW
+X 1 1 900 -100 200 L 50 50 0 0 P
+X 2 2 900 0 200 L 50 50 0 0 P
+X L1 L1 0 -100 200 R 50 50 0 0 P
+X N1 N1 0 0 200 R 50 50 0 0 P
+P 5 0 1 6 200 100 700 100 700 -200 200 -200 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

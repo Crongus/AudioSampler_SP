@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "CMF2_1131_12"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2025-02-10-11:10:26)
+    (mountForm default
+        (footprintRef "CMF2113112")
+        (spec "System")
+    )
+)
