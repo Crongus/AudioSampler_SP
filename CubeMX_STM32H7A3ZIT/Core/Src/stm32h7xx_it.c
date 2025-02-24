@@ -45,8 +45,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-extern int mode;
-extern int drmode;
+extern volatile int mode;
+extern volatile int drmode;
 int switchFlag;
 /* USER CODE END PV */
 
@@ -345,7 +345,7 @@ void EXTI15_10_IRQHandler(void)
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 	// Col 1 and 2
 	interruptTest();
-	doEverythingFunction;
+	doEverythingFunction();
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(Keypad_C2_Pin);
   HAL_GPIO_EXTI_IRQHandler(Keypad_C1_Pin);
