@@ -39,11 +39,11 @@ void MX_SPDIFRX_Init(void)
   /* USER CODE END SPDIFRX_Init 1 */
   hspdif.Instance = SPDIFRX;
   hspdif.Init.InputSelection = SPDIFRX_INPUT_IN0;
-  hspdif.Init.Retries = SPDIFRX_MAXRETRIES_NONE;
+  hspdif.Init.Retries = SPDIFRX_MAXRETRIES_3;
   hspdif.Init.WaitForActivity = SPDIFRX_WAITFORACTIVITY_OFF;
   hspdif.Init.ChannelSelection = SPDIFRX_CHANNEL_A;
   hspdif.Init.DataFormat = SPDIFRX_DATAFORMAT_LSB;
-  hspdif.Init.StereoMode = SPDIFRX_STEREOMODE_DISABLE;
+  hspdif.Init.StereoMode = SPDIFRX_STEREOMODE_ENABLE;
   hspdif.Init.PreambleTypeMask = SPDIFRX_PREAMBLETYPEMASK_OFF;
   hspdif.Init.ChannelStatusMask = SPDIFRX_CHANNELSTATUS_OFF;
   hspdif.Init.ValidityBitMask = SPDIFRX_VALIDITYMASK_OFF;

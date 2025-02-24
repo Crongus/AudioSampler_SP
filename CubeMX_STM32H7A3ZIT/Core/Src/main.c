@@ -17,7 +17,6 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <SineWave.h>
 #include "main.h"
 #include "dma.h"
 #include "i2c.h"
@@ -55,6 +54,7 @@
 #define TEST_END 500000
 #define TEST_BEGIN (TEST_END - 500000)
 #define BUFFER_SIZE 50000
+#define SPDIF_BUFF_SIZE      4
 #define TX	1
 #define RX	0
 /* USER CODE END PM */
@@ -78,14 +78,15 @@ void processData(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-extern NAND_HandleTypeDef hnand1;
-int mode = RX;
-int drmode = 1;
+extern NAND_HandleTypeDef hnand1; // for nand flash init
+volatile int mode = RX;
+volatile int drmode = 1;
 extern int switchFlag;
 extern const uint16_t sineLookupTable[];
 static volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
 static volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
+
 /* USER CODE END 0 */
 
 /**
@@ -139,46 +140,31 @@ int main(void)
 	flashBoot();
 	DIX9211init();
 	int RXcnt;
+	extern SPDIFRX_HandleTypeDef hspdif; // for spdifrx init
+	__IO uint32_t spdifrxBuf[SPDIF_BUFF_SIZE] = {0};
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		if (drmode == 1) { // button = mode switch mode
-			if (mode == RX) {
-				for (RXcnt = 0; RXcnt < 80; RXcnt++) { // ~30 seconds at max is 50 ~45 seconds at 80
-					if (mode == TX) break;
-					if (drmode == 0) break; // For design review purposes
-					HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
-					for (int i = 0; i < BUFFER_SIZE; i++) {
-						*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
-					}
-				}
-			} else if (mode == TX) {
-				for (int j = 0; j < RXcnt; j++) {
-					if (mode == RX) break;
-					if (drmode == 0) break; // For design review purposes
-					for (int i = 0; i < BUFFER_SIZE; i++) {
-						adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
-					}
-					HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
-				}
+
+		for (RXcnt = 0; RXcnt < 20; RXcnt++) { // ~30 seconds at max is 50 ~45 seconds at 80
+			//if (mode == TX) break;
+			//if (drmode == 0) break; // For design review purposes
+			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
+				//HAL_I2S_Receive(&hi2s1, SDRAM_BANK_ADDR + 4*i*RXcnt, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
 			}
-		} else if (drmode == 0) { // just do 45 seconds mode
-			for (RXcnt = 0; RXcnt < 80; RXcnt++) { // ~30 seconds at max is 50
-				if (drmode == 1) break; // For design review purposes
-				HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
-				for (int i = 0; i < BUFFER_SIZE; i++) {
-					*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
-				}
+		}
+		for (int j = 0; j < RXcnt; j++) {
+			//if (mode == RX) break;
+			//if (drmode == 0) break; // For design review purposes
+			for (int i = 0; i < BUFFER_SIZE; i++) {
+				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+				//HAL_I2S_Transmit(&hi2s2, SDRAM_BANK_ADDR + 4*j*i, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
 			}
-			for (int j = 0; j < 80; j++) {
-				if (drmode == 1) break; // For design review purposes
-				for (int i = 0; i < BUFFER_SIZE; i++) {
-					adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
-				}
-				HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
-			}
+			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
 		}
     /* USER CODE END WHILE */
 
