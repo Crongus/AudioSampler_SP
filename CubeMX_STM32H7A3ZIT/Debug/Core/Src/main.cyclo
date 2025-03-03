@@ -1,8 +1,8 @@
-../Core/Src/main.c:96:5:main	5
-../Core/Src/main.c:188:6:SystemClock_Config	4
-../Core/Src/main.c:251:6:PeriphCommonClock_Config	2
-../Core/Src/main.c:279:13:MX_NVIC_Init	1
-../Core/Src/main.c:297:5:testFlash	1
-../Core/Src/main.c:310:6:testRAM	5
-../Core/Src/main.c:337:6:MPU_Config	1
-../Core/Src/main.c:388:6:Error_Handler	1
+../Core/Src/main.c:97:5:main	5
+../Core/Src/main.c:208:6:SystemClock_Config	4
+../Core/Src/main.c:271:6:PeriphCommonClock_Config	2
+../Core/Src/main.c:299:13:MX_NVIC_Init	1
+../Core/Src/main.c:317:5:testFlash	1
+../Core/Src/main.c:330:6:testRAM	5
+../Core/Src/main.c:357:6:MPU_Config	1
+../Core/Src/main.c:408:6:Error_Handler	1

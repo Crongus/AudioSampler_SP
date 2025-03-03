@@ -27,6 +27,7 @@
 #include "usb_device.h"
 #include "gpio.h"
 #include "fmc.h"
+#include "dataCompression.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -83,8 +84,8 @@ volatile int mode = RX;
 volatile int drmode = 1;
 extern int switchFlag;
 extern const uint16_t sineLookupTable[];
-static volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
-static volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
+
+static uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 
 /* USER CODE END 0 */
@@ -142,29 +143,48 @@ int main(void)
 	int RXcnt;
 	extern SPDIFRX_HandleTypeDef hspdif; // for spdifrx init
 	__IO uint32_t spdifrxBuf[SPDIF_BUFF_SIZE] = {0};
+	//uint8_t fart[BUFFER_SIZE];
+	volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-
+		uint16_t *fart;
+		uint16_t *fart2;
 		for (RXcnt = 0; RXcnt < 20; RXcnt++) { // ~30 seconds at max is 50 ~45 seconds at 80
 			//if (mode == TX) break;
 			//if (drmode == 0) break; // For design review purposes
 			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
-			for (int i = 0; i < BUFFER_SIZE; i++) {
-				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = adc_buf_i2s[i];
+			//adc_buf_i2s[0] = 0xABCD;
+
+			fart = depthReducer(adc_buf_i2s, BUFFER_SIZE);
+			fart2 = sampleDeletor(fart, BUFFER_SIZE/2);
+			free(fart);
+			// Data will be stored 8 bits at a time, going from right to left. so oldest 8 bits is leftmost
+			for (int i = 0; i < BUFFER_SIZE/4; i++) { // Skip every other sample for space purposes
+				// it used to be SDRAM_BANK_ADDR + (i*4)*RXcnt
+				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = fart2[i];
 				//HAL_I2S_Receive(&hi2s1, SDRAM_BANK_ADDR + 4*i*RXcnt, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
 			}
+			free(fart2);
 		}
 		for (int j = 0; j < RXcnt; j++) {
 			//if (mode == RX) break;
 			//if (drmode == 0) break; // For design review purposes
-			for (int i = 0; i < BUFFER_SIZE; i++) {
-				adc_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+			for (int i = 0; i < BUFFER_SIZE/4; i++) {
+				// it used to be SDRAM_BANK_ADDR + (i*4)*j
+				fart2[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt);
+				//adc_buf_i2s[2*i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
+				//adc_buf_i2s[2*i+1] = (adc_buf_i2s[2*i] & 0x00FF) << 8; // lower bits becomes the next clip
+				//adc_buf_i2s[2*i] = (adc_buf_i2s[2*i] & 0xFF00);
 				//HAL_I2S_Transmit(&hi2s2, SDRAM_BANK_ADDR + 4*j*i, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
 			}
-			HAL_I2S_Transmit(&hi2s2, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+			fart = depthExpander(fart2, BUFFER_SIZE/4);
+			fart2 = sampleInterpolator(fart, BUFFER_SIZE/2);
+			free(fart);
+			HAL_I2S_Transmit(&hi2s2, fart2, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+			free(fart2);
 		}
     /* USER CODE END WHILE */
 

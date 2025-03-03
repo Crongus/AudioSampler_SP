@@ -1,0 +1,4 @@
+../Core/Src/dataCompression.c:10:11:depthReducer	24	static
+../Core/Src/dataCompression.c:20:11:sampleDeletor	24	static
+../Core/Src/dataCompression.c:30:11:depthExpander	24	static
+../Core/Src/dataCompression.c:41:11:sampleInterpolator	24	static
