@@ -1,0 +1,6 @@
+../Core/Src/keypad.c:125:6:DriveAllRowPins.part.0	8	static
+../Core/Src/keypad.c:56:5:ReadOneColPin	8	static
+../Core/Src/keypad.c:87:6:DriveOneRowPin	0	static
+../Core/Src/keypad.c:125:6:DriveAllRowPins	8	static
+../Core/Src/keypad.c:24:5:GetKey	16	static
+../Core/Src/keypad.c:140:6:interruptTest	64	static

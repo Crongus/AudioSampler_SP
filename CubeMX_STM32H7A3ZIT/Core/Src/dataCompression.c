@@ -27,7 +27,7 @@ uint16_t *sampleDeletor(uint16_t *datain, int size) {
 	return ret;
 }
 
-uint16_t *depthExpander(uint16_t *datain, int size) {
+uint16_t *depthExpander(uint16_t *datain, int size) { // every odd datain[i] is being dropped
 	uint16_t *ret;
 	ret = malloc(size*2 * sizeof(uint16_t));
 	for (int i = 0; i < size*2; i+=2) {

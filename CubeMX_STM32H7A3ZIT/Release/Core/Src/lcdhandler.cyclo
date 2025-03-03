@@ -1,0 +1,4 @@
+../Core/Src/lcdhandler.c:19:6:LCD_Init	1
+../Core/Src/lcdhandler.c:50:6:DisplayClipsUpd	2
+../Core/Src/lcdhandler.c:80:6:DisplayModeUpd	4
+../Core/Src/lcdhandler.c:131:6:DisplayPitchUpd	4

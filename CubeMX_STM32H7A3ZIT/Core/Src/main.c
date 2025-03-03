@@ -152,38 +152,32 @@ int main(void)
 	while (1) {
 		uint16_t *fart;
 		uint16_t *fart2;
-		for (RXcnt = 0; RXcnt < 20; RXcnt++) { // ~30 seconds at max is 50 ~45 seconds at 80
-			//if (mode == TX) break;
-			//if (drmode == 0) break; // For design review purposes
-			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
-			//adc_buf_i2s[0] = 0xABCD;
-
+		/* RECEIVE MODE */
+		for (RXcnt = 0; RXcnt < 20; RXcnt++) {
+			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500);
+			// We must reduce the size
 			fart = depthReducer(adc_buf_i2s, BUFFER_SIZE);
+			// FURTHER REDUCE THE SIZE, KILL THEM IF YOU MUST
 			fart2 = sampleDeletor(fart, BUFFER_SIZE/2);
+			// free cause malloc in fuction
 			free(fart);
-			// Data will be stored 8 bits at a time, going from right to left. so oldest 8 bits is leftmost
-			for (int i = 0; i < BUFFER_SIZE/4; i++) { // Skip every other sample for space purposes
-				// it used to be SDRAM_BANK_ADDR + (i*4)*RXcnt
+			for (int i = 0; i < BUFFER_SIZE/4; i++) {
 				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = fart2[i];
-				//HAL_I2S_Receive(&hi2s1, SDRAM_BANK_ADDR + 4*i*RXcnt, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE I2S PERIPHERAL TO THE INPUT BUFFER
 			}
 			free(fart2);
 		}
+		/* TRANSMIT MODE */
 		for (int j = 0; j < RXcnt; j++) {
-			//if (mode == RX) break;
-			//if (drmode == 0) break; // For design review purposes
 			for (int i = 0; i < BUFFER_SIZE/4; i++) {
-				// it used to be SDRAM_BANK_ADDR + (i*4)*j
-				fart2[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt);
-				//adc_buf_i2s[2*i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
-				//adc_buf_i2s[2*i+1] = (adc_buf_i2s[2*i] & 0x00FF) << 8; // lower bits becomes the next clip
-				//adc_buf_i2s[2*i] = (adc_buf_i2s[2*i] & 0xFF00);
-				//HAL_I2S_Transmit(&hi2s2, SDRAM_BANK_ADDR + 4*j*i, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+				fart2[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
 			}
+			// We must increase the size
 			fart = depthExpander(fart2, BUFFER_SIZE/4);
+			// FURTHER INCREASE THE SIZE, RAISE THE DEAD IF YOU MUST
 			fart2 = sampleInterpolator(fart, BUFFER_SIZE/2);
+			// free cause malloc in function
 			free(fart);
-			HAL_I2S_Transmit(&hi2s2, fart2, BUFFER_SIZE, 1500); //START THE DMA AND STREAM DATA FROM THE OUTPUT BUFFER TO THE I2S PERIPHERAL
+			HAL_I2S_Transmit(&hi2s2, fart2, BUFFER_SIZE, 1500);
 			free(fart2);
 		}
     /* USER CODE END WHILE */
