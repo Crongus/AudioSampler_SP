@@ -27,7 +27,6 @@
 #include "usb_device.h"
 #include "gpio.h"
 #include "fmc.h"
-#include "dataCompression.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -150,23 +149,41 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
+		if (mode == RX)
+			HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+		else
+			HAL_I2S_Transmit_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+
+
+
 		uint16_t *fart;
 		uint16_t *fart2;
 		/* RECEIVE MODE */
+		//HAL_DMA_Start(hi2s1)
+		//HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+		HAL_I2S_Receive_IT(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+		int i = 0;
+		int c = 0;
+		while(1) {
+			i = hi2s1.ErrorCode;
+			c = i;
+		}
+		printf("%d", i);
 		for (RXcnt = 0; RXcnt < 20; RXcnt++) {
-			HAL_I2S_Receive(&hi2s1, adc_buf_i2s, BUFFER_SIZE, 1500);
-			// We must reduce the size
+			HAL_I2S_Receive(&hihe size
 			fart = depthReducer(adc_buf_i2s, BUFFER_SIZE);
-			// FURTHER REDUCE THE SIZE, KILL THEM IF YOU MUST
-			fart2 = sampleDeletor(fart, BUFFER_SIZE/2);
-			// free cause malloc in fuction
+			// FURTHER REDUCE  tloc in fuction
 			free(fart);
 			for (int i = 0; i < BUFFER_SIZE/4; i++) {
-				*(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = fart2[i];
+				*(__IO uint16THE SIZE, KILL THEM IF YOU MUST
+			fart2 = sampleDeletor(fart, BUFFER_SIZE/2);
+			// free cause mal2s1, adc_buf_i2s, BUFFER_SIZE, 1500);
+			// We must reduce_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = fart2[i];
 			}
 			free(fart2);
 		}
 		/* TRANSMIT MODE */
+
 		for (int j = 0; j < RXcnt; j++) {
 			for (int i = 0; i < BUFFER_SIZE/4; i++) {
 				fart2[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
@@ -180,6 +197,7 @@ int main(void)
 			HAL_I2S_Transmit(&hi2s2, fart2, BUFFER_SIZE, 1500);
 			free(fart2);
 		}
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
