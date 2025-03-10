@@ -83,7 +83,7 @@ volatile int mode = RX;
 volatile int drmode = 1;
 extern int switchFlag;
 extern const uint16_t sineLookupTable[];
-
+volatile int errFlag = 0;
 static uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 
@@ -149,54 +149,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		if (mode == RX)
 			HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
-		else
-			HAL_I2S_Transmit_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+			//while (mode == RX);
+			HAL_I2S_Transmit_DMA(&hi2s2, adc_buf_i2s, BUFFER_SIZE);
+			//while (mode == TX);
 
-
-
-		uint16_t *fart;
-		uint16_t *fart2;
-		/* RECEIVE MODE */
-		//HAL_DMA_Start(hi2s1)
-		//HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
-		HAL_I2S_Receive_IT(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
-		int i = 0;
-		int c = 0;
-		while(1) {
-			i = hi2s1.ErrorCode;
-			c = i;
-		}
-		printf("%d", i);
-		for (RXcnt = 0; RXcnt < 20; RXcnt++) {
-			HAL_I2S_Receive(&hihe size
-			fart = depthReducer(adc_buf_i2s, BUFFER_SIZE);
-			// FURTHER REDUCE  tloc in fuction
-			free(fart);
-			for (int i = 0; i < BUFFER_SIZE/4; i++) {
-				*(__IO uint16THE SIZE, KILL THEM IF YOU MUST
-			fart2 = sampleDeletor(fart, BUFFER_SIZE/2);
-			// free cause mal2s1, adc_buf_i2s, BUFFER_SIZE, 1500);
-			// We must reduce_t*) (SDRAM_BANK_ADDR + (i*4)*RXcnt) = fart2[i];
-			}
-			free(fart2);
-		}
-		/* TRANSMIT MODE */
-
-		for (int j = 0; j < RXcnt; j++) {
-			for (int i = 0; i < BUFFER_SIZE/4; i++) {
-				fart2[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + (i*4)*j);
-			}
-			// We must increase the size
-			fart = depthExpander(fart2, BUFFER_SIZE/4);
-			// FURTHER INCREASE THE SIZE, RAISE THE DEAD IF YOU MUST
-			fart2 = sampleInterpolator(fart, BUFFER_SIZE/2);
-			// free cause malloc in function
-			free(fart);
-			HAL_I2S_Transmit(&hi2s2, fart2, BUFFER_SIZE, 1500);
-			free(fart2);
-		}
+	}
 
     /* USER CODE END WHILE */
 
@@ -209,9 +167,15 @@ int main(void)
 		//HAL_NAND_Read_Page_8b
 		//uint8_t str[] = "Hello World\r\n";
 		//CDC_Transmit_HS(str, sizeof(str));
-	}
+
   /* USER CODE END 3 */
 }
+
+void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s) {
+
+	errFlag = 1;
+}
+
 
 /**
   * @brief System Clock Configuration
