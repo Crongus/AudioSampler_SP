@@ -12,7 +12,7 @@
 #include "usbd_cdc_if.h"
 
 /*
- * Returns an int 1-20. Read left to right with top left=1.
+ * Returns an int 0-19. Read left to right with top left=0.
  * Returns -1 if no key was found (this will happen if called without any press detected,
  * or more commonly due to weak pull-up causing a phantom press detection upon key release).
  * This function has NO KEY ROLLOVER. Simultaneous presses should be considered undefined

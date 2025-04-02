@@ -7,6 +7,23 @@
 
 #include "dataCompression.h"
 
+uint16_t *channelDeletor(uint16_t *datain, int size) {
+	uint16_t *ret;
+	ret = malloc(size/2 * sizeof(uint16_t));
+	for (int i = 0; i < size/2; i++) {
+		ret[i] = datain[2*i]; // Keep even indexed channels
+	}
+}
+
+uint16_t *channelRestorer(uint16_t *datain, int size) {
+	uint16_t *ret;
+	ret = malloc(size*2 * sizeof(uint16_t));
+	for (int i = 0; i < size/2 - 1; i++) {
+			ret[i] = datain[i];
+			ret[i+1] = datain[i];
+	}
+}
+
 uint16_t *depthReducer(uint16_t *datain, int size) {
 	uint16_t *ret;
 	ret = malloc(size/2 * sizeof(uint16_t));

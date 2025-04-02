@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-sfrviewstate={"fFavorites"\:{"fLists"\:{"SPDIFRX"\:["STM32H7A3/SPDIFRX/DR_01","STM32H7A3/SPDIFRX/DR_10","STM32H7A3/SPDIFRX/DR_00"]}},"fProperties"\:{"fNodeProperties"\:{"STM32H7A3/SPDIFRX/DR_10"\:{"fNodeProperties"\:{"autoupdate"\:"false"}}}}}
+sfrviewstate={"fFavorites"\:{"fLists"\:{"DMA1"\:["STM32H7A3/DMA1"],"SPI1"\:["STM32H7A3/SPI1"],"SPI2"\:["STM32H7A3/SPI2"]}},"fProperties"\:{"fNodeProperties"\:{"STM32H7A3/SPDIFRX/DR_10"\:{"fNodeProperties"\:{"autoupdate"\:"false"}}}}}

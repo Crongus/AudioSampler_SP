@@ -38,6 +38,7 @@
 #include "stm32h7xx_it.h"
 #include "DIX9211init.h"
 #include "SineWave.h"
+#include "dataCompression.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,10 +52,11 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define TEST_END 500000
-#define TEST_BEGIN (TEST_END - 500000)
-#define BUFFER_SIZE 50000
-#define SPDIF_BUFF_SIZE      4
+#define TEST_END 50
+#define TEST_BEGIN (TEST_END - 50)
+#define BUFFER_SIZE 100
+#define SPDIF_BUFF_SIZE  4
+#define STEP_SIZE	2
 #define TX	1
 #define RX	0
 /* USER CODE END PM */
@@ -83,10 +85,15 @@ volatile int mode = RX;
 volatile int drmode = 1;
 extern int switchFlag;
 extern const uint16_t sineLookupTable[];
-
-static uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
+volatile int errFlag = 0;
+volatile int RxCplt = 0;
+volatile int TxCplt = 0;
+volatile int globalVar = 0;
+int memtest = 1;
+int clipGo[12];
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
-
+volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
+volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT
 /* USER CODE END 0 */
 
 /**
@@ -139,27 +146,30 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	flashBoot();
 	DIX9211init();
-	int RXcnt;
+	int RxCnt = 0;
+	int TxCnt = 0;
 	extern SPDIFRX_HandleTypeDef hspdif; // for spdifrx init
 	__IO uint32_t spdifrxBuf[SPDIF_BUFF_SIZE] = {0};
-	//uint8_t fart[BUFFER_SIZE];
-	volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
+	//uint8_t fart[BUFFER_SIZE]
+	uint16_t *fart1;
+	//testRAM();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	//*(__IO uint16_t*) (SDRAM_BANK_ADDR) = 0xAAAA;
+	HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
+	HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	testRAM();
+	//HAL_I2S_DMAPause(&hi2s2);
+	//HAL_I2S_DMAResume(&hi2s2);
 	while (1) {
-			HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
-			//while (mode == RX);
-			HAL_I2S_Transmit_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
-			//while (mode == TX);
 
-		}
+	}
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
 
 		// The following 4 comments are here for reference and/or copy pasting from
 
@@ -284,6 +294,112 @@ static void MX_NVIC_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s) {
+	if (mode == TX) {
+		HAL_I2S_DMAPause(&hi2s1);
+		HAL_I2S_DMAResume(&hi2s2);
+	}
+	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i++) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * RxCplt)) = adc_buf_i2s[i];
+	}
+
+	//HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	RxCplt++;
+	globalVar++;
+}
+void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s) {
+	if (mode == RX) {
+		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DMAResume(&hi2s1);
+	}
+	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i++) {
+		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * TxCplt));
+	}
+	TxCplt++;
+	globalVar++;
+}
+void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
+	//RxCplt = 5;
+	for(int i = 0; i < BUFFER_SIZE/2; i++) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * RxCplt)) = adc_buf_i2s[i];
+	}
+}
+void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
+	//TxCplt = 5;
+	for(int i = 0; i < BUFFER_SIZE/2; i++) {
+		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * TxCplt));
+	}
+}
+void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s) {
+	errFlag = 1;
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	int key = GetKey();
+	switch (key) { // Assumes key cant be changed anywhere else
+		case 0:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 1:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 2:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 3:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 4:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 5:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 6:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 7:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 8:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 9:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 10:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 11:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 12:
+			clipGo[key] = !clipGo[key];
+			break;
+		case 13:
+			break;
+		case 14:
+			break;
+		case 15:
+			break;
+		case 16:
+			break;
+		case 17:
+			break;
+		case 18:
+			break;
+		case 19:
+			break;
+		default:
+			break;
+	}
+	if (key == 19) {
+		HAL_Delay(10);
+		mode = !mode;
+	}
+
+}
+
 int testFlash(uint8_t addr, uint8_t data) {
 	int ret = 1;
 	//NAND_AddressTypeDef Address;
@@ -298,19 +414,20 @@ int testFlash(uint8_t addr, uint8_t data) {
 }
 
 void testRAM(void) {
-	int memtest = 1;
+
 	volatile uint16_t buffer[TEST_END - TEST_BEGIN];
 	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		*(__IO uint16_t*) (0xC0000000 + 4 * i) = 0xAAAA; // write to a bunch of memory in the ram
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + 4 * i) = 0x0000; // write to a bunch of memory in the ram
 	}
 	for (volatile int i = TEST_BEGIN; i < TEST_END; i++) {
-		buffer[i - TEST_BEGIN] = *(__IO uint16_t*) (0xC0000000 + 4 * i); // read from the same memory
-		if (buffer[i - TEST_BEGIN] == 0xAAAA) { // check if its good data
+		buffer[i - TEST_BEGIN] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + 4 * i); // read from the same memory
+		if (buffer[i - TEST_BEGIN] == 0x0000) { // check if its good data
 
 		} else {
 			memtest = 0;
 		}
 	}
+
 	if (memtest) { //printfs
 		uint8_t testr[] = "Total RAM Success\r\n";
 		CDC_Transmit_HS(testr, sizeof(testr));
@@ -318,6 +435,7 @@ void testRAM(void) {
 		uint8_t testr[] = "Partial RAM Failure\r\n";
 		CDC_Transmit_HS(testr, sizeof(testr));
 	}
+
 }
 
 /* USER CODE END 4 */

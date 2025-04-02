@@ -221,12 +221,12 @@ void EXTI2_IRQHandler(void)
   /* USER CODE BEGIN EXTI2_IRQn 0 */
 	// Col 5
 	//interruptTest();
-	int key = GetKey();
-	if (key == 19) {
-		mode = !mode;
-	} else if (key == 18) {
-		drmode = !drmode;
-	}
+	//int key = GetKey();
+	//if (key == 19) {
+	//	mode = !mode;
+	//} else if (key == 18) {
+	//	drmode = !drmode;
+	//}
   /* USER CODE END EXTI2_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(Keypad_C5_Pin);
   /* USER CODE BEGIN EXTI2_IRQn 1 */

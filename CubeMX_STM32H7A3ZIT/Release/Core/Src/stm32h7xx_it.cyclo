@@ -17,7 +17,7 @@
 ../Core/Src/stm32h7xx_it.c:388:6:OTG_HS_IRQHandler	1
 ../Core/Src/stm32h7xx_it.c:402:6:SPDIF_RX_IRQHandler	1
 ../Core/Src/stm32h7xx_it.c:415:6:clearAllInterrupts	1
-../Core/Src/stm32h7xx_it.c:219:6:EXTI2_IRQHandler	3
+../Core/Src/stm32h7xx_it.c:219:6:EXTI2_IRQHandler	1
 ../Core/Src/stm32h7xx_it.c:240:6:EXTI3_IRQHandler	1
 ../Core/Src/stm32h7xx_it.c:284:6:EXTI9_5_IRQHandler	1
 ../Core/Src/stm32h7xx_it.c:431:6:doEverythingFunction	5

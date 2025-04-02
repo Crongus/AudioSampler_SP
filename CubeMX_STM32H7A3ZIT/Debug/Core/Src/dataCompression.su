@@ -1,4 +1,6 @@
-../Core/Src/dataCompression.c:10:11:depthReducer	24	static
-../Core/Src/dataCompression.c:20:11:sampleDeletor	24	static
-../Core/Src/dataCompression.c:30:11:depthExpander	24	static
-../Core/Src/dataCompression.c:41:11:sampleInterpolator	24	static
+../Core/Src/dataCompression.c:10:11:channelDeletor	24	static
+../Core/Src/dataCompression.c:18:11:channelRestorer	24	static
+../Core/Src/dataCompression.c:27:11:depthReducer	24	static
+../Core/Src/dataCompression.c:37:11:sampleDeletor	24	static
+../Core/Src/dataCompression.c:47:11:depthExpander	24	static
+../Core/Src/dataCompression.c:58:11:sampleInterpolator	24	static
