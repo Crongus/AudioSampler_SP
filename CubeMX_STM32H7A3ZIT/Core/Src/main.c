@@ -93,6 +93,7 @@ volatile int TxCplt = 0;
 volatile int globalVar = 0;
 int memtest = 1;
 int clipGo[12];
+int clipStore[12];
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
 volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT [BUFFER_SIZE]
@@ -304,9 +305,9 @@ void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s) {
 		HAL_I2S_DMAPause(&hi2s1);
 		HAL_I2S_DMAResume(&hi2s2);
 	}
-	channelDeletor(adc_buf_i2s + BUFFER_SIZE/2, channelbuf + CSIZE1/2, BUFFER_SIZE/2);
-	for(int i = CSIZE1/2; i < CSIZE1; i++) {
-		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * RxCplt)) = channelbuf[i];
+	//channelDeletor(adc_buf_i2s + BUFFER_SIZE/2, channelbuf + CSIZE1/2, BUFFER_SIZE/2);
+	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i+=2) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i/2 + (BUFFER_SIZE/2) * RxCplt)) = adc_buf_i2s[i];
 	}
 
 	//HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
@@ -319,26 +320,26 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s) {
 		HAL_I2S_DMAResume(&hi2s1);
 	}
 
-	for(int i = CSIZE1/2; i < CSIZE1; i++) {
-		channelbuf[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * TxCplt));
+	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i+=2) {
+		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i/2 + (BUFFER_SIZE/2) * TxCplt));
 	}
-	channelRestorer(channelbuf + CSIZE1/2, dac_buf_i2s + BUFFER_SIZE/2, CSIZE1);
+	//channelRestorer(channelbuf + CSIZE1/2, dac_buf_i2s + BUFFER_SIZE/2, CSIZE1);
 	TxCplt++;
 	globalVar++;
 }
 void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
 	//RxCplt = 5;
-	channelDeletor(adc_buf_i2s, channelbuf, BUFFER_SIZE/2); // Fills
-	for(int i = 0; i < CSIZE1/2; i++) {
-		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * RxCplt)) = channelbuf[i];
+	//channelDeletor(adc_buf_i2s, channelbuf, BUFFER_SIZE/2); // Fills
+	for(int i = 0; i < BUFFER_SIZE/2; i+=2) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i/2 + (BUFFER_SIZE/2) * RxCplt)) = adc_buf_i2s[i];
 	}
 }
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
 	//TxCplt = 5;
-	for(int i = 0; i < CSIZE1/2; i++) {
-		channelbuf[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * TxCplt));
+	for(int i = 0; i < BUFFER_SIZE/2; i+=2) {
+		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i/2 + (BUFFER_SIZE/2) * TxCplt));
 	}
-	channelRestorer(channelbuf, dac_buf_i2s, CSIZE1);
+	// channelRestorer(channelbuf, dac_buf_i2s, CSIZE1);
 }
 void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s) {
 	errFlag = 1;
@@ -346,9 +347,15 @@ void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	int key = GetKey();
-	switch (key) { // Assumes key cant be changed anywhere else
+	if (key <= 12 && key >= 0) {
+		if (mode == TX) clipGo[key] = !clipGo[key];
+		if (mode == RX) clipStore[key] = !clipStore[key];
+	}
+	/*switch (key) { // Assumes key cant be changed anywhere else
 		case 0:
-			clipGo[key] = !clipGo[key];
+			if (mode == TX) clipGo[key] = !clipGo[key];
+			if (mode == RX) clipStore[key] = !clipStore[key];
+			else
 			break;
 		case 1:
 			clipGo[key] = !clipGo[key];
@@ -402,9 +409,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			break;
 		default:
 			break;
-	}
+	} */
 	if (key == 19) {
 		HAL_Delay(10);
+		for (int i = 0; i < 12; i++) {
+			clipGo[i] = 0;
+			clipStore[i] = 0;
+		}
 		mode = !mode;
 	}
 
