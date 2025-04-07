@@ -54,7 +54,7 @@
 /* USER CODE BEGIN PM */
 #define TEST_END 50
 #define TEST_BEGIN (TEST_END - 50)
-#define BUFFER_SIZE 12
+#define BUFFER_SIZE 16
 #define CSIZE1 BUFFER_SIZE/2
 #define CSIZE2 CSIZE1/2
 #define SPDIF_BUFF_SIZE  4
@@ -95,9 +95,9 @@ int memtest = 1;
 int clipGo[12];
 uint8_t dataReadyFlag=0; //FLAG TO START PROCESSING
 volatile uint16_t adc_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO INPUT
-volatile uint16_t *dac_buf_i2s; //ARRAY FOR AUDIO OUTPUT [BUFFER_SIZE]
-volatile uint16_t *channelbuf; // CSIZE1
-volatile uint16_t *depthbuf; // CSIZE2
+volatile uint16_t dac_buf_i2s[BUFFER_SIZE]; //ARRAY FOR AUDIO OUTPUT [BUFFER_SIZE]
+volatile uint16_t channelbuf[CSIZE1]; // CSIZE1
+volatile uint16_t depthbuf[CSIZE2]; // CSIZE2
 
 /* USER CODE END 0 */
 
@@ -304,8 +304,9 @@ void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s) {
 		HAL_I2S_DMAPause(&hi2s1);
 		HAL_I2S_DMAResume(&hi2s2);
 	}
-	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i++) {
-		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * RxCplt)) = adc_buf_i2s[i];
+	channelDeletor(adc_buf_i2s + BUFFER_SIZE/2, channelbuf + CSIZE1/2, BUFFER_SIZE/2);
+	for(int i = CSIZE1/2; i < CSIZE1; i++) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * RxCplt)) = channelbuf[i];
 	}
 
 	//HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
@@ -317,24 +318,27 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s) {
 		HAL_I2S_DMAPause(&hi2s2);
 		HAL_I2S_DMAResume(&hi2s1);
 	}
-	for(int i = BUFFER_SIZE/2; i < BUFFER_SIZE; i++) {
-		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * TxCplt));
+
+	for(int i = CSIZE1/2; i < CSIZE1; i++) {
+		channelbuf[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * TxCplt));
 	}
+	channelRestorer(channelbuf + CSIZE1/2, dac_buf_i2s + BUFFER_SIZE/2, CSIZE1);
 	TxCplt++;
 	globalVar++;
 }
 void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
 	//RxCplt = 5;
-	channelbuf = channelDeletor(adc_buf_i2s, BUFFER_SIZE/2);
-	for(int i = 0; i < BUFFER_SIZE/2; i++) {
-		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * RxCplt)) = adc_buf_i2s[i];
+	channelDeletor(adc_buf_i2s, channelbuf, BUFFER_SIZE/2); // Fills
+	for(int i = 0; i < CSIZE1/2; i++) {
+		*(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * RxCplt)) = channelbuf[i];
 	}
 }
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s) {
 	//TxCplt = 5;
-	for(int i = 0; i < BUFFER_SIZE/2; i++) {
-		dac_buf_i2s[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (BUFFER_SIZE) * TxCplt));
+	for(int i = 0; i < CSIZE1/2; i++) {
+		channelbuf[i] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + STEP_SIZE*(i + (CSIZE1) * TxCplt));
 	}
+	channelRestorer(channelbuf, dac_buf_i2s, CSIZE1);
 }
 void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s) {
 	errFlag = 1;

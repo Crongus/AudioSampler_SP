@@ -1,6 +1,6 @@
-../Core/Src/dataCompression.c:10:11:channelDeletor	4
-../Core/Src/dataCompression.c:18:11:channelRestorer	3
-../Core/Src/dataCompression.c:27:11:depthReducer	4
-../Core/Src/dataCompression.c:37:11:sampleDeletor	4
-../Core/Src/dataCompression.c:47:11:depthExpander	3
-../Core/Src/dataCompression.c:58:11:sampleInterpolator	7
+../Core/Src/dataCompression.c:12:6:channelDeletor	3
+../Core/Src/dataCompression.c:21:6:channelRestorer	3
+../Core/Src/dataCompression.c:30:11:depthReducer	4
+../Core/Src/dataCompression.c:40:11:sampleDeletor	4
+../Core/Src/dataCompression.c:50:11:depthExpander	3
+../Core/Src/dataCompression.c:61:11:sampleInterpolator	7

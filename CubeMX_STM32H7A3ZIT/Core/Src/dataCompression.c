@@ -7,20 +7,23 @@
 
 #include "dataCompression.h"
 
-uint16_t *channelDeletor(uint16_t *datain, int size) {
-	uint16_t *ret;
-	ret = malloc(size/2 * sizeof(uint16_t));
+// Size is the size of the input buffer
+// Fills half of size of the output buffer
+void channelDeletor(uint16_t *datain, uint16_t *dataout, int size) {
+	//uint16_t *ret;
+	//ret = malloc(size/2 * sizeof(uint16_t));
 	for (int i = 0; i < size/2; i++) {
-		ret[i] = datain[2*i]; // Keep even indexed channels
+		dataout[i] = datain[2*i]; // Keep even indexed channels
 	}
+	//return 0;
 }
-
-uint16_t *channelRestorer(uint16_t *datain, int size) {
-	uint16_t *ret;
-	ret = malloc(size*2 * sizeof(uint16_t));
+// Size is the size of the input buffer
+void channelRestorer(uint16_t *datain, uint16_t *dataout, int size) {
+	//uint16_t *ret;
+	//ret = malloc(size*2 * sizeof(uint16_t));
 	for (int i = 0; i < size/2 - 1; i++) {
-			ret[i] = datain[i];
-			ret[i+1] = datain[i];
+			dataout[2*i] = datain[i];
+			dataout[2*i+1] = datain[i];
 	}
 }
 
