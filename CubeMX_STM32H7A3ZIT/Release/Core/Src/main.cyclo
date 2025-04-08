@@ -1,0 +1,12 @@
+../Core/Src/main.c:209:6:SystemClock_Config	4
+../Core/Src/main.c:272:6:PeriphCommonClock_Config	2
+../Core/Src/main.c:318:6:HAL_I2S_RxCpltCallback	7
+../Core/Src/main.c:342:6:HAL_I2S_TxCpltCallback	7
+../Core/Src/main.c:370:6:HAL_I2S_RxHalfCpltCallback	4
+../Core/Src/main.c:381:6:HAL_I2S_TxHalfCpltCallback	4
+../Core/Src/main.c:396:6:HAL_I2S_ErrorCallback	1
+../Core/Src/main.c:400:6:HAL_GPIO_EXTI_Callback	8
+../Core/Src/main.c:484:5:testFlash	1
+../Core/Src/main.c:497:6:testRAM	7
+../Core/Src/main.c:109:5:main	5
+../Core/Src/main.c:577:6:Error_Handler	1

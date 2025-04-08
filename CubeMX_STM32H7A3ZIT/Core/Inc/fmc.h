@@ -36,7 +36,7 @@ extern SDRAM_HandleTypeDef hsdram1;
 
 /* USER CODE BEGIN Private defines */
 #define SDRAM_BANK_ADDR 				0xC0000000
-#define SDRAM_C0_BASE					SDRAM_BANK_ADDR + 0x0
+#define SDRAM_CX_BASE(clip)				SDRAM_BANK_ADDR + clip*1000000
 #define SDRAM_C1_BASE					SDRAM_BANK_ADDR + 1000000 // 1 MByte
 #define SDRAM_C2_BASE					SDRAM_BANK_ADDR + 2000000 // 2 MByte
 #define SDRAM_C3_BASE					SDRAM_BANK_ADDR + 3000000 // 3 MByte

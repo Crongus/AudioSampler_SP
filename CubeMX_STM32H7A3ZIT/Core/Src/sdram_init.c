@@ -74,6 +74,9 @@ void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram,
 	/* Send the command twice*/
 	HAL_SDRAM_SendCommand(hsdram, Command, SDRAM_TIMEOUT);
 	//HAL_SDRAM_SendCommand(hsdram, Command, SDRAM_TIMEOUT);
+	/* Program FMC auto refresh */
+	hsdram->Instance->SDRTR |= 980 << 1;
+
 
 }
 
