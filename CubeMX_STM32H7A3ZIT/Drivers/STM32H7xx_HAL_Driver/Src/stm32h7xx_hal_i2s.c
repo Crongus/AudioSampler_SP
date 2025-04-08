@@ -285,7 +285,7 @@ HAL_StatusTypeDef HAL_I2S_Init(I2S_HandleTypeDef *hi2s)
   assert_param(IS_I2S_STANDARD(hi2s->Init.Standard));
   assert_param(IS_I2S_DATA_FORMAT(hi2s->Init.DataFormat));
   assert_param(IS_I2S_MCLK_OUTPUT(hi2s->Init.MCLKOutput));
-  assert_param(IS_I2S_AUDIO_FREQ(hi2s->Init.AudioFreq));
+  //assert_param(IS_I2S_AUDIO_FREQ(hi2s->Init.AudioFreq));
   assert_param(IS_I2S_CPOL(hi2s->Init.CPOL));
   assert_param(IS_I2S_FIRST_BIT(hi2s->Init.FirstBit));
   assert_param(IS_I2S_WS_INVERSION(hi2s->Init.WSInversion));

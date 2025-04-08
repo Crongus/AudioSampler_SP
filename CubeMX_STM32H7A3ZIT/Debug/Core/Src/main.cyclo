@@ -7,8 +7,8 @@
 ../Core/Src/main.c:370:6:HAL_I2S_RxHalfCpltCallback	5
 ../Core/Src/main.c:381:6:HAL_I2S_TxHalfCpltCallback	5
 ../Core/Src/main.c:396:6:HAL_I2S_ErrorCallback	1
-../Core/Src/main.c:400:6:HAL_GPIO_EXTI_Callback	9
-../Core/Src/main.c:484:5:testFlash	1
-../Core/Src/main.c:497:6:testRAM	5
-../Core/Src/main.c:526:6:MPU_Config	1
-../Core/Src/main.c:577:6:Error_Handler	1
+../Core/Src/main.c:400:6:HAL_GPIO_EXTI_Callback	12
+../Core/Src/main.c:504:5:testFlash	1
+../Core/Src/main.c:517:6:testRAM	5
+../Core/Src/main.c:546:6:MPU_Config	1
+../Core/Src/main.c:597:6:Error_Handler	1

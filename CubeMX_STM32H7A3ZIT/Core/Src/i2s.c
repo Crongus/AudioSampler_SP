@@ -76,7 +76,7 @@ void MX_I2S2_Init(void)
   hi2s2.Init.Standard = I2S_STANDARD_PHILIPS;
   hi2s2.Init.DataFormat = I2S_DATAFORMAT_16B;
   hi2s2.Init.MCLKOutput = I2S_MCLKOUTPUT_ENABLE;
-  hi2s2.Init.AudioFreq = I2S_AUDIOFREQ_8K;
+  hi2s2.Init.AudioFreq = 8000UL;
   hi2s2.Init.CPOL = I2S_CPOL_LOW;
   hi2s2.Init.FirstBit = I2S_FIRSTBIT_MSB;
   hi2s2.Init.WSInversion = I2S_WS_INVERSION_DISABLE;
@@ -270,5 +270,104 @@ void HAL_I2S_MspDeInit(I2S_HandleTypeDef* i2sHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void changeFreq(I2S_HandleTypeDef *hi2s, unsigned long freq) {
+	hi2s->Init.AudioFreq = freq;
+	uint32_t i2sdiv;
+	  uint32_t i2sodd;
+	  uint32_t packetlength;
+	  uint32_t tmp;
+	  uint32_t i2sclk;
+	  uint32_t ispcm;
+	if (IS_I2S_MASTER(hi2s->Init.Mode))
+	  {
+		/*------------------------- I2SDIV and ODD Calculation ---------------------*/
+		/* If the requested audio frequency is not the default, compute the prescaler */
+		if (hi2s->Init.AudioFreq != I2S_AUDIOFREQ_DEFAULT)
+		{
+		  /* Check the frame length (For the Prescaler computing) ********************/
+		  if (hi2s->Init.DataFormat != I2S_DATAFORMAT_16B)
+		  {
+			/* Channel length is 32 bits */
+			packetlength = 2UL;
+		  }
+		  else
+		  {
+			/* Channel length is 16 bits */
+			packetlength = 1UL;
+		  }
 
+		  /* Check if PCM standard is used */
+		  if ((hi2s->Init.Standard == I2S_STANDARD_PCM_SHORT) ||
+			  (hi2s->Init.Standard == I2S_STANDARD_PCM_LONG))
+		  {
+			ispcm = 1UL;
+		  }
+		  else
+		  {
+			ispcm = 0UL;
+		  }
+
+		  /* Get the source clock value: based on System Clock value */
+	#if defined (SPI_SPI6I2S_SUPPORT)
+		  if (hi2s->Instance == SPI6)
+		  {
+			/* SPI6 source clock */
+			i2sclk = HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_SPI6);
+		  }
+		  else
+		  {
+			/* SPI1,SPI2 and SPI3 share the same source clock */
+			i2sclk = HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_SPI123);
+		  }
+	#else
+		  /* SPI1,SPI2 and SPI3 share the same source clock */
+		  i2sclk = HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_SPI123);
+	#endif  /* SPI_SPI6I2S_SUPPORT */
+
+		  /* Compute the Real divider depending on the MCLK output state, with a floating point */
+		  if (hi2s->Init.MCLKOutput == I2S_MCLKOUTPUT_ENABLE)
+		  {
+			/* MCLK output is enabled */
+			tmp = (uint32_t)((((i2sclk / (256UL >> ispcm)) * 10UL) / hi2s->Init.AudioFreq) + 5UL);
+		  }
+		  else
+		  {
+			/* MCLK output is disabled */
+			tmp = (uint32_t)((((i2sclk / ((32UL >> ispcm) * packetlength)) * 10UL) / hi2s->Init.AudioFreq) + 5UL);
+		  }
+
+		  /* Remove the flatting point */
+		  tmp = tmp / 10UL;
+
+		  /* Check the parity of the divider */
+		  i2sodd = (uint32_t)(tmp & (uint32_t)1UL);
+
+		  /* Compute the i2sdiv prescaler */
+		  i2sdiv = (uint32_t)((tmp - i2sodd) / 2UL);
+		}
+		else
+		{
+		  /* Set the default values */
+		  i2sdiv = 2UL;
+		  i2sodd = 0UL;
+		}
+
+		/* Test if the obtain values are forbidden or out of range */
+		if (((i2sodd == 1UL) && (i2sdiv == 1UL)) || (i2sdiv > 0xFFUL))
+		{
+		  /* Set the error code */
+		  SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_PRESCALER);
+		  return  HAL_ERROR;
+		}
+
+		/* Force i2smod to 1 just to be sure that (2xi2sdiv + i2sodd) is always higher than 0 */
+		if (i2sdiv == 0UL)
+		{
+		  i2sodd = 1UL;
+		}
+
+		MODIFY_REG(hi2s->Instance->I2SCFGR, (SPI_I2SCFGR_I2SDIV                 | SPI_I2SCFGR_ODD),
+				   ((i2sdiv << SPI_I2SCFGR_I2SDIV_Pos) | (i2sodd << SPI_I2SCFGR_ODD_Pos)));
+	  }
+}
 /* USER CODE END 1 */

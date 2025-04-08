@@ -44,7 +44,7 @@ void MX_I2S1_Init(void);
 void MX_I2S2_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void changeFreq(I2S_HandleTypeDef *hi2s, unsigned long freq);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

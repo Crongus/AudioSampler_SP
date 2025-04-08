@@ -2,3 +2,4 @@
 ../Core/Src/i2s.c:64:6:MX_I2S2_Init	2
 ../Core/Src/i2s.c:95:6:HAL_I2S_MspInit	5
 ../Core/Src/i2s.c:213:6:HAL_I2S_MspDeInit	3
+../Core/Src/i2s.c:273:6:changeFreq	14

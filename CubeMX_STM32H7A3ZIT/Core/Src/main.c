@@ -411,6 +411,26 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			clipStore[key] = !clipStore[key]; // Turn store off and on
 		}
 	}
+	// 15 16 and 17 will be pitch control
+	if (key == 15) { // Pitch Down
+		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DeInit(&hi2s2);
+		hi2s2.Init.AudioFreq = 72000UL;
+		HAL_I2S_Init(&hi2s2);
+		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	} else if (key == 16) { // Pitch Normal
+		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DeInit(&hi2s2);
+		hi2s2.Init.AudioFreq = 8000UL;
+		HAL_I2S_Init(&hi2s2);
+		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	} else if (key == 17) { // Pitch Up
+		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DeInit(&hi2s2);
+		hi2s2.Init.AudioFreq = 8800UL;
+		HAL_I2S_Init(&hi2s2);
+		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	}
 	/*switch (key) { // Assumes key cant be changed anywhere else
 		case 0:
 			if (mode == TX) clipGo[key] = !clipGo[key];
