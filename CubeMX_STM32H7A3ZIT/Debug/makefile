@@ -64,7 +64,7 @@ all: main-build
 main-build: STM32H7A3ZIT.elf secondary-outputs
 
 dependents:
-	-cd C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Release && $(MAKE) all
+	-cd C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Release && $(MAKE) clean all
 
 # Tool invocations
 STM32H7A3ZIT.elf STM32H7A3ZIT.map: $(OBJS) $(USER_OBJS) C:/Users/l42li/Documents/AudioSampler_SP/CubeMX_STM32H7A3ZIT/Release/STM32H7A3ZIT.elf C:\Users\l42li\Documents\AudioSampler_SP\CubeMX_STM32H7A3ZIT\STM32H7A3ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)

@@ -84,7 +84,7 @@ void processData(void);
 /* USER CODE BEGIN 0 */
 extern NAND_HandleTypeDef hnand1; // for nand flash init
 volatile int mode = RX;
-volatile int drmode = 1;
+volatile int drmode = 0;
 extern int switchFlag;
 extern const uint16_t sineLookupTable[];
 volatile int errFlag = 0;
@@ -176,13 +176,13 @@ int main(void)
 	while (1) {
 
 		for(int clip = 0; clip < 12; clip++) {
-			if (RxCplt[clip] >= 12000) { // 12000 for 45s at 64 buffer size
+			if (RxCplt[clip] >= 12000 && drmode != 1) { // 12000 for 45s at 64 buffer size
 				RxCplt[clip] = 0;
 			}
 //(SDRAM_CX_BASE(clip) - 2000000000 + STEP_SIZE*(BUFFER_SIZE/2 + (BUFFER_SIZE/2) * RxCplt[clip])) >= SDRAM_CX_BASE(clip+1) - 2000000000
 //SDRAM_CX_BASE(clip)
 			//(SDRAM_CX_BASE(clip) + STEP_SIZE*(i/2 + (BUFFER_SIZE/2) * TxCplt[clip]))
-			if (TxCplt[clip] >= 12000) {
+			if (TxCplt[clip] >= 12000 && drmode != 1) {
 				TxCplt[clip] = 0;
 			}
 		}
@@ -415,7 +415,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (key == 15) { // Pitch Down
 		HAL_I2S_DMAPause(&hi2s2);
 		HAL_I2S_DeInit(&hi2s2);
-		hi2s2.Init.AudioFreq = 72000UL;
+		hi2s2.Init.AudioFreq = 7200UL;
 		HAL_I2S_Init(&hi2s2);
 		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
 	} else if (key == 16) { // Pitch Normal
@@ -430,6 +430,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		hi2s2.Init.AudioFreq = 8800UL;
 		HAL_I2S_Init(&hi2s2);
 		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+	} else if (key == 18) {
+		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DeInit(&hi2s2);
+		hi2s2.Init.AudioFreq = 44100UL;
+		HAL_I2S_Init(&hi2s2);
+		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+		drmode = !drmode;
 	}
 	/*switch (key) { // Assumes key cant be changed anywhere else
 		case 0:
