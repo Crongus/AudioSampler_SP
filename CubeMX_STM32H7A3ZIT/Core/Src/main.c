@@ -430,13 +430,30 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		hi2s2.Init.AudioFreq = 8800UL;
 		HAL_I2S_Init(&hi2s2);
 		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
-	} else if (key == 18) {
+	} else if (key == 18) { // drmode
 		HAL_I2S_DMAPause(&hi2s2);
+		HAL_I2S_DMAPause(&hi2s1);
 		HAL_I2S_DeInit(&hi2s2);
+		HAL_I2S_DeInit(&hi2s1);
 		hi2s2.Init.AudioFreq = 44100UL;
+		hi2s1.Init.AudioFreq = 44100UL;
 		HAL_I2S_Init(&hi2s2);
+		HAL_I2S_Init(&hi2s1);
 		HAL_I2S_Transmit_DMA(&hi2s2, dac_buf_i2s, BUFFER_SIZE);
+		HAL_I2S_Receive_DMA(&hi2s1, adc_buf_i2s, BUFFER_SIZE);
 		drmode = !drmode;
+	} else if (key == 13) { // Reset Current Clip
+		  for (int clip = 0; clip < 12; clip++) {
+			  if((clipGo[clip] == 1) || (clipStore[clip] == 1)) {
+				  RxCplt[clip] = 0;
+				  TxCplt[clip] = 0;
+			  }
+		  }
+	} else if (key == 14) { // Reset All Clips
+		for (int clip = 0; clip < 12; clip++) {
+			RxCplt[clip] = 0;
+			TxCplt[clip] = 0;
+		}
 	}
 	/*switch (key) { // Assumes key cant be changed anywhere else
 		case 0:
